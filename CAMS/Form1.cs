@@ -18,7 +18,6 @@ namespace CAMS
         {
             InitializeComponent();
             InitializeChart();
-            InitializeTimer();
         }
 
         private void InitializeChart()
@@ -54,9 +53,11 @@ namespace CAMS
             // Rendre le quadrillage invisible
             chart1.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             chart1.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
-
+            
             // Changer la couleur de la série à rouge
             chart1.Series["Valeur"].Color = Color.Red;
+            chart1.ChartAreas[0].AxisX.LineColor = Color.Red;
+            chart1.ChartAreas[0].AxisY.LineColor = Color.Red;
 
             // Ajouter un titre au graphique
             Title title = new Title("Ch : 1");
@@ -71,22 +72,6 @@ namespace CAMS
         private void Form1_Load(object sender, EventArgs e)
         {
 
-        }
-
-
-        private void InitializeTimer()
-        {
-            // Initialiser le timer
-            timer = new Timer();
-            timer.Interval = 1000; // Intervalle en millisecondes (1 seconde)
-            timer.Tick += Timer_Tick;
-            timer.Start();
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            // Mettre à jour le label avec l'heure et la date actuelles à chaque tick de timer
-            lblDateTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
     }
 }

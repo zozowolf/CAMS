@@ -33,7 +33,6 @@ namespace CAMS
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.lblDateTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,36 +66,23 @@ namespace CAMS
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
-            // lblDateTime
-            // 
-            this.lblDateTime.AccessibleName = "lblDateTime";
-            this.lblDateTime.AutoSize = true;
-            this.lblDateTime.Location = new System.Drawing.Point(534, 584);
-            this.lblDateTime.Name = "lblDateTime";
-            this.lblDateTime.Size = new System.Drawing.Size(70, 13);
-            this.lblDateTime.TabIndex = 1;
-            this.lblDateTime.Text = "heure et date";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1160, 642);
-            this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.chart1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.Label lblDateTime;
     }
 }
 
