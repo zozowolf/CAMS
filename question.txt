@@ -1,0 +1,3 @@
+valeurs de graduation des graphs 
+quand et comment ce lance le recording time ( est il que en jour ? )
+comment ce passe l'affichage d'un msg d'erreur
