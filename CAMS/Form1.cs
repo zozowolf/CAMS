@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -14,22 +9,38 @@ namespace CAMS
     public partial class Form1 : Form
     {
         private Timer timer;
-        private Chart chart;
+        private List<Chart> charts = new List<Chart>();
         private int previousHour = -1;
+
         public Form1()
         {
             InitializeComponent();
-            InitializeChart();
+            InitializeCharts();
             InitializeTimer();
         }
 
-        private void InitializeChart()
+        private void InitializeCharts()
         {
-            // Créer un nouveau graphique
-            chart = new Chart();
-            chart.Size = new Size(400, 200); // 400 largeur et 200 hauteur
-            this.Controls.Add(chart);
+            // Utiliser un TableLayoutPanel pour organiser les graphiques
+            TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
+            tableLayoutPanel.Dock = DockStyle.Fill;
+            tableLayoutPanel.RowCount = 3;
+            tableLayoutPanel.ColumnCount = 3;
+            displayWindow.Controls.Add(tableLayoutPanel);
 
+            // Créer plusieurs graphiques et les ajouter au TableLayoutPanel
+            for (int i = 0; i < 18; i++) // Changez 9 au nombre de graphiques que vous voulez afficher
+            {
+                Chart chart = new Chart();
+                chart.Size = new Size(300, 150);
+                charts.Add(chart);
+                tableLayoutPanel.Controls.Add(chart);
+                InitializeChart(chart, i + 1); // Ajouter le numéro du graphique
+            }
+        }
+
+        private void InitializeChart(Chart chart, int chartNumber)
+        {
             // Configuration du graphique
             Series series = new Series("Valeur");
             chart.Series.Add(series);
@@ -37,7 +48,6 @@ namespace CAMS
             // Ajuster les limites des l'axes 
             chart.ChartAreas.Add(new ChartArea());
             chart.ChartAreas[0].AxisY.Minimum = 0;
-            chart.ChartAreas[0].AxisY.Maximum = 250;
             chart.ChartAreas[0].AxisX.Minimum = 0;
             chart.ChartAreas[0].AxisX.Maximum = 26;
 
@@ -60,29 +70,28 @@ namespace CAMS
             chart.ChartAreas[0].AxisX.LineColor = Color.Red;
             chart.ChartAreas[0].AxisY.LineColor = Color.Red;
 
-            // Ajouter un titre au graphique
-            Title title = new Title("Ch : 1");
-            title.Font = new Font("Arial", 18, FontStyle.Regular); // Définir la police à Arial, taille 18
-            title.Alignment = ContentAlignment.TopLeft; // Aligner en haut à gauche
-            title.ForeColor = Color.Red; // Changer la couleur du titre en rouge
+            // Ajouter un titre au graphique avec le numéro
+            Title title = new Title($"Ch : {chartNumber}");
+            title.Font = new Font("Arial", 18, FontStyle.Regular);
+            title.Alignment = ContentAlignment.TopLeft;
+            title.ForeColor = Color.Red;
             chart.Titles.Add(title);
 
-            // Mettre à jour le graphique avec les valeurs 
-            UpdateChart();
+            // Mettre à jour le graphique avec les valeurs
+            UpdateChart(chart);
         }
 
-        private void UpdateChart()
+        private void UpdateChart(Chart chart)
         {
             // Ajouter des données au graphique
             int[] Valeur = { 20, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 22, 250 };
 
-            // Effacer les points existant
+            // Effacer les points existants
             chart.Series["Valeur"].Points.Clear();
 
             for (int i = 0; i < 24; i++)
             {
-                // Vérifier l'heure actuel pour charger les valeurs d'avant
-
+                // Vérifier l'heure actuelle pour charger les valeurs d'avant
                 if (i < DateTime.Now.Hour || DateTime.Now.Hour == 0)
                 {
                     DataPoint dataPoint = new DataPoint();
@@ -94,14 +103,14 @@ namespace CAMS
                 if (i == 23)
                 {
                     DataPoint dataPoint = new DataPoint();
-                    // Changer la couleur de valeur en blanc pour l'heure actuel
+                    // Changer la couleur de valeur en blanc pour l'heure actuelle
                     dataPoint.Color = Color.White;
                     dataPoint.SetValueXY("", 1);
                     chart.Series["Valeur"].Points.Add(dataPoint);
                 }
-
             }
         }
+
 
 
         private void InitializeTimer()
@@ -119,7 +128,10 @@ namespace CAMS
             if (DateTime.Now.Hour != previousHour)
             {
                 // Mettre à jour le graphique avec les nouvelles valeurs
-                UpdateChart();
+                foreach (var chart in charts)
+                {
+                    UpdateChart(chart);
+                }
 
                 // Mettre à jour l'heure précédente
                 previousHour = DateTime.Now.Hour;
@@ -127,6 +139,8 @@ namespace CAMS
             // Mettre à jour le label avec l'heure et la date actuelles à chaque tick de timer
             lblDateTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             lblDateTime.ForeColor = Color.White;
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)

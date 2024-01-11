@@ -30,24 +30,35 @@ namespace CAMS
         private void InitializeComponent()
         {
             this.lblDateTime = new System.Windows.Forms.Label();
+            this.displayWindow = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
             // lblDateTime
             // 
             this.lblDateTime.AutoSize = true;
             this.lblDateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateTime.Location = new System.Drawing.Point(586, 183);
+            this.lblDateTime.Location = new System.Drawing.Point(622, 577);
             this.lblDateTime.Name = "lblDateTime";
             this.lblDateTime.Size = new System.Drawing.Size(142, 25);
             this.lblDateTime.TabIndex = 0;
             this.lblDateTime.Text = "Date et heure";
+            // 
+            // displayWindow
+            // 
+            this.displayWindow.Location = new System.Drawing.Point(32, 29);
+            this.displayWindow.Name = "displayWindow";
+            this.displayWindow.Size = new System.Drawing.Size(1036, 527);
+            this.displayWindow.TabIndex = 1;
+            this.displayWindow.TabStop = false;
+            this.displayWindow.Text = "displayWindow";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1168, 637);
+            this.Controls.Add(this.displayWindow);
             this.Controls.Add(this.lblDateTime);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -60,6 +71,7 @@ namespace CAMS
         #endregion
 
         private System.Windows.Forms.Label lblDateTime;
+        private System.Windows.Forms.GroupBox displayWindow;
     }
 }
 
