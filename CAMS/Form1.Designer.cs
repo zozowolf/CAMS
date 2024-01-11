@@ -31,6 +31,7 @@ namespace CAMS
         {
             this.lblDateTime = new System.Windows.Forms.Label();
             this.displayWindow = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblDateTime
@@ -52,12 +53,22 @@ namespace CAMS
             this.displayWindow.TabStop = false;
             this.displayWindow.Text = "displayWindow";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(177, 588);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1168, 637);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.displayWindow);
             this.Controls.Add(this.lblDateTime);
             this.Name = "Form1";
@@ -72,6 +83,7 @@ namespace CAMS
 
         private System.Windows.Forms.Label lblDateTime;
         private System.Windows.Forms.GroupBox displayWindow;
+        private System.Windows.Forms.Label label1;
     }
 }
 
