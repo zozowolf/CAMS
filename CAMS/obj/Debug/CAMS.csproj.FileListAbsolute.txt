@@ -1,10 +1,10 @@
-C:\Users\cdf\Desktop\projet\CAMS\obj\Debug\CAMS.csproj.AssemblyReference.cache
-C:\Users\cdf\Desktop\projet\CAMS\obj\Debug\CAMS.Properties.Resources.resources
-C:\Users\cdf\Desktop\projet\CAMS\obj\Debug\CAMS.csproj.GenerateResource.cache
-C:\Users\cdf\Desktop\projet\CAMS\obj\Debug\CAMS.csproj.CoreCompileInputs.cache
 C:\Users\cdf\Desktop\projet\CAMS\bin\Debug\CAMS.exe.config
 C:\Users\cdf\Desktop\projet\CAMS\bin\Debug\CAMS.exe
 C:\Users\cdf\Desktop\projet\CAMS\bin\Debug\CAMS.pdb
+C:\Users\cdf\Desktop\projet\CAMS\obj\Debug\CAMS.csproj.AssemblyReference.cache
 C:\Users\cdf\Desktop\projet\CAMS\obj\Debug\CAMS.Form1.resources
+C:\Users\cdf\Desktop\projet\CAMS\obj\Debug\CAMS.Properties.Resources.resources
+C:\Users\cdf\Desktop\projet\CAMS\obj\Debug\CAMS.csproj.GenerateResource.cache
+C:\Users\cdf\Desktop\projet\CAMS\obj\Debug\CAMS.csproj.CoreCompileInputs.cache
 C:\Users\cdf\Desktop\projet\CAMS\obj\Debug\CAMS.exe
 C:\Users\cdf\Desktop\projet\CAMS\obj\Debug\CAMS.pdb
