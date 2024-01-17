@@ -16,6 +16,11 @@ namespace application
         private Timer timer;
         private List<Chart> charts = new List<Chart>();
         private int previousHour = -1;
+        private int elapsedTime = 0;
+        private const int ChangeInterval = 30; // Intervalle en secondes pour changer les graphiques
+        private int currentChartIndex = 9; // Ajouter une variable pour suivre l'index du graphique actuel
+        private int maxcharts = 18;
+
         public Form1()
         {
             InitializeComponent();
@@ -36,13 +41,19 @@ namespace application
             displayWindow.Controls.Add(tableLayoutPanel);
 
             // Créer plusieurs graphiques et les ajouter au TableLayoutPanel
-            for (int i = 0; i < 18; i++) // Changez 9 au nombre de graphiques que vous voulez afficher
+            for (int i = 0; i < maxcharts; i++) // Changez 9 au nombre de graphiques que vous voulez afficher
             {
                 Chart chart = new Chart();
                 chart.Size = new Size(300, 150);
                 charts.Add(chart);
                 tableLayoutPanel.Controls.Add(chart);
                 InitializeChart(chart, i + 1); // Ajouter le numéro du graphique
+            }
+
+            // Masquer les graphiques restants
+            for (int i = 9; i < maxcharts; i++)
+            {
+                charts[i].Visible = false;
             }
         }
 
@@ -143,11 +154,39 @@ namespace application
                 // Mettre à jour l'heure précédente
                 previousHour = DateTime.Now.Hour;
             }
+
             // Mettre à jour le label avec l'heure et la date actuelles à chaque tick de timer
             lblDateTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             lblDateTime.ForeColor = Color.White;
 
+            // Vérifier si le temps écoulé atteint l'intervalle de changement
+            elapsedTime++;
+            if (elapsedTime >= ChangeInterval)
+            {
+                // Changer les graphiques affichés
+                ChangeDisplayedCharts();
+                elapsedTime = 0; // Réinitialiser le temps écoulé
+            }
+        }
 
+        private void ChangeDisplayedCharts()
+        {
+            // Masquer tous les graphiques
+            foreach (var chart in charts)
+            {
+                chart.Visible = false;
+            }
+
+            // Afficher les 9 graphiques suivants à partir de l'index actuel
+            for (int i = 0; i < 9; i++)
+            {
+                int indexToShow = (currentChartIndex + i) % charts.Count; // Assurer la circularité
+                charts[indexToShow].Visible = true;
+                UpdateChart(charts[indexToShow]); // Mettre à jour les valeurs du graphique affiché
+            }
+
+            // Mettre à jour l'index actuel
+            currentChartIndex = (currentChartIndex + 9) % charts.Count;
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)

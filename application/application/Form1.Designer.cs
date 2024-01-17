@@ -203,7 +203,7 @@ namespace application
             // 
             this.displayWindow.Location = new System.Drawing.Point(15, 197);
             this.displayWindow.Name = "displayWindow";
-            this.displayWindow.Size = new System.Drawing.Size(1217, 630);
+            this.displayWindow.Size = new System.Drawing.Size(960, 535);
             this.displayWindow.TabIndex = 2;
             this.displayWindow.TabStop = false;
             this.displayWindow.Text = "displayWindow";
@@ -222,7 +222,7 @@ namespace application
             // Form1
             // 
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(1244, 899);
+            this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.displayWindow);
             this.Controls.Add(this.label1);
