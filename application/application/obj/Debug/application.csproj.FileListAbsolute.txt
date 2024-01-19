@@ -22,3 +22,4 @@ C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.csproj.
 C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.csproj.CoreCompileInputs.cache
 C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.exe
 C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.pdb
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.actogramPage.resources

@@ -63,6 +63,7 @@ namespace application
             Series series = new Series("Valeur");
             chart.Series.Add(series);
 
+
             // Ajuster les limites des l'axes 
             chart.ChartAreas.Add(new ChartArea());
             chart.ChartAreas[0].AxisY.Minimum = 0;
@@ -95,26 +96,28 @@ namespace application
             title.ForeColor = Color.Red;
             chart.Titles.Add(title);
 
-            // Mettre à jour le graphique avec les valeurs
-            UpdateChart(chart);
+            
+
         }
 
         private void UpdateChart(Chart chart)
         {
-            // Ajouter des données au graphique
-            int[] Valeur = { 20, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 22, 250 };
-
-            // Effacer les points existants
+            // Réinitialiser les valeurs à minuit (temporaire en attendant la BD)
             chart.Series["Valeur"].Points.Clear();
+            
 
+            // Générer des valeurs aléatoires différentes pour chaque graphique
+            Random random = new Random(Guid.NewGuid().GetHashCode());
             for (int i = 0; i < 24; i++)
             {
                 // Vérifier l'heure actuelle pour charger les valeurs d'avant
                 if (i < DateTime.Now.Hour || DateTime.Now.Hour == 0)
                 {
                     DataPoint dataPoint = new DataPoint();
+                    // Générer une valeur aléatoire entre 1 et 100
+                    int randomValue = random.Next();
                     // Ajouter le point de données au graphique
-                    dataPoint.SetValueXY("", Valeur[i]);
+                    dataPoint.SetValueXY("", randomValue);
                     chart.Series["Valeur"].Points.Add(dataPoint);
                 }
 
@@ -128,6 +131,7 @@ namespace application
                 }
             }
         }
+
 
 
 

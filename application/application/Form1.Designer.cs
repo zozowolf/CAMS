@@ -62,7 +62,7 @@ namespace application
             this.optionMenu.Controls.Add(this.button4);
             this.optionMenu.Controls.Add(this.button3);
             this.optionMenu.Controls.Add(this.button2);
-            this.optionMenu.Location = new System.Drawing.Point(12, 50);
+            this.optionMenu.Location = new System.Drawing.Point(489, 50);
             this.optionMenu.Name = "optionMenu";
             this.optionMenu.Size = new System.Drawing.Size(904, 141);
             this.optionMenu.TabIndex = 0;
@@ -192,7 +192,7 @@ namespace application
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(220, 9);
+            this.label1.Location = new System.Drawing.Point(753, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(429, 38);
             this.label1.TabIndex = 1;
@@ -201,7 +201,7 @@ namespace application
             // 
             // displayWindow
             // 
-            this.displayWindow.Location = new System.Drawing.Point(15, 197);
+            this.displayWindow.Location = new System.Drawing.Point(454, 197);
             this.displayWindow.Name = "displayWindow";
             this.displayWindow.Size = new System.Drawing.Size(960, 535);
             this.displayWindow.TabIndex = 2;
@@ -213,7 +213,7 @@ namespace application
             // 
             this.lblDateTime.AutoSize = true;
             this.lblDateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateTime.Location = new System.Drawing.Point(576, 848);
+            this.lblDateTime.Location = new System.Drawing.Point(883, 788);
             this.lblDateTime.Name = "lblDateTime";
             this.lblDateTime.Size = new System.Drawing.Size(110, 20);
             this.lblDateTime.TabIndex = 3;
