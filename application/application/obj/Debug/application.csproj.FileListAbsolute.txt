@@ -10,3 +10,16 @@ C:\Users\cdf\source\repos\application\application\obj\Debug\application.csproj.A
 C:\Users\cdf\source\repos\application\application\obj\Debug\application.Form1.resources
 C:\Users\cdf\source\repos\application\application\obj\Debug\MonBoutonPersonnalise1.resources
 C:\Users\cdf\source\repos\application\application\obj\Debug\application.displayChannelsPage.resources
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\application.exe.config
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\application.exe
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\application.pdb
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.csproj.AssemblyReference.cache
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.Form1.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.displayChannelsPage.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\MonBoutonPersonnalise1.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.Properties.Resources.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.csproj.GenerateResource.cache
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.csproj.CoreCompileInputs.cache
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.exe
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.pdb
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.actogramPage.resources
