@@ -1,0 +1,3 @@
+13/05/08 Light control definitions file info
+nø .name    .gr.type          .Cycle Length.Light duration
+001 LC - 1       24 LD      24:0          9:0

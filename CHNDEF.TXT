@@ -1,0 +1,34 @@
+13/05/08 channel definition file info
+nø .name    .type    .gr.comment
+001 c1       IR                                                    
+002 c2       IR                                                    
+003 c3       IR                                                    
+004 c4       IR                                                    
+005 c5       IR                                                    
+006 c6       IR                                                    
+007 c7       IR                                                    
+008 c8       IR                                                    
+009 c9       IR                                                    
+010 c10      IR                                                    
+011 c11      IR                                                    
+012 c12      IR                                                    
+013 c13      IR                                                    
+014 c14      IR                                                    
+015 c15      IR                                                    
+016 c16      IR                                                    
+017 c17      IR                                                    
+018 c18      IR                                                    
+019 c19      IR                                                    
+020 c20      IR                                                    
+021 c21      IR                                                    
+022 c22      IR                                                    
+023 c23      IR                                                    
+024 c24      IR                                                    
+025 c25      IR                                                    
+026 c26      IR                                                    
+027 c27      IR                                                    
+028 c28      IR                                                    
+029 c29      IR                                                    
+030 c30      IR                                                    
+031 c31      IR                                                    
+032 c32      IR                                                    
