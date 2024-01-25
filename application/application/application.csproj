@@ -53,6 +53,12 @@
     <Compile Include="actogramPage.Designer.cs">
       <DependentUpon>actogramPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="channelDefinitionPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="channelDefinitionPage.Designer.cs">
+      <DependentUpon>channelDefinitionPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </Compile>
     <EmbeddedResource Include="actogramPage.resx">
       <DependentUpon>actogramPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="channelDefinitionPage.resx">
+      <DependentUpon>channelDefinitionPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

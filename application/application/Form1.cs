@@ -207,6 +207,9 @@ namespace application
                 case Keys.S:
                     button3.PerformClick();
                     break;
+                case Keys.C:
+                    button5.PerformClick();
+                    break;
             }
 
 
@@ -280,7 +283,16 @@ namespace application
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            channelDefinitionPage nouvelleForme = new channelDefinitionPage();
+            if (nouvelleForme != null)
+            {
+                nouvelleForme.Show();
+            }
+            else
+            {
+                MessageBox.Show("La nouvelle forme est null.");
+            }
+            
         }
 
         private void button6_Click(object sender, EventArgs e)
