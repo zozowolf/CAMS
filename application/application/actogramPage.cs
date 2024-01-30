@@ -6,6 +6,9 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace application
 {
+    /*! \class actogramPage
+    \brief Classe permettant de modéliser des actograms
+    */
     public partial class actogramPage : Form
     {
         private const int NumCharts = 22;
@@ -43,8 +46,9 @@ namespace application
             Chart chart = new Chart();
             chart.ChartAreas.Add(new ChartArea());
 
+
             Series series = chart.Series.Add($"Chart{chartNumber}");
-            
+            series.ChartType = SeriesChartType.Line;
 
             for (int x = 0; x <= MaxXValue; x++)
             {

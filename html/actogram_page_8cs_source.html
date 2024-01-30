@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>application:  Fichier source de C:/Users/cdf/Desktop/depot/application/application/actogramPage.cs</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">application
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a class="el" href="dir_c7903f1b50a79e1e2b8443059b8f5b59.html">cdf</a></li><li class="navelem"><a class="el" href="dir_6b92cbb1ef92fc84fb6f5eb98164bb2b.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_c203e46d0a1a21618dc375d0d59af0e3.html">depot</a></li><li class="navelem"><a class="el" href="dir_b8c9ef841cc30183fbeadc26736e54fa.html">application</a></li><li class="navelem"><a class="el" href="dir_f54ac99a3ebb1cd7c0d5dddefc7d68ca.html">application</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">actogramPage.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="actogram_page_8cs.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>System;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span>System.Drawing;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>System.Linq;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>System.Windows.Forms;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using </span>System.Windows.Forms.DataVisualization.Charting;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="foldopen" id="foldopen00007" data-start="{" data-end="}">
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="namespaceapplication.html">    7</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceapplication.html">application</a></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classapplication_1_1actogram_page.html">   12</a></span>    <span class="keyword">public</span> <span class="keyword">partial class </span><a class="code hl_class" href="classapplication_1_1actogram_page.html">actogramPage</a> : Form</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keywordtype">int</span> NumCharts = 22;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keywordtype">int</span> MaxXValue = 25;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keywordtype">int</span> ChartHeight = 25;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keywordtype">int</span> Margin = 10;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classapplication_1_1actogram_page.html#aff4e65f7c397f4b309b4789a1fbda303">   19</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="classapplication_1_1actogram_page.html#aff4e65f7c397f4b309b4789a1fbda303">actogramPage</a>()</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            InitializeComponent();</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            InitializeCharts();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            Bounds = Screen.PrimaryScreen.Bounds; <span class="comment">// Ajuster la taille de la fenêtre à la taille de l&#39;écran</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        }</div>
+</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> InitializeCharts()</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <span class="comment">// Créer les graphiques à lignes avec des points</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            Random random = <span class="keyword">new</span> Random(); <span class="comment">// Générateur de nombres aléatoires</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= NumCharts; i++)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                Chart chart = CreateLineChart(i, random);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                groupBox1.Controls.Add(chart);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="comment">// Créer le graphique à lignes avec des points en bleu</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            Chart blueChart = CreateBlueLineChart();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            blueChart.Size = <span class="keyword">new</span> System.Drawing.Size(blueChart.Width, ChartHeight+10);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            groupBox1.Controls.Add(blueChart);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keyword">private</span> Chart CreateLineChart(<span class="keywordtype">int</span> chartNumber, Random random)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            Chart chart = <span class="keyword">new</span> Chart();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            chart.ChartAreas.Add(<span class="keyword">new</span> ChartArea());</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            Series series = chart.Series.Add($<span class="stringliteral">&quot;Chart{chartNumber}&quot;</span>);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            series.ChartType = SeriesChartType.Line;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt;= MaxXValue; x++)</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                <span class="keywordtype">int</span> randomValue = random.Next();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                series.Points.AddXY(x, randomValue);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <span class="comment">// Configurer le style de la ligne</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            series.Color = Color.Green; <span class="comment">// Couleur verte</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            series.BorderWidth = 2;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            ConfigureChart(chart, chartNumber);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="keywordflow">return</span> chart;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">private</span> Chart CreateBlueLineChart()</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            Chart chart = <span class="keyword">new</span> Chart();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            chart.ChartAreas.Add(<span class="keyword">new</span> ChartArea());</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            Series series = chart.Series.Add(<span class="stringliteral">&quot;Total&quot;</span>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            series.ChartType = SeriesChartType.Line;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            <span class="comment">// Ajouter les valeurs totales des autres graphiques</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt;= MaxXValue; x++)</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                <span class="keywordtype">double</span> totalValue = 0;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                <span class="keywordflow">foreach</span> (Chart lineChart <span class="keywordflow">in</span> groupBox1.Controls.OfType&lt;Chart&gt;())</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                    <span class="keywordflow">if</span> (lineChart != chart)</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                    {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                        <span class="keywordtype">int</span> chartNumber = <span class="keywordtype">int</span>.Parse(lineChart.Series[0].Name.Substring(<span class="stringliteral">&quot;Chart&quot;</span>.Length));</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                        totalValue += lineChart.Series[0].Points[x].YValues[0];</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                    }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                series.Points.AddXY(x, totalValue);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="comment">// Configurer le style de la ligne en bleu</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            series.Color = Color.Blue; <span class="comment">// Couleur bleue</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            series.BorderWidth = 2;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            ConfigureChart(chart, NumCharts + 1);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <span class="keywordflow">return</span> chart;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> ConfigureChart(Chart chart, <span class="keywordtype">int</span> chartNumber)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            <span class="comment">// Rendre les valeurs des axes invisibles</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            chart.ChartAreas[0].AxisX.LabelStyle.Enabled = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            chart.ChartAreas[0].AxisY.LabelStyle.Enabled = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>            chart.ChartAreas[0].AxisX.MajorTickMark.Enabled = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>            chart.ChartAreas[0].AxisY.MajorTickMark.Enabled = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <span class="comment">// Configurer la transparence du fond</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            chart.BackColor = Color.Transparent;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            chart.ChartAreas[0].BackColor = Color.Transparent;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            <span class="comment">// Configurer la transparence des valeurs des axes</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            chart.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Transparent;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            chart.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Transparent;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            <span class="comment">// Désactiver le quadrillage du fond</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            chart.ChartAreas[0].AxisX.MajorGrid.Enabled = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            chart.ChartAreas[0].AxisY.MajorGrid.Enabled = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <span class="comment">// Supprimer les marqueurs de points</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            chart.Series[0].MarkerStyle = MarkerStyle.None;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            <span class="comment">// Définir la position et la taille du graphique</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            chart.Width = groupBox1.Width - 20; <span class="comment">// Largeur ajustée à celle du GroupBox</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            <span class="keywordtype">int</span> top = (ChartHeight + Margin) * (chartNumber - 1) + Margin;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            chart.Location = <span class="keyword">new</span> System.Drawing.Point(10, top);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            chart.Size = <span class="keyword">new</span> System.Drawing.Size(chart.Width, ChartHeight);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> actogramPage_Load(<span class="keywordtype">object</span> sender, EventArgs e)</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
+</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>}</div>
+</div>
+<div class="ttc" id="aclassapplication_1_1actogram_page_html"><div class="ttname"><a href="classapplication_1_1actogram_page.html">application.actogramPage</a></div><div class="ttdoc">Classe permettant de modéliser des actograms.</div><div class="ttdef"><b>Definition</b> <a href="#l00012">actogramPage.cs:13</a></div></div>
+<div class="ttc" id="aclassapplication_1_1actogram_page_html_aff4e65f7c397f4b309b4789a1fbda303"><div class="ttname"><a href="classapplication_1_1actogram_page.html#aff4e65f7c397f4b309b4789a1fbda303">application.actogramPage.actogramPage</a></div><div class="ttdeci">actogramPage()</div><div class="ttdef"><b>Definition</b> <a href="#l00019">actogramPage.cs:19</a></div></div>
+<div class="ttc" id="anamespaceapplication_html"><div class="ttname"><a href="namespaceapplication.html">application</a></div><div class="ttdef"><b>Definition</b> <a href="#l00007">actogramPage.cs:8</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

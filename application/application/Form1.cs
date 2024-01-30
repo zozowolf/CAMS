@@ -9,8 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
+/*! \mainpage CAMS
+\author Antonin Froment, Enzo Da Cunha, Hugo Martin-Coché, Joris Vejux
+\date 2024
+\bug Aucun bug détecté à ce jour
+\section intro_sec Introduction
+Concevoir un système d'acquisition similaire à celui existant avec un matériel et un logiciel d'actualité permettant aussi quelques améliorations
+\section install_sec Informations pour la mise en oeuvre
+\subsection software_sec Informations logicielles
+Le logiciel développé fonctionne dans l'environnement Windows
+\subsection Informations Repartition des tâches
+séparé en 4 partie le parametrage, les graphs, la base de données et les .DAT, module modbus et vpn 
+ */
+
 namespace application
 {
+    /*! \class Form1
+    \brief Classe mainpage de l'application qui permet de lancer les autres fenetres et posséde un affichage de graph
+    */
     public partial class Form1 : Form
     {
         private Timer timer;
