@@ -121,7 +121,7 @@ namespace application
         {
             // Réinitialiser les valeurs (temporaire en attendant la BD)
             chart.Series["Valeur"].Points.Clear();
-
+            
             // Récupérer le numéro du graphique à partir du titre
             int currentChartNumber = int.Parse(chart.Titles[0].Text.Split(':')[1].Trim());
 
@@ -140,7 +140,7 @@ namespace application
                     {
                         while (reader.Read())
                         {
-                            DataPoint dataPoint = new DataPoint();
+                    DataPoint dataPoint = new DataPoint();
 
                             // Utilisez la colonne correspondante pour récupérer les données
                             double valeur = Convert.ToDouble(reader["valeur"]);
@@ -148,14 +148,14 @@ namespace application
 
                             if (dateHeure.Date == currentDate)
                             {
-                                // Ajouter le point de données au graphique
+                    // Ajouter le point de données au graphique
                                 dataPoint.SetValueXY(dateHeure.Hour, valeur);
-                                chart.Series["Valeur"].Points.Add(dataPoint);
-                            }
-                        }
-                    }
+                    chart.Series["Valeur"].Points.Add(dataPoint);
                 }
-                 
+                }
+            }
+        }
+
             }
             // Ajout d'un point blanc pour l'heure actuel
             DataPoint Point = new DataPoint();
@@ -237,6 +237,12 @@ namespace application
                 case Keys.S:
                     button3.PerformClick();
                     break;
+                case Keys.C:
+                    button5.PerformClick();
+                    break;
+                case Keys.R:
+                    button6.PerformClick();
+                    break;
             }
 
 
@@ -312,12 +318,22 @@ namespace application
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            channelDefinitionPage nouvelleForme = new channelDefinitionPage();
+            if (nouvelleForme != null)
+            {
+                nouvelleForme.Show();
+            }
+            else
+            {
+                MessageBox.Show("La nouvelle forme est null.");
+            }
+            
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            recordingIntervalPage nouvelleForme = new recordingIntervalPage();
+            nouvelleForme.Show();
         }
 
         private void button7_Click(object sender, EventArgs e)

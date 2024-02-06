@@ -16,5 +16,10 @@ namespace application
         {
             InitializeComponent();
         }
+
+        private void systemInformationPage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
