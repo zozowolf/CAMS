@@ -68,6 +68,11 @@
     <Compile Include="actogramPage.Designer.cs">
       <DependentUpon>actogramPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBCAMSDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBCAMSDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +117,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="DBCAMSDataSet.xsc">
+      <DependentUpon>DBCAMSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DBCAMSDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DBCAMSDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DBCAMSDataSet.xss">
+      <DependentUpon>DBCAMSDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

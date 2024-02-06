@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-
+using System.Data.SqlClient; // SQL Server local DB
 /*! \mainpage CAMS
 \author Antonin Froment, Enzo Da Cunha, Hugo Martin-Coché, Joris Vejux
 \date 2024
@@ -35,7 +35,7 @@ namespace application
         private int elapsedTime = 0;
         private const int ChangeInterval = 30; // Intervalle en secondes pour changer les graphiques
         private int currentChartIndex = 9; // Ajouter une variable pour suivre l'index du graphique actuel
-        private int maxcharts = 18;
+        private int maxcharts = 2;
 
         public Form1()
         {
@@ -105,6 +105,7 @@ namespace application
             chart.ChartAreas[0].AxisX.LineColor = Color.Red;
             chart.ChartAreas[0].AxisY.LineColor = Color.Red;
 
+
             // Ajouter un titre au graphique avec le numéro
             Title title = new Title($"Ch : {chartNumber}");
             title.Font = new Font("Arial", 18, FontStyle.Regular);
@@ -118,37 +119,50 @@ namespace application
 
         private void UpdateChart(Chart chart)
         {
-            // Réinitialiser les valeurs à minuit (temporaire en attendant la BD)
+            // Réinitialiser les valeurs (temporaire en attendant la BD)
             chart.Series["Valeur"].Points.Clear();
-            
 
-            // Générer des valeurs aléatoires différentes pour chaque graphique
-            Random random = new Random(Guid.NewGuid().GetHashCode());
-            for (int i = 0; i < 24; i++)
+            // Récupérer le numéro du graphique à partir du titre
+            int currentChartNumber = int.Parse(chart.Titles[0].Text.Split(':')[1].Trim());
+
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
             {
-                // Vérifier l'heure actuelle pour charger les valeurs d'avant
-                if (i < DateTime.Now.Hour || DateTime.Now.Hour == 0)
-                {
-                    DataPoint dataPoint = new DataPoint();
-                    // Générer une valeur aléatoire entre 1 et 100
-                    int randomValue = random.Next();
-                    // Ajouter le point de données au graphique
-                    dataPoint.SetValueXY("", randomValue);
-                    chart.Series["Valeur"].Points.Add(dataPoint);
-                }
+                cn_connection.Open();
 
-                if (i == 23)
+                // Récupérer la date actuelle pour filtrer les mesures du jour actuel
+                DateTime currentDate = DateTime.Now.Date;
+
+                string sql_Text = $"SELECT valeur, dateHeure FROM Mesure WHERE IdChannel = {currentChartNumber}";
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
                 {
-                    DataPoint dataPoint = new DataPoint();
-                    // Changer la couleur de valeur en blanc pour l'heure actuelle
-                    dataPoint.Color = Color.White;
-                    dataPoint.SetValueXY("", 1);
-                    chart.Series["Valeur"].Points.Add(dataPoint);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DataPoint dataPoint = new DataPoint();
+
+                            // Utilisez la colonne correspondante pour récupérer les données
+                            double valeur = Convert.ToDouble(reader["valeur"]);
+                            DateTime dateHeure = Convert.ToDateTime(reader["dateHeure"]);
+
+                            if (dateHeure.Date == currentDate)
+                            {
+                                // Ajouter le point de données au graphique
+                                dataPoint.SetValueXY(dateHeure.Hour, valeur);
+                                chart.Series["Valeur"].Points.Add(dataPoint);
+                            }
+                        }
+                    }
                 }
+                 
             }
+            // Ajout d'un point blanc pour l'heure actuel
+            DataPoint Point = new DataPoint();
+            Point.Color = Color.White;
+            Point.SetValueXY(DateTime.Now.Hour, 1);
+            chart.Series["Valeur"].Points.Add(Point);
         }
-
-
 
 
         private void InitializeTimer()
@@ -234,6 +248,8 @@ namespace application
 
             // Associer l'événement KeyDown au formulaire
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
+
+
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
