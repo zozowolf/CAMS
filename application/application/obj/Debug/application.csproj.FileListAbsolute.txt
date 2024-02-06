@@ -42,3 +42,5 @@ C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.sys
 C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.InputDialog.resources
 C:\Users\cdf\Desktop\depot\application\application\bin\Debug\DBCAMS.mdf
 C:\Users\cdf\Desktop\depot\application\application\bin\Debug\DBCAMS_log.ldf
+C:\Users\cdf\Desktop\depot git\application\application\bin\Debug\DBCAMS.mdf
+C:\Users\cdf\Desktop\depot git\application\application\bin\Debug\DBCAMS_log.ldf
