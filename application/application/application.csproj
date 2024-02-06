@@ -142,11 +142,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBCAMS.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="DBCAMS.mdf" />
     <Content Include="DBCAMS_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>DBCAMS.mdf</DependentUpon>
     </Content>
   </ItemGroup>
