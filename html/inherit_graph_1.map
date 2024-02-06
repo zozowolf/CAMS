@@ -1,0 +1,13 @@
+<map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,107,57,133"/>
+<area shape="rect" id="Node000001" href="$classapplication_1_1_form1.html" title="Classe mainpage de l&#39;application qui permet de lancer les autres fenetres et posséde un affichage de ..." alt="" coords="154,5,279,32"/>
+<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="48,93,72,66,103,42,128,31,153,24,154,29,129,36,106,46,76,70,52,96"/>
+<area shape="rect" id="Node000002" href="$classapplication_1_1actogram_page.html" title="Classe permettant de modéliser des actograms." alt="" coords="131,56,302,83"/>
+<area shape="poly" id="edge3_Node000000_Node000002" title=" " alt="" coords="70,103,104,92,148,81,149,86,105,97,72,108"/>
+<area shape="rect" id="Node000003" href="$classapplication_1_1display_channels_page.html" title=" " alt="" coords="110,107,323,133"/>
+<area shape="poly" id="edge4_Node000000_Node000003" title=" " alt="" coords="72,117,110,117,110,123,72,123"/>
+<area shape="rect" id="Node000004" href="$classapplication_1_1recording_interval_page.html" title=" " alt="" coords="111,157,322,184"/>
+<area shape="poly" id="edge5_Node000000_Node000004" title=" " alt="" coords="72,132,105,143,149,154,148,159,104,148,70,137"/>
+<area shape="rect" id="Node000005" href="$classapplication_1_1system_information_page.html" title=" " alt="" coords="105,208,328,235"/>
+<area shape="poly" id="edge6_Node000000_Node000005" title=" " alt="" coords="52,144,76,170,106,194,132,205,129,210,103,198,72,174,48,147"/>
+</map>
