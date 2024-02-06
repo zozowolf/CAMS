@@ -210,6 +210,9 @@ namespace application
                 case Keys.C:
                     button5.PerformClick();
                     break;
+                case Keys.R:
+                    button6.PerformClick();
+                    break;
             }
 
 
@@ -297,7 +300,8 @@ namespace application
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            recordingIntervalPage nouvelleForme = new recordingIntervalPage();
+            nouvelleForme.Show();
         }
 
         private void button7_Click(object sender, EventArgs e)

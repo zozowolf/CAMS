@@ -71,11 +71,23 @@
     <Compile Include="displayChannelsPage.Designer.cs">
       <DependentUpon>displayChannelsPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputDialog.Designer.cs">
+      <DependentUpon>InputDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="MonBoutonPersonnalise1.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="recordingIntervalPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="recordingIntervalPage.Designer.cs">
+      <DependentUpon>recordingIntervalPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="systemInformationPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +106,9 @@
     <EmbeddedResource Include="displayChannelsPage.resx">
       <DependentUpon>displayChannelsPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InputDialog.resx">
+      <DependentUpon>InputDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MonBoutonPersonnalise1.resx">
       <DependentUpon>MonBoutonPersonnalise1.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,6 +121,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="recordingIntervalPage.resx">
+      <DependentUpon>recordingIntervalPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="systemInformationPage.resx">
+      <DependentUpon>systemInformationPage.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

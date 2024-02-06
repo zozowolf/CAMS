@@ -37,3 +37,6 @@ C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.csp
 C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.exe
 C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.pdb
 C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.channelDefinitionPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.recordingIntervalPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.systemInformationPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.InputDialog.resources

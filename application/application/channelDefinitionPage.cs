@@ -12,21 +12,14 @@ namespace application
 {
     public partial class channelDefinitionPage : Form
     {
-
-
-
         private DataTable dataTable;
         private BindingSource bindingSource;
 
-
         public channelDefinitionPage()
         {
-
-
             InitializeComponent();
-            Bounds = Screen.PrimaryScreen.Bounds; // plein écran
+            Bounds = Screen.PrimaryScreen.Bounds;
 
-                
             // Créer une DataTable
             dataTable = new DataTable();
 
@@ -41,7 +34,9 @@ namespace application
             comboBoxColumn.Name = "Type";
             comboBoxColumn.HeaderText = "Type";
             comboBoxColumn.DataSource = GetListeChoix(); // Méthode pour obtenir la liste des choix
-            comboBoxColumn.DataPropertyName = "NomDeLaColonneDansDataTable"; // Assurez-vous que cela correspond à votre DataTable
+            comboBoxColumn.DisplayMember = "Choix"; // Le nom de la colonne à afficher dans la ComboBox
+            comboBoxColumn.ValueMember = "Choix"; // La valeur associée à la ComboBox
+            comboBoxColumn.DataPropertyName = "Type"; // Assurez-vous que cela correspond à votre DataTable
             dataGridView1.Columns.Add(comboBoxColumn);
 
             AjouterDonneesFactices();
@@ -56,27 +51,26 @@ namespace application
             dataGridView1.Columns["Comments"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["Comments"].FillWeight = 1;
 
-
-
-
+            // Ajouter le gestionnaire d'événements DataError
+            dataGridView1.DataError += dataGridView1_DataError;
         }
 
         // Méthode pour ajouter des données factices pour les tests
         private void AjouterDonneesFactices()
         {
             // Ajouter des lignes avec des valeurs factices
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 1; i++)
             {
-                // creer ligne
+                // créer une ligne
                 DataRow newRow = dataTable.NewRow();
 
-                // on met des valeurs pour chaque colonne
+                // attribuer des valeurs à chaque colonne
                 newRow["No"] = i;
                 newRow["Type"] = "Wheel";
                 newRow["Group"] = "";
                 newRow["Comments"] = "10/14 LD Cycle";
 
-                // on ajoute a la grid
+                // ajouter à la grille
                 dataTable.Rows.Add(newRow);
             }
         }
@@ -88,8 +82,13 @@ namespace application
 
             // Ajoutez les choix spécifiques
             choixTable.Rows.Add("Wheel");
-            choixTable.Rows.Add("Option 2");
-            choixTable.Rows.Add("Option 3");
+            choixTable.Rows.Add("IR");
+            choixTable.Rows.Add("Light");
+            choixTable.Rows.Add("Temp");
+            choixTable.Rows.Add("CC");
+            choixTable.Rows.Add("OC");
+            choixTable.Rows.Add("Off");
+
             // Ajoutez d'autres choix selon vos besoins
 
             return choixTable;
@@ -97,12 +96,12 @@ namespace application
 
         private void channelDefinitionPage_Load(object sender, EventArgs e)
         {
-            
+            // Événement de chargement de la page (actuellement vide)
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            // Gestionnaire d'événement de clic sur une cellule de la grille (actuellement vide)
         }
 
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -136,8 +135,5 @@ namespace application
                 e.Cancel = true;
             }
         }
-
-
-
     }
 }
