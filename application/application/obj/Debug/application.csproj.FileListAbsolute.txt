@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\cdf\source\repos\application\application\obj\Debug\application.Properties.Resources.resources
 C:\Users\cdf\source\repos\application\application\obj\Debug\application.csproj.GenerateResource.cache
 C:\Users\cdf\source\repos\application\application\obj\Debug\application.csproj.CoreCompileInputs.cache
@@ -42,3 +43,49 @@ C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.sys
 C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.InputDialog.resources
 C:\Users\cdf\Desktop\depot\application\application\bin\Debug\DBCAMS.mdf
 C:\Users\cdf\Desktop\depot\application\application\bin\Debug\DBCAMS_log.ldf
+=======
+C:\Users\cdf\source\repos\application\application\obj\Debug\application.Properties.Resources.resources
+C:\Users\cdf\source\repos\application\application\obj\Debug\application.csproj.GenerateResource.cache
+C:\Users\cdf\source\repos\application\application\obj\Debug\application.csproj.CoreCompileInputs.cache
+C:\Users\cdf\source\repos\application\application\bin\Debug\application.exe.config
+C:\Users\cdf\source\repos\application\application\bin\Debug\application.exe
+C:\Users\cdf\source\repos\application\application\bin\Debug\application.pdb
+C:\Users\cdf\source\repos\application\application\obj\Debug\application.exe
+C:\Users\cdf\source\repos\application\application\obj\Debug\application.pdb
+C:\Users\cdf\source\repos\application\application\obj\Debug\application.csproj.AssemblyReference.cache
+C:\Users\cdf\source\repos\application\application\obj\Debug\application.Form1.resources
+C:\Users\cdf\source\repos\application\application\obj\Debug\MonBoutonPersonnalise1.resources
+C:\Users\cdf\source\repos\application\application\obj\Debug\application.displayChannelsPage.resources
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\application.exe.config
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\application.exe
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\application.pdb
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.csproj.AssemblyReference.cache
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.Form1.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.displayChannelsPage.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\MonBoutonPersonnalise1.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.Properties.Resources.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.csproj.GenerateResource.cache
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.csproj.CoreCompileInputs.cache
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.exe
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.pdb
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.actogramPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\bin\Debug\application.exe.config
+C:\Users\cdf\Desktop\depot git\application\application\bin\Debug\application.exe
+C:\Users\cdf\Desktop\depot git\application\application\bin\Debug\application.pdb
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.csproj.AssemblyReference.cache
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.actogramPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.Form1.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.displayChannelsPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\MonBoutonPersonnalise1.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.Properties.Resources.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.csproj.GenerateResource.cache
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.csproj.CoreCompileInputs.cache
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.exe
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.pdb
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.channelDefinitionPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.recordingIntervalPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.systemInformationPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.InputDialog.resources
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\DBCAMS.mdf
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\DBCAMS_log.ldf
+>>>>>>> parent of df3e7dc (FIX BD)
