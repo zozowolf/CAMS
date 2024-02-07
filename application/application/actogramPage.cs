@@ -6,6 +6,9 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace application
 {
+    /*! \class actogramPage
+    \brief Classe permettant de modéliser des actograms
+    */
     public partial class actogramPage : Form
     {
         private const int NumCharts = 22;
