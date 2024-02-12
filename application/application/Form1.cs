@@ -35,15 +35,16 @@ namespace application
         private int elapsedTime = 0;
         private const int ChangeInterval = 30; // Intervalle en secondes pour changer les graphiques
         private int currentChartIndex = 9; // Ajouter une variable pour suivre l'index du graphique actuel
-        private int maxcharts = 2;
+        private int maxcharts = 100;
 
         public Form1()
         {
             InitializeComponent();
             InitializeCharts();
             InitializeTimer();
-          
+
             Bounds = Screen.PrimaryScreen.Bounds; // Ajuster la taille de la fenêtre à la taille de l'écran
+
 
         }
 
@@ -83,6 +84,7 @@ namespace application
             // Ajuster les limites des l'axes 
             chart.ChartAreas.Add(new ChartArea());
             chart.ChartAreas[0].AxisY.Minimum = 0;
+            chart.ChartAreas[0].AxisY.Maximum = 1000;
             chart.ChartAreas[0].AxisX.Minimum = 0;
             chart.ChartAreas[0].AxisX.Maximum = 26;
 
@@ -102,6 +104,7 @@ namespace application
 
             // Changer la couleur de la série à rouge
             chart.Series["Valeur"].Color = Color.Red;
+            chart.Series["Valeur"].IsValueShownAsLabel = true;
             chart.ChartAreas[0].AxisX.LineColor = Color.Red;
             chart.ChartAreas[0].AxisY.LineColor = Color.Red;
 
@@ -138,6 +141,8 @@ namespace application
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        bool dataExists = false; // Flag to check if any data is available
+
                         while (reader.Read())
                         {
                             DataPoint dataPoint = new DataPoint();
@@ -151,18 +156,28 @@ namespace application
                                 // Ajouter le point de données au graphique
                                 dataPoint.SetValueXY(dateHeure.Hour, valeur);
                                 chart.Series["Valeur"].Points.Add(dataPoint);
+                                dataExists = true; // Data is available
                             }
                         }
+
+                        // Masquer le graphique si aucune donnée n'est disponible
+                        chart.Visible = dataExists;
                     }
                 }
-                 
             }
-            // Ajout d'un point blanc pour l'heure actuel
-            DataPoint Point = new DataPoint();
-            Point.Color = Color.White;
-            Point.SetValueXY(DateTime.Now.Hour, 1);
-            chart.Series["Valeur"].Points.Add(Point);
+
+            // Ajouter une strip line verticale à l'heure actuelle
+            StripLine stripLine = new StripLine();
+            stripLine.Interval = 0;
+            stripLine.IntervalOffset = DateTime.Now.Hour;
+            stripLine.StripWidth = 0.1; // Ajustez la largeur de la strip line selon vos besoins
+            stripLine.BackColor = Color.White;
+
+            chart.ChartAreas[0].AxisX.StripLines.Clear(); // Clear existing strip lines
+            chart.ChartAreas[0].AxisX.StripLines.Add(stripLine);
         }
+
+
 
 
         private void InitializeTimer()

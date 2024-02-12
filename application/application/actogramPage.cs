@@ -11,7 +11,7 @@ namespace application
     */
     public partial class actogramPage : Form
     {
-        private const int NumCharts = 22;
+        private const int NumCharts = 7;
         private const int MaxXValue = 25;
         private const int ChartHeight = 25;
         private const int Margin = 10;
