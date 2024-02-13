@@ -84,7 +84,7 @@ namespace application
             // Ajuster les limites des l'axes 
             chart.ChartAreas.Add(new ChartArea());
             chart.ChartAreas[0].AxisY.Minimum = 0;
-            chart.ChartAreas[0].AxisY.Maximum = 1000;
+            chart.ChartAreas[0].AxisY.Maximum = 1500;
             chart.ChartAreas[0].AxisX.Minimum = 0;
             chart.ChartAreas[0].AxisX.Maximum = 26;
 
@@ -141,23 +141,39 @@ namespace application
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        bool dataExists = false; // Flag to check if any data is available
+                        bool dataExists = false; // Drapeau pour vérifier si des données sont disponibles
+
+                        Dictionary<int, double> valeursAgrégéesParHeure = new Dictionary<int, double>();
 
                         while (reader.Read())
                         {
-                            DataPoint dataPoint = new DataPoint();
-
-                            // Utilisez la colonne correspondante pour récupérer les données
+                            // Utiliser la colonne correspondante pour récupérer les données
                             double valeur = Convert.ToDouble(reader["valeur"]);
                             DateTime dateHeure = Convert.ToDateTime(reader["dateHeure"]);
 
                             if (dateHeure.Date == currentDate)
                             {
-                                // Ajouter le point de données au graphique
-                                dataPoint.SetValueXY(dateHeure.Hour, valeur);
-                                chart.Series["Valeur"].Points.Add(dataPoint);
-                                dataExists = true; // Data is available
+                                // Agréger les valeurs par heure
+                                int heureClé = dateHeure.Hour;
+                                if (valeursAgrégéesParHeure.ContainsKey(heureClé))
+                                {
+                                    valeursAgrégéesParHeure[heureClé] += valeur;
+                                }
+                                else
+                                {
+                                    valeursAgrégéesParHeure[heureClé] = valeur;
+                                }
+
+                                dataExists = true; // Des données sont disponibles
                             }
+                        }
+
+                        // Ajouter les valeurs agrégées au graphique
+                        foreach (var kvp in valeursAgrégéesParHeure)
+                        {
+                            DataPoint dataPoint = new DataPoint();
+                            dataPoint.SetValueXY(kvp.Key, kvp.Value);
+                            chart.Series["Valeur"].Points.Add(dataPoint);
                         }
 
                         // Masquer le graphique si aucune donnée n'est disponible
@@ -166,16 +182,17 @@ namespace application
                 }
             }
 
-            // Ajouter une strip line verticale à l'heure actuelle
+            // Ajouter une ligne de séparation verticale à l'heure actuelle
             StripLine stripLine = new StripLine();
             stripLine.Interval = 0;
             stripLine.IntervalOffset = DateTime.Now.Hour;
-            stripLine.StripWidth = 0.1; // Ajustez la largeur de la strip line selon vos besoins
+            stripLine.StripWidth = 0.1; // Ajuster la largeur de la ligne de séparation selon vos besoins
             stripLine.BackColor = Color.White;
 
-            chart.ChartAreas[0].AxisX.StripLines.Clear(); // Clear existing strip lines
+            chart.ChartAreas[0].AxisX.StripLines.Clear(); // Effacer les lignes de séparation existantes
             chart.ChartAreas[0].AxisX.StripLines.Add(stripLine);
         }
+
 
 
 
