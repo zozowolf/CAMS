@@ -11,8 +11,8 @@ namespace application
     */
     public partial class actogramPage : Form
     {
-        private const int NumCharts = 7;
-        private const int MaxXValue = 25;
+        private const int NumCharts = 8;
+        private const int MaxXValue = 1440;
         private const int ChartHeight = 25;
         private const int Margin = 10;
 
@@ -29,26 +29,25 @@ namespace application
             // Créer les graphiques à lignes avec des points
             Random random = new Random(); // Générateur de nombres aléatoires
 
+            int chartHeight = (groupBox1.Height - (NumCharts + 1) * Margin) / (NumCharts + 1); // Calculer la hauteur des graphiques
+
             for (int i = 1; i <= NumCharts; i++)
             {
-                Chart chart = CreateLineChart(i, random);
+                Chart chart = CreateChart(i, random, chartHeight);
                 groupBox1.Controls.Add(chart);
             }
 
             // Créer le graphique à lignes avec des points en bleu
-            Chart blueChart = CreateBlueLineChart();
-            blueChart.Size = new System.Drawing.Size(blueChart.Width, ChartHeight+10);
+            Chart blueChart = CreateBlueLineChart(chartHeight);
             groupBox1.Controls.Add(blueChart);
         }
 
-        private Chart CreateLineChart(int chartNumber, Random random)
+        private Chart CreateChart(int chartNumber, Random random, int chartHeight)
         {
             Chart chart = new Chart();
             chart.ChartAreas.Add(new ChartArea());
 
-
             Series series = chart.Series.Add($"Chart{chartNumber}");
-            series.ChartType = SeriesChartType.Line;
 
             for (int x = 0; x <= MaxXValue; x++)
             {
@@ -60,12 +59,12 @@ namespace application
             series.Color = Color.Green; // Couleur verte
             series.BorderWidth = 2;
 
-            ConfigureChart(chart, chartNumber);
+            ConfigureChart(chart, chartNumber, chartHeight);
 
             return chart;
         }
 
-        private Chart CreateBlueLineChart()
+        private Chart CreateBlueLineChart(int chartHeight)
         {
             Chart chart = new Chart();
             chart.ChartAreas.Add(new ChartArea());
@@ -92,12 +91,13 @@ namespace application
             series.Color = Color.Blue; // Couleur bleue
             series.BorderWidth = 2;
 
-            ConfigureChart(chart, NumCharts + 1);
+            ConfigureChart(chart, NumCharts + 1, chartHeight);
 
             return chart;
         }
 
-        private void ConfigureChart(Chart chart, int chartNumber)
+
+        private void ConfigureChart(Chart chart, int chartNumber, int chartHeight)
         {
             // Rendre les valeurs des axes invisibles
             chart.ChartAreas[0].AxisX.LabelStyle.Enabled = false;
@@ -119,12 +119,10 @@ namespace application
 
             // Supprimer les marqueurs de points
             chart.Series[0].MarkerStyle = MarkerStyle.None;
-
             // Définir la position et la taille du graphique
-            chart.Width = groupBox1.Width - 20; // Largeur ajustée à celle du GroupBox
-            int top = (ChartHeight + Margin) * (chartNumber - 1) + Margin;
+            int top = (chartHeight + Margin) * (chartNumber - 1) + Margin;
             chart.Location = new System.Drawing.Point(10, top);
-            chart.Size = new System.Drawing.Size(chart.Width, ChartHeight);
+            chart.Size = new System.Drawing.Size(groupBox1.Width - 20, chartHeight);
         }
 
         private void actogramPage_Load(object sender, EventArgs e)

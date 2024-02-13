@@ -220,6 +220,16 @@ namespace application
 
         private void ChangeDisplayedCharts()
         {
+            // Count the number of currently visible charts
+            int visibleChartsCount = charts.Count(chart => chart.Visible);
+
+            // Check if there are fewer than 9 visible charts
+            if (visibleChartsCount < 9)
+            {
+                // Do not change the charts if there are not enough visible charts
+                return;
+            }
+
             // Masquer tous les graphiques
             foreach (var chart in charts)
             {
@@ -237,6 +247,7 @@ namespace application
             // Mettre à jour l'index actuel
             currentChartIndex = (currentChartIndex + 9) % charts.Count;
         }
+
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
