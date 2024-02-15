@@ -33,14 +33,16 @@ namespace application
 
         private void InitializeCharts()
         {
+            // Récupérer les jours uniques triés
+            List<DateTime> sortedDays = GetSortedDays();
+
             // Créer les graphiques à lignes avec des points
-            Random random = new Random(); // Générateur de nombres aléatoires
+            int chartHeight = (groupBox1.Height - (sortedDays.Count + 1) * Margin) / (sortedDays.Count + 1); // Calculer la hauteur des graphiques
 
-            int chartHeight = (groupBox1.Height - (NumCharts() + 1) * Margin) / (NumCharts() + 1); // Calculer la hauteur des graphiques
-
-            for (int i = 1; i <= NumCharts(); i++)
+            // Créer les graphiques en fonction des jours triés
+            for (int i = 0; i < sortedDays.Count; i++)
             {
-                Chart chart = CreateChart(i, random, chartHeight);
+                Chart chart = CreateChart(i + 1, chartHeight, sortedDays[i]);
                 groupBox1.Controls.Add(chart);
             }
 
@@ -49,14 +51,14 @@ namespace application
             groupBox1.Controls.Add(blueChart);
         }
 
-        private Chart CreateChart(int chartNumber, Random random, int chartHeight)
+        private Chart CreateChart(int chartNumber, int chartHeight, DateTime day)
         {
             Chart chart = new Chart();
             chart.ChartAreas.Add(new ChartArea());
 
             Series series = chart.Series.Add($"Chart{chartNumber}");
 
-            UpdateChart(chart, chartNumber);
+            UpdateChart(chart, chartNumber, day);
 
             // Configurer le style de la ligne
             series.Color = Color.Green; // Couleur verte
@@ -68,10 +70,10 @@ namespace application
         }
 
 
-        private int NumCharts()
+        private List<DateTime> GetSortedDays()
         {
             string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
-            HashSet<DateTime> joursDifferents = new HashSet<DateTime>();
+            List<DateTime> joursDifferents = new List<DateTime>();
 
             using (SqlConnection cn_connection = new SqlConnection(cn_string))
             {
@@ -87,19 +89,24 @@ namespace application
                             if (reader["dateHeure"] != DBNull.Value)
                             {
                                 DateTime dateHeure = (DateTime)reader["dateHeure"];
-                                // Ignorer les composants d'heure pour ne considérer que la date
                                 DateTime jourUnique = dateHeure.Date;
-                                joursDifferents.Add(jourUnique);
+                                if (!joursDifferents.Contains(jourUnique))
+                                {
+                                    joursDifferents.Add(jourUnique);
+                                }
                             }
                         }
                     }
                 }
             }
 
-            return joursDifferents.Count;
+            // Trier les jours de manière ascendante
+            joursDifferents.Sort();
+
+            return joursDifferents;
         }
 
-        private void UpdateChart(Chart chart, int chartNumber)
+        private void UpdateChart(Chart chart, int chartNumber, DateTime day)
         {
             // Réinitialiser les valeurs (temporaire en attendant la BD)
             chart.Series[$"Chart{chartNumber}"].Points.Clear();
@@ -112,7 +119,8 @@ namespace application
                 // Initialiser un tableau pour stocker les valeurs par minute
                 double[] valeursParMinute = new double[MaxXValue + 1];
 
-                string sql_Text = $"SELECT valeur, dateHeure FROM Mesure WHERE IdChannel = 1 ORDER BY dateHeure ASC";
+                string sql_Text = $"SELECT valeur, dateHeure FROM Mesure WHERE IdChannel = 1 AND CONVERT(date, dateHeure) = '{day.ToString("yyyy-MM-dd")}' ORDER BY dateHeure ASC";
+
                 using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -148,6 +156,9 @@ namespace application
 
         private Chart CreateBlueLineChart(int chartHeight)
         {
+            // Récupérer les jours uniques triés
+            List<DateTime> sortedDays = GetSortedDays();
+
             Chart chart = new Chart();
             chart.ChartAreas.Add(new ChartArea());
 
@@ -173,7 +184,7 @@ namespace application
             series.Color = Color.Blue; // Couleur bleue
             series.BorderWidth = 2;
 
-            ConfigureChart(chart, NumCharts() + 1, chartHeight);
+            ConfigureChart(chart, sortedDays.Count + 1, chartHeight);
 
             return chart;
         }
