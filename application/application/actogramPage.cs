@@ -17,8 +17,8 @@ namespace application
     */
     public partial class actogramPage : Form
     {
-        
 
+        int numbchannel = 1;
         private const int MaxXValue = 1440;
         private const int ChartHeight = 25;
         private const int Margin = 10;
@@ -33,6 +33,15 @@ namespace application
 
         private void InitializeCharts()
         {
+            // Supprime tous les contrôles du GroupBox
+            foreach (Control control in groupBox1.Controls)
+            {
+                control.Dispose();
+            }
+
+            // Efface la liste des contrôles dans le GroupBox
+            groupBox1.Controls.Clear();
+
             // Récupérer les jours uniques triés
             List<DateTime> sortedDays = GetSortedDays();
 
@@ -78,7 +87,7 @@ namespace application
             using (SqlConnection cn_connection = new SqlConnection(cn_string))
             {
                 cn_connection.Open();
-                string sql_Text = $"SELECT dateHeure FROM Mesure WHERE IdChannel = 1 ORDER BY dateHeure ASC";
+                string sql_Text = $"SELECT dateHeure FROM Mesure WHERE IdChannel = '{numbchannel}' ORDER BY dateHeure ASC";
 
                 using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
                 {
@@ -102,7 +111,8 @@ namespace application
 
             // Trier les jours de manière ascendante
             joursDifferents.Sort();
-
+            Startdate.Text = joursDifferents[0].Date.ToString("dd/MM/yyyy");
+            Enddate.Text = joursDifferents[joursDifferents.Count-1].Date.ToString("dd/MM/yyyy");
             return joursDifferents;
         }
 
@@ -119,7 +129,7 @@ namespace application
                 // Initialiser un tableau pour stocker les valeurs par minute
                 double[] valeursParMinute = new double[MaxXValue + 1];
 
-                string sql_Text = $"SELECT valeur, dateHeure FROM Mesure WHERE IdChannel = 1 AND CONVERT(date, dateHeure) = '{day.ToString("yyyy-MM-dd")}' ORDER BY dateHeure ASC";
+                string sql_Text = $"SELECT valeur, dateHeure FROM Mesure WHERE IdChannel = '{numbchannel}' AND CONVERT(date, dateHeure) = '{day.ToString("yyyy-MM-dd")}' ORDER BY dateHeure ASC";
 
                 using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
                 {
@@ -221,10 +231,51 @@ namespace application
             chart.Location = new System.Drawing.Point(10, top);
             chart.Size = new System.Drawing.Size(groupBox1.Width - 20, chartHeight);
         }
+        private void actogramPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.C:
+                    ChooseChanel.PerformClick();
+                    break;
+                case Keys.E:
+                    Exit.PerformClick();
+                    break;
+            }
+
+
+        }
 
         private void actogramPage_Load(object sender, EventArgs e)
         {
+            this.KeyPreview = true; // S'assurer que le formulaire capture les événements de touches
 
+            // Associer l'événement KeyDown au formulaire
+            this.KeyDown += new KeyEventHandler(actogramPage_KeyDown);
+
+        }
+
+        private void ChooseChanel_Click(object sender, EventArgs e)
+        {
+            // Afficher la boîte de dialogue de saisie de valeur
+            InputDialog inputDialog = new InputDialog();
+            if (inputDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Récupérer la valeur saisie par l'utilisateur
+                string valeurSaisie = inputDialog.GetInputValue();
+
+                // Stocker la valeur saisie dans votre code
+                // Par exemple, vous pouvez stocker la valeur dans une variable de votre formulaire
+                numbchannel = int.Parse(valeurSaisie);
+                
+            }
+            InitializeCharts();
+
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

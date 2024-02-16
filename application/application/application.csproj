@@ -85,6 +85,12 @@
     <Compile Include="displayChannelsPage.Designer.cs">
       <DependentUpon>displayChannelsPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputDialog.Designer.cs">
+      <DependentUpon>InputDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="MonBoutonPersonnalise1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="displayChannelsPage.resx">
       <DependentUpon>displayChannelsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputDialog.resx">
+      <DependentUpon>InputDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonBoutonPersonnalise1.resx">
       <DependentUpon>MonBoutonPersonnalise1.cs</DependentUpon>
