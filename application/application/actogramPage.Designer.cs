@@ -34,6 +34,7 @@ namespace application
             this.Enddate = new System.Windows.Forms.Label();
             this.ChooseChanel = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
+            this.Chn = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -82,11 +83,21 @@ namespace application
             this.Exit.UseVisualStyleBackColor = true;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
+            // Chn
+            // 
+            this.Chn.AutoSize = true;
+            this.Chn.Location = new System.Drawing.Point(970, 981);
+            this.Chn.Name = "Chn";
+            this.Chn.Size = new System.Drawing.Size(32, 13);
+            this.Chn.TabIndex = 5;
+            this.Chn.Text = "Chn. ";
+            // 
             // actogramPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.Chn);
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.ChooseChanel);
             this.Controls.Add(this.Enddate);
@@ -107,5 +118,6 @@ namespace application
         private System.Windows.Forms.Label Enddate;
         private System.Windows.Forms.Button ChooseChanel;
         private System.Windows.Forms.Button Exit;
+        private System.Windows.Forms.Label Chn;
     }
 }

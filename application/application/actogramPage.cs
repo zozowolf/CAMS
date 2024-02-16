@@ -42,6 +42,9 @@ namespace application
             // Efface la liste des contrôles dans le GroupBox
             groupBox1.Controls.Clear();
 
+            //affichage du channel actuel
+            Chn.Text = "Chn. " + numbchannel.ToString("000") + ": c" + numbchannel;
+
             // Récupérer les jours uniques triés
             List<DateTime> sortedDays = GetSortedDays();
 
@@ -267,7 +270,9 @@ namespace application
                 // Stocker la valeur saisie dans votre code
                 // Par exemple, vous pouvez stocker la valeur dans une variable de votre formulaire
                 numbchannel = int.Parse(valeurSaisie);
-                
+               
+
+
             }
             InitializeCharts();
 
