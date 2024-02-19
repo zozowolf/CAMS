@@ -1,0 +1,12 @@
+C:\Users\cdf\Desktop\depot\BaseDeDonnee\BaseDeDonnee\obj\Debug\BaseDeDonnee.csproj.AssemblyReference.cache
+C:\Users\cdf\Desktop\depot\BaseDeDonnee\BaseDeDonnee\obj\Debug\BaseDeDonnee.Form1.resources
+C:\Users\cdf\Desktop\depot\BaseDeDonnee\BaseDeDonnee\obj\Debug\BaseDeDonnee.Properties.Resources.resources
+C:\Users\cdf\Desktop\depot\BaseDeDonnee\BaseDeDonnee\obj\Debug\BaseDeDonnee.csproj.GenerateResource.cache
+C:\Users\cdf\Desktop\depot\BaseDeDonnee\BaseDeDonnee\obj\Debug\BaseDeDonnee.csproj.CoreCompileInputs.cache
+C:\Users\cdf\Desktop\depot\BaseDeDonnee\BaseDeDonnee\bin\Debug\BaseDeDonnee.mdf
+C:\Users\cdf\Desktop\depot\BaseDeDonnee\BaseDeDonnee\bin\Debug\BaseDeDonnee_log.ldf
+C:\Users\cdf\Desktop\depot\BaseDeDonnee\BaseDeDonnee\bin\Debug\BaseDeDonnee.exe.config
+C:\Users\cdf\Desktop\depot\BaseDeDonnee\BaseDeDonnee\bin\Debug\BaseDeDonnee.exe
+C:\Users\cdf\Desktop\depot\BaseDeDonnee\BaseDeDonnee\bin\Debug\BaseDeDonnee.pdb
+C:\Users\cdf\Desktop\depot\BaseDeDonnee\BaseDeDonnee\obj\Debug\BaseDeDonnee.exe
+C:\Users\cdf\Desktop\depot\BaseDeDonnee\BaseDeDonnee\obj\Debug\BaseDeDonnee.pdb
