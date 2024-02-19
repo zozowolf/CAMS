@@ -258,25 +258,68 @@ namespace application
 
         }
 
+        private List<int> GetUniqueChannelIds()
+        {
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
+            List<int> uniqueChannelIds = new List<int>();
+
+            // Ouvrir la connexion à la base de données
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            {
+                cn_connection.Open();
+                // Sélectionner les identifiants de canal distincts
+                string sql_Text = "SELECT DISTINCT IdChannel FROM Mesure";
+
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Parcourir les résultats et ajouter les identifiants de canal à la liste
+                        while (reader.Read())
+                        {
+                            if (reader["IdChannel"] != DBNull.Value)
+                            {
+                                int channelId = (int)reader["IdChannel"];
+                                uniqueChannelIds.Add(channelId);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Retourner la liste des identifiants de canal uniques
+            return uniqueChannelIds;
+        }
+
         private void ChooseChanel_Click(object sender, EventArgs e)
         {
+            // Récupérer les identifiants de canal uniques
+            List<int> uniqueChannelIds = GetUniqueChannelIds();
+
             // Afficher la boîte de dialogue de saisie de valeur
             InputDialog inputDialog = new InputDialog();
             if (inputDialog.ShowDialog() == DialogResult.OK)
             {
                 // Récupérer la valeur saisie par l'utilisateur
-                string valeurSaisie = inputDialog.GetInputValue();
+                string userInput = inputDialog.GetInputValue();
 
-                // Stocker la valeur saisie dans votre code
-                // Par exemple, vous pouvez stocker la valeur dans une variable de votre formulaire
-                numbchannel = int.Parse(valeurSaisie);
-               
+                // Vérifier si la valeur saisie est un identifiant de canal valide
+                if (int.TryParse(userInput, out int selectedChannel) && uniqueChannelIds.Contains(selectedChannel))
+                {
+                    // Mettre à jour le numéro de canal
+                    numbchannel = selectedChannel;
 
-
+                    // Initialiser les graphiques avec le numéro de canal mis à jour
+                    InitializeCharts();
+                }
+                else
+                {
+                    // Afficher un message d'erreur ou prendre une action appropriée si l'entrée est invalide
+                    MessageBox.Show("Identifiant de canal invalide. Veuillez saisir un identifiant de canal valide.");
+                }
             }
-            InitializeCharts();
-
         }
+
 
         private void Exit_Click(object sender, EventArgs e)
         {
