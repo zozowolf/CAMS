@@ -27,25 +27,25 @@ namespace application
         {
             InitializeComponent();
             InitializeCharts();
-            Bounds = Screen.PrimaryScreen.Bounds;
+
         }
 
         private void InitializeCharts()
         {
-            // Supprime tous les contrôles du panel et du groupbox2
+            // Supprime tous les contrôles des panels
             foreach (Control control in panel1.Controls)
             {
                 control.Dispose();
             }
 
-            foreach (Control control in groupBox2.Controls)
+            foreach (Control control in panel2.Controls)
             {
                 control.Dispose();
             }
 
-            // Efface la liste des contrôles dans le panel et du groupbox2
+            // Efface la liste des contrôles dans les panels
             panel1.Controls.Clear();
-            groupBox2.Controls.Clear();
+            panel2.Controls.Clear();
 
             //affichage du channel actuel
             Chn.Text = "Chn. " + numbchannel.ToString("000") + ": c" + numbchannel;
@@ -61,8 +61,8 @@ namespace application
             }
 
             // Créer le graphique à lignes avec des points en bleu
-            Chart blueChart = CreateBlueLineChart(groupBox2.Height);
-            groupBox2.Controls.Add(blueChart);
+            Chart blueChart = CreateBlueLineChart(panel2.Height);
+            panel2.Controls.Add(blueChart);
         }
 
         private Chart CreateChart(int chartNumber, int chartHeight, DateTime day)
@@ -229,7 +229,7 @@ namespace application
             // Supprimer les marqueurs de points
             chart.Series[0].MarkerStyle = MarkerStyle.None;
             // Définir la position et la taille du graphique
-            if (chartHeight != groupBox2.Height)
+            if (chartHeight != panel2.Height)
             {
                 int top = (chartHeight + Margin) * (chartNumber - 1) + Margin;
                 chart.Location = new System.Drawing.Point(10, top);

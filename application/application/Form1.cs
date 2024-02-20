@@ -42,10 +42,6 @@ namespace application
             InitializeComponent();
             InitializeCharts();
             InitializeTimer();
-
-            Bounds = Screen.PrimaryScreen.Bounds; // Ajuster la taille de la fenêtre à la taille de l'écran
-
-
         }
 
         private void InitializeCharts()

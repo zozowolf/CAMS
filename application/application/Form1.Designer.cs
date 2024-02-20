@@ -228,6 +228,7 @@ namespace application
             this.Controls.Add(this.label1);
             this.Controls.Add(this.optionMenu);
             this.Name = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.optionMenu.ResumeLayout(false);
             this.ResumeLayout(false);
