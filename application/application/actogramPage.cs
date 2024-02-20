@@ -20,27 +20,26 @@ namespace application
 
         int numbchannel = 1;
         private const int MaxXValue = 1440;
-        private const int ChartHeight = 25;
+        private const int chartHeight = 105;
         private const int Margin = 10;
 
         public actogramPage()
         {
             InitializeComponent();
             InitializeCharts();
-
-            Bounds = Screen.PrimaryScreen.Bounds; // Ajuster la taille de la fenêtre à la taille de l'écran
+            Bounds = Screen.PrimaryScreen.Bounds;
         }
 
         private void InitializeCharts()
         {
-            // Supprime tous les contrôles du GroupBox
-            foreach (Control control in groupBox1.Controls)
+            // Supprime tous les contrôles du panel
+            foreach (Control control in panel1.Controls)
             {
                 control.Dispose();
             }
 
-            // Efface la liste des contrôles dans le GroupBox
-            groupBox1.Controls.Clear();
+            // Efface la liste des contrôles dans le panel
+            panel1.Controls.Clear();
 
             //affichage du channel actuel
             Chn.Text = "Chn. " + numbchannel.ToString("000") + ": c" + numbchannel;
@@ -48,19 +47,16 @@ namespace application
             // Récupérer les jours uniques triés
             List<DateTime> sortedDays = GetSortedDays();
 
-            // Créer les graphiques à lignes avec des points
-            int chartHeight = (groupBox1.Height - (sortedDays.Count + 1) * Margin) / (sortedDays.Count + 1); // Calculer la hauteur des graphiques
-
             // Créer les graphiques en fonction des jours triés
             for (int i = 0; i < sortedDays.Count; i++)
             {
                 Chart chart = CreateChart(i + 1, chartHeight, sortedDays[i]);
-                groupBox1.Controls.Add(chart);
+                panel1.Controls.Add(chart);
             }
 
             // Créer le graphique à lignes avec des points en bleu
-            Chart blueChart = CreateBlueLineChart(chartHeight);
-            groupBox1.Controls.Add(blueChart);
+            Chart blueChart = CreateBlueLineChart(groupBox2.Height);
+            groupBox2.Controls.Add(blueChart);
         }
 
         private Chart CreateChart(int chartNumber, int chartHeight, DateTime day)
@@ -115,7 +111,7 @@ namespace application
             // Trier les jours de manière ascendante
             joursDifferents.Sort();
             Startdate.Text = joursDifferents[0].Date.ToString("dd/MM/yyyy");
-            Enddate.Text = joursDifferents[joursDifferents.Count-1].Date.ToString("dd/MM/yyyy");
+            Enddate.Text = joursDifferents[joursDifferents.Count - 1].Date.ToString("dd/MM/yyyy");
             return joursDifferents;
         }
 
@@ -164,9 +160,6 @@ namespace application
             }
         }
 
-
-
-
         private Chart CreateBlueLineChart(int chartHeight)
         {
             // Récupérer les jours uniques triés
@@ -182,7 +175,7 @@ namespace application
             for (int x = 0; x <= MaxXValue; x++)
             {
                 double totalValue = 0;
-                foreach (Chart lineChart in groupBox1.Controls.OfType<Chart>())
+                foreach (Chart lineChart in panel1.Controls.OfType<Chart>())
                 {
                     if (lineChart != chart)
                     {
@@ -230,9 +223,13 @@ namespace application
             // Supprimer les marqueurs de points
             chart.Series[0].MarkerStyle = MarkerStyle.None;
             // Définir la position et la taille du graphique
-            int top = (chartHeight + Margin) * (chartNumber - 1) + Margin;
-            chart.Location = new System.Drawing.Point(10, top);
-            chart.Size = new System.Drawing.Size(groupBox1.Width - 20, chartHeight);
+            if (chartHeight != groupBox2.Height)
+            {
+                int top = (chartHeight + Margin) * (chartNumber - 1) + Margin;
+                chart.Location = new System.Drawing.Point(10, top);
+            }
+
+            chart.Size = new System.Drawing.Size(panel1.Width - 30, chartHeight);
         }
         private void actogramPage_KeyDown(object sender, KeyEventArgs e)
         {

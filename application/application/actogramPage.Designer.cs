@@ -29,21 +29,14 @@ namespace application
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Startdate = new System.Windows.Forms.Label();
             this.Enddate = new System.Windows.Forms.Label();
             this.ChooseChanel = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
             this.Chn = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Location = new System.Drawing.Point(115, 98);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1600, 828);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
             // 
             // Startdate
             // 
@@ -57,7 +50,7 @@ namespace application
             // Enddate
             // 
             this.Enddate.AutoSize = true;
-            this.Enddate.Location = new System.Drawing.Point(13, 899);
+            this.Enddate.Location = new System.Drawing.Point(13, 735);
             this.Enddate.Name = "Enddate";
             this.Enddate.Size = new System.Drawing.Size(47, 13);
             this.Enddate.TabIndex = 2;
@@ -92,17 +85,34 @@ namespace application
             this.Chn.TabIndex = 5;
             this.Chn.Text = "Chn. ";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Location = new System.Drawing.Point(115, 794);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1600, 166);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Location = new System.Drawing.Point(115, 81);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1600, 696);
+            this.panel1.TabIndex = 7;
+            // 
             // actogramPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Chn);
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.ChooseChanel);
             this.Controls.Add(this.Enddate);
             this.Controls.Add(this.Startdate);
-            this.Controls.Add(this.groupBox1);
             this.Name = "actogramPage";
             this.Text = "actogramPage";
             this.Load += new System.EventHandler(this.actogramPage_Load);
@@ -112,12 +122,12 @@ namespace application
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label Startdate;
         private System.Windows.Forms.Label Enddate;
         private System.Windows.Forms.Button ChooseChanel;
         private System.Windows.Forms.Button Exit;
         private System.Windows.Forms.Label Chn;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Panel panel1;
     }
 }
