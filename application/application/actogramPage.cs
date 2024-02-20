@@ -32,14 +32,20 @@ namespace application
 
         private void InitializeCharts()
         {
-            // Supprime tous les contrôles du panel
+            // Supprime tous les contrôles du panel et du groupbox2
             foreach (Control control in panel1.Controls)
             {
                 control.Dispose();
             }
 
-            // Efface la liste des contrôles dans le panel
+            foreach (Control control in groupBox2.Controls)
+            {
+                control.Dispose();
+            }
+
+            // Efface la liste des contrôles dans le panel et du groupbox2
             panel1.Controls.Clear();
+            groupBox2.Controls.Clear();
 
             //affichage du channel actuel
             Chn.Text = "Chn. " + numbchannel.ToString("000") + ": c" + numbchannel;
