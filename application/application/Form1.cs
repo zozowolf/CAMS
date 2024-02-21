@@ -36,7 +36,7 @@ namespace application
         private const int ChangeInterval = 30; // Intervalle en secondes pour changer les graphiques
         private int currentChartIndex = 9; // Ajouter une variable pour suivre l'index du graphique actuel
         private int maxcharts = 100;
-
+        SQL_command sqlCommand = new SQL_command();
         public Form1()
         {
             InitializeComponent();
@@ -112,7 +112,7 @@ namespace application
             title.ForeColor = Color.Red;
             chart.Titles.Add(title);
 
-            
+
 
         }
 
@@ -124,74 +124,34 @@ namespace application
             // Récupérer le numéro du graphique à partir du titre
             int currentChartNumber = int.Parse(chart.Titles[0].Text.Split(':')[1].Trim());
 
-            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
-            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            Dictionary<int, double> valeursAgrégéesParHeure = sqlCommand.Get_Valeur_heure(currentChartNumber);
+
+            if (valeursAgrégéesParHeure.Count == 0)
             {
-                cn_connection.Open();
-
-                // Récupérer la date actuelle pour filtrer les mesures du jour actuel
-                DateTime currentDate = DateTime.Now.Date;
-
-                string sql_Text = $"SELECT valeur, dateHeure FROM Mesure WHERE IdChannel = {currentChartNumber}";
-                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        bool dataExists = false; // Drapeau pour vérifier si des données sont disponibles
-
-                        Dictionary<int, double> valeursAgrégéesParHeure = new Dictionary<int, double>();
-
-                        while (reader.Read())
-                        {
-                            // Utiliser la colonne correspondante pour récupérer les données
-                            double valeur = Convert.ToDouble(reader["valeur"]);
-                            DateTime dateHeure = Convert.ToDateTime(reader["dateHeure"]);
-
-                            if (dateHeure.Date == currentDate)
-                            {
-                                // Agréger les valeurs par heure
-                                int heureClé = dateHeure.Hour;
-                                if (valeursAgrégéesParHeure.ContainsKey(heureClé))
-                                {
-                                    valeursAgrégéesParHeure[heureClé] += valeur;
-                                }
-                                else
-                                {
-                                    valeursAgrégéesParHeure[heureClé] = valeur;
-                                }
-
-                                dataExists = true; // Des données sont disponibles
-                            }
-                        }
-
-                        // Ajouter les valeurs agrégées au graphique
-                        foreach (var kvp in valeursAgrégéesParHeure)
-                        {
-                            DataPoint dataPoint = new DataPoint();
-                            dataPoint.SetValueXY(kvp.Key, kvp.Value);
-                            chart.Series["Valeur"].Points.Add(dataPoint);
-                        }
-
-                        // Masquer le graphique si aucune donnée n'est disponible
-                        chart.Visible = dataExists;
-                    }
-                }
+                // Masquer le graphique si aucune donnée n'est disponible
+                chart.Visible = false;
             }
+            else
+            {
+                // Ajouter les valeurs agrégées au graphique
+                foreach (var kvp in valeursAgrégéesParHeure)
+                {
+                    DataPoint dataPoint = new DataPoint();
+                    dataPoint.SetValueXY(kvp.Key, kvp.Value);
+                    chart.Series["Valeur"].Points.Add(dataPoint);
+                }
 
-            // Ajouter une ligne de séparation verticale à l'heure actuelle
-            StripLine stripLine = new StripLine();
-            stripLine.Interval = 0;
-            stripLine.IntervalOffset = DateTime.Now.Hour;
-            stripLine.StripWidth = 0.1; // Ajuster la largeur de la ligne de séparation selon vos besoins
-            stripLine.BackColor = Color.White;
+                // Ajouter une ligne de séparation verticale à l'heure actuelle
+                StripLine stripLine = new StripLine();
+                stripLine.Interval = 0;
+                stripLine.IntervalOffset = DateTime.Now.Hour;
+                stripLine.StripWidth = 0.1; // Ajuster la largeur de la ligne de séparation selon vos besoins
+                stripLine.BackColor = Color.White;
 
-            chart.ChartAreas[0].AxisX.StripLines.Clear(); // Effacer les lignes de séparation existantes
-            chart.ChartAreas[0].AxisX.StripLines.Add(stripLine);
+                chart.ChartAreas[0].AxisX.StripLines.Clear(); // Effacer les lignes de séparation existantes
+                chart.ChartAreas[0].AxisX.StripLines.Add(stripLine);
+            }
         }
-
-
-
-
 
         private void InitializeTimer()
         {
@@ -239,7 +199,7 @@ namespace application
             // Check if there are fewer than 9 visible charts
             if (visibleChartsCount < 9)
             {
-                // Do not change the charts if there are not enough visible charts
+                //Aucun changement des graphiques s'y en a pas assez
                 return;
             }
 

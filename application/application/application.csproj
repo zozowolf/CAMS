@@ -70,6 +70,7 @@
     <Compile Include="actogramPage.Designer.cs">
       <DependentUpon>actogramPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="SQL_command.cs" />
     <Compile Include="DBCAMSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
