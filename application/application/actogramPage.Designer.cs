@@ -36,6 +36,8 @@ namespace application
             this.Chn = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.zoomin = new System.Windows.Forms.Button();
+            this.zoomout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Startdate
@@ -103,18 +105,41 @@ namespace application
             // 
             // panel2
             // 
-            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panel2.AutoScroll = true;
             this.panel2.Location = new System.Drawing.Point(115, 783);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1600, 183);
             this.panel2.TabIndex = 8;
             // 
+            // zoomin
+            // 
+            this.zoomin.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zoomin.Location = new System.Drawing.Point(1777, 358);
+            this.zoomin.Name = "zoomin";
+            this.zoomin.Size = new System.Drawing.Size(55, 52);
+            this.zoomin.TabIndex = 9;
+            this.zoomin.Text = "+";
+            this.zoomin.UseVisualStyleBackColor = true;
+            this.zoomin.Click += new System.EventHandler(this.zoomin_Click);
+            // 
+            // zoomout
+            // 
+            this.zoomout.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zoomout.Location = new System.Drawing.Point(1777, 416);
+            this.zoomout.Name = "zoomout";
+            this.zoomout.Size = new System.Drawing.Size(55, 51);
+            this.zoomout.TabIndex = 10;
+            this.zoomout.Text = "-";
+            this.zoomout.UseVisualStyleBackColor = true;
+            this.zoomout.Click += new System.EventHandler(this.zoomout_Click);
+            // 
             // actogramPage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.zoomout);
+            this.Controls.Add(this.zoomin);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Chn);
@@ -139,5 +164,7 @@ namespace application
         private System.Windows.Forms.Label Chn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button zoomin;
+        private System.Windows.Forms.Button zoomout;
     }
 }

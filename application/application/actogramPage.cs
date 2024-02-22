@@ -19,7 +19,7 @@ namespace application
     {
 
         int numbchannel = 1;
-        private const int MaxXValue = 1440;
+        private int MaxXValue = 1440;
         private const int chartHeight = 105;
         private const int Margin = 10;
         SQL_command sqlCommand = new SQL_command();
@@ -87,7 +87,7 @@ namespace application
         }
 
 
-        
+
 
         private void UpdateChart(Chart chart, int chartNumber, DateTime day)
         {
@@ -95,7 +95,7 @@ namespace application
             chart.Series[$"Chart{chartNumber}"].Points.Clear();
 
             // Initialiser un tableau pour stocker les valeurs par minute
-            double[] valeursParMinute = sqlCommand.Get_Valeur_minutes(numbchannel,day);
+            double[] valeursParMinute = sqlCommand.GetValeurminutes(numbchannel, day);
 
 
             // Ajouter les valeurs au graphique
@@ -107,137 +107,152 @@ namespace application
                 chart.Series[$"Chart{chartNumber}"].Points.Add(dataPoint);
             }
         }
-    
 
-    private Chart CreateBlueLineChart(int chartHeight)
-    {
-        // Récupérer les jours uniques triés
-        List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel);
 
-        Chart chart = new Chart();
-        chart.ChartAreas.Add(new ChartArea());
-
-        Series series = chart.Series.Add("Total");
-        series.ChartType = SeriesChartType.Line;
-
-        // Ajouter les valeurs totales des autres graphiques
-        for (int x = 0; x <= MaxXValue; x++)
+        private Chart CreateBlueLineChart(int chartHeight)
         {
-            double totalValue = 0;
-            foreach (Chart lineChart in panel1.Controls.OfType<Chart>())
+            // Récupérer les jours uniques triés
+            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel);
+
+            Chart chart = new Chart();
+            chart.ChartAreas.Add(new ChartArea());
+
+            Series series = chart.Series.Add("Total");
+            series.ChartType = SeriesChartType.Line;
+
+            // Ajouter les valeurs totales des autres graphiques
+            for (int x = 0; x <= MaxXValue; x++)
             {
-                if (lineChart != chart)
+                double totalValue = 0;
+                foreach (Chart lineChart in panel1.Controls.OfType<Chart>())
                 {
-                    int chartNumber = int.Parse(lineChart.Series[0].Name.Substring("Chart".Length));
-                    totalValue += lineChart.Series[0].Points[x].YValues[0];
+                    if (lineChart != chart)
+                    {
+                        int chartNumber = int.Parse(lineChart.Series[0].Name.Substring("Chart".Length));
+                        totalValue += lineChart.Series[0].Points[x].YValues[0];
+                    }
+                }
+                series.Points.AddXY(x, totalValue);
+            }
+
+            // Configurer le style de la ligne en bleu
+            series.Color = Color.Blue; // Couleur bleue
+            series.BorderWidth = 2;
+
+            ConfigureChart(chart, sortedDays.Count + 1, chartHeight);
+
+            return chart;
+        }
+
+
+        private void ConfigureChart(Chart chart, int chartNumber, int chartHeight)
+        {
+            // Ajuster les limites des l'axes 
+            chart.ChartAreas[0].AxisX.Minimum = 0;
+            chart.ChartAreas[0].AxisX.Maximum = MaxXValue;
+
+            // Rendre les valeurs des axes invisibles
+            chart.ChartAreas[0].AxisX.LabelStyle.Enabled = false;
+            chart.ChartAreas[0].AxisY.LabelStyle.Enabled = false;
+            chart.ChartAreas[0].AxisX.MajorTickMark.Enabled = false;
+            chart.ChartAreas[0].AxisY.MajorTickMark.Enabled = false;
+
+            // Configurer la transparence du fond
+            chart.BackColor = Color.Transparent;
+            chart.ChartAreas[0].BackColor = Color.Transparent;
+
+            // Configurer la transparence des valeurs des axes
+            chart.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Transparent;
+            chart.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Transparent;
+
+            // Désactiver le quadrillage du fond
+            chart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chart.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+
+            // Supprimer les marqueurs de points
+            chart.Series[0].MarkerStyle = MarkerStyle.None;
+            // Définir la position et la taille du graphique
+            if (chartHeight != panel2.Height)
+            {
+                int top = (chartHeight + Margin) * (chartNumber - 1) + Margin;
+                chart.Location = new System.Drawing.Point(10, top);
+            }
+
+            chart.Size = new System.Drawing.Size(panel1.Width - 30, chartHeight);
+        }
+        private void actogramPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.C:
+                    ChooseChanel.PerformClick();
+                    break;
+                case Keys.E:
+                    Exit.PerformClick();
+                    break;
+
+            }
+
+
+        }
+
+        private void actogramPage_Load(object sender, EventArgs e)
+        {
+            this.KeyPreview = true; // S'assurer que le formulaire capture les événements de touches
+
+            // Associer l'événement KeyDown au formulaire
+            this.KeyDown += new KeyEventHandler(actogramPage_KeyDown);
+
+        }
+
+
+        private void ChooseChanel_Click(object sender, EventArgs e)
+        {
+            // Récupérer les identifiants de canal uniques
+            List<int> uniqueChannelIds = sqlCommand.GetUniqueChannelIds();
+
+            // Afficher la boîte de dialogue de saisie de valeur
+            InputDialog inputDialog = new InputDialog();
+            if (inputDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Récupérer la valeur saisie par l'utilisateur
+                string userInput = inputDialog.GetInputValue();
+
+                // Vérifier si la valeur saisie est un identifiant de canal valide
+                if (int.TryParse(userInput, out int selectedChannel) && uniqueChannelIds.Contains(selectedChannel))
+                {
+                    // Mettre à jour le numéro de canal
+                    numbchannel = selectedChannel;
+
+                    // Initialiser les graphiques avec le numéro de canal mis à jour
+                    InitializeCharts();
+                }
+                else
+                {
+                    // Afficher un message d'erreur ou prendre une action appropriée si l'entrée est invalide
+                    MessageBox.Show("Identifiant de canal invalide. Veuillez saisir un identifiant de canal valide.");
                 }
             }
-            series.Points.AddXY(x, totalValue);
         }
 
-        // Configurer le style de la ligne en bleu
-        series.Color = Color.Blue; // Couleur bleue
-        series.BorderWidth = 2;
 
-        ConfigureChart(chart, sortedDays.Count + 1, chartHeight);
-
-        return chart;
-    }
-
-
-    private void ConfigureChart(Chart chart, int chartNumber, int chartHeight)
-    {
-        // Ajuster les limites des l'axes 
-        chart.ChartAreas[0].AxisX.Minimum = 0;
-        chart.ChartAreas[0].AxisX.Maximum = MaxXValue;
-
-        // Rendre les valeurs des axes invisibles
-        chart.ChartAreas[0].AxisX.LabelStyle.Enabled = false;
-        chart.ChartAreas[0].AxisY.LabelStyle.Enabled = false;
-        chart.ChartAreas[0].AxisX.MajorTickMark.Enabled = false;
-        chart.ChartAreas[0].AxisY.MajorTickMark.Enabled = false;
-
-        // Configurer la transparence du fond
-        chart.BackColor = Color.Transparent;
-        chart.ChartAreas[0].BackColor = Color.Transparent;
-
-        // Configurer la transparence des valeurs des axes
-        chart.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Transparent;
-        chart.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Transparent;
-
-        // Désactiver le quadrillage du fond
-        chart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
-        chart.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
-
-        // Supprimer les marqueurs de points
-        chart.Series[0].MarkerStyle = MarkerStyle.None;
-        // Définir la position et la taille du graphique
-        if (chartHeight != panel2.Height)
+        private void Exit_Click(object sender, EventArgs e)
         {
-            int top = (chartHeight + Margin) * (chartNumber - 1) + Margin;
-            chart.Location = new System.Drawing.Point(10, top);
+            this.Close();
         }
 
-        chart.Size = new System.Drawing.Size(panel1.Width - 30, chartHeight);
-    }
-    private void actogramPage_KeyDown(object sender, KeyEventArgs e)
-    {
-        switch (e.KeyCode)
+        private void zoomin_Click(object sender, EventArgs e)
         {
-            case Keys.C:
-                ChooseChanel.PerformClick();
-                break;
-            case Keys.E:
-                Exit.PerformClick();
-                break;
+            MaxXValue = (int)(MaxXValue * 0.8);
+            InitializeCharts();
         }
 
-
-    }
-
-    private void actogramPage_Load(object sender, EventArgs e)
-    {
-        this.KeyPreview = true; // S'assurer que le formulaire capture les événements de touches
-
-        // Associer l'événement KeyDown au formulaire
-        this.KeyDown += new KeyEventHandler(actogramPage_KeyDown);
-
-    }
-
-
-    private void ChooseChanel_Click(object sender, EventArgs e)
-    {
-        // Récupérer les identifiants de canal uniques
-        List<int> uniqueChannelIds = sqlCommand.GetUniqueChannelIds();
-
-        // Afficher la boîte de dialogue de saisie de valeur
-        InputDialog inputDialog = new InputDialog();
-        if (inputDialog.ShowDialog() == DialogResult.OK)
+        private void zoomout_Click(object sender, EventArgs e)
         {
-            // Récupérer la valeur saisie par l'utilisateur
-            string userInput = inputDialog.GetInputValue();
-
-            // Vérifier si la valeur saisie est un identifiant de canal valide
-            if (int.TryParse(userInput, out int selectedChannel) && uniqueChannelIds.Contains(selectedChannel))
-            {
-                // Mettre à jour le numéro de canal
-                numbchannel = selectedChannel;
-
-                // Initialiser les graphiques avec le numéro de canal mis à jour
-                InitializeCharts();
-            }
-            else
-            {
-                // Afficher un message d'erreur ou prendre une action appropriée si l'entrée est invalide
-                MessageBox.Show("Identifiant de canal invalide. Veuillez saisir un identifiant de canal valide.");
-            }
+            MaxXValue = (int)(MaxXValue * 1.2);
+            if (MaxXValue <= 1440)
+                MaxXValue = 1440;
+            InitializeCharts();
         }
     }
-
-
-    private void Exit_Click(object sender, EventArgs e)
-    {
-        this.Close();
-    }
-}
 }

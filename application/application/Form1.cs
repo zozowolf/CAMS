@@ -33,15 +33,17 @@ namespace application
         private List<Chart> charts = new List<Chart>();
         private int previousHour = -1;
         private int elapsedTime = 0;
+        private int minutechrono = 60;
         private const int ChangeInterval = 30; // Intervalle en secondes pour changer les graphiques
+        private const int ValueInterval = 60;
         private int currentChartIndex = 9; // Ajouter une variable pour suivre l'index du graphique actuel
-        private int maxcharts = 100;
+        private int maxcharts = 2;
         SQL_command sqlCommand = new SQL_command();
         public Form1()
         {
             InitializeComponent();
             InitializeCharts();
-            InitializeTimer();
+            InitializeTimer();      
         }
 
         private void InitializeCharts()
@@ -54,7 +56,7 @@ namespace application
             displayWindow.Controls.Add(tableLayoutPanel);
 
             // Créer plusieurs graphiques et les ajouter au TableLayoutPanel
-            for (int i = 0; i < maxcharts; i++) // Changez 9 au nombre de graphiques que vous voulez afficher
+            for (int i = 0; i < maxcharts; i++) 
             {
                 Chart chart = new Chart();
                 chart.Size = new Size(300, 150);
@@ -124,7 +126,7 @@ namespace application
             // Récupérer le numéro du graphique à partir du titre
             int currentChartNumber = int.Parse(chart.Titles[0].Text.Split(':')[1].Trim());
 
-            Dictionary<int, double> valeursAgrégéesParHeure = sqlCommand.Get_Valeur_heure(currentChartNumber);
+            Dictionary<int, double> valeursAgrégéesParHeure = sqlCommand.GetValeurheure(currentChartNumber);
 
             if (valeursAgrégéesParHeure.Count == 0)
             {
@@ -133,6 +135,7 @@ namespace application
             }
             else
             {
+                chart.Visible = true;
                 // Ajouter les valeurs agrégées au graphique
                 foreach (var kvp in valeursAgrégéesParHeure)
                 {
@@ -188,6 +191,15 @@ namespace application
                 // Changer les graphiques affichés
                 ChangeDisplayedCharts();
                 elapsedTime = 0; // Réinitialiser le temps écoulé
+            }
+
+            // Vérifier si le temps écoulé atteint l'intervalle de changement
+            minutechrono++;
+            if (minutechrono >= ValueInterval)
+            {
+                // Ajouter les valeurs dans la BD
+                sqlCommand.AddValue();
+                minutechrono = 0; // Réinitialiser le temps écoulé
             }
         }
 

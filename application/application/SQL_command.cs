@@ -4,12 +4,20 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient; // SQL Server local DB
+using System.IO.Ports;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
+using System.Threading.Tasks;
+using NModbus;
+using NModbus.Extensions.Enron;
+using NModbus.Utility;
 
 namespace application
 {
     public class SQL_command
     {
-        public Dictionary<int, double> Get_Valeur_heure(int id)
+        public Dictionary<int, double> GetValeurheure(int id)
         {
             string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
             using (SqlConnection cn_connection = new SqlConnection(cn_string))
@@ -19,13 +27,13 @@ namespace application
                 // Récupérer la date actuelle pour filtrer les mesures du jour actuel
                 DateTime currentDate = DateTime.Now.Date;
 
-                string sql_Text = $"SELECT valeur, dateHeure FROM Mesure WHERE IdChannel = {id}";
+                string sql_Text = $"SELECT valeur, dateHeure FROM Mesure WHERE IdChannel = '{id}'";
+
                 using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         Dictionary<int, double> valeursAgrégéesParHeure = new Dictionary<int, double>();
-
                         while (reader.Read())
                         {
                             // Utiliser la colonne correspondante pour récupérer les données
@@ -53,7 +61,7 @@ namespace application
 
         }
 
-        public double[] Get_Valeur_minutes(int numbchannel,DateTime day)
+        public double[] GetValeurminutes(int numbchannel, DateTime day)
         {
             string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
             using (SqlConnection cn_connection = new SqlConnection(cn_string))
@@ -119,12 +127,12 @@ namespace application
 
             // Trier les jours de manière ascendante
             joursDifferents.Sort();
-            
+
             return joursDifferents;
         }
 
         public List<int> GetUniqueChannelIds()
-    {
+        {
             string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
             List<int> uniqueChannelIds = new List<int>();
 
@@ -155,5 +163,68 @@ namespace application
             // Retourner la liste des identifiants de canal uniques
             return uniqueChannelIds;
         }
+
+        public void AddValueToChannel(int channelId, double value)
+        {
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
+
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            {
+                cn_connection.Open();
+
+                // Get the current date and time
+                DateTime currentDate = DateTime.Now;
+
+                // Create the SQL command to insert a new record
+                string sql_Text = "INSERT INTO Mesure (IdChannel, valeur, dateHeure) VALUES (@IdChannel, @Value, @DateHeure)";
+
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                {
+                    // Add parameters to the command to prevent SQL injection
+                    cmd.Parameters.AddWithValue("@IdChannel", channelId);
+                    cmd.Parameters.AddWithValue("@Value", value);
+                    cmd.Parameters.AddWithValue("@DateHeure", currentDate);
+
+                    // Execute the SQL command
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void AddValue()
+        {
+            using (TcpClient client = new TcpClient("192.168.107.171", 502))
+            {
+                var factory = new ModbusFactory();
+                IModbusMaster master = factory.CreateMaster(client);
+
+                // read five input values
+                ushort startAddress = 16;
+                ushort numInputs = 1;
+                
+                ushort[] inputs = master.ReadInputRegisters(1, startAddress, numInputs);
+
+                if (inputs.Length > 0)
+                {
+                    // Assuming you want to add the first input value to a specific channel (e.g., channel ID 1)
+                    int channelId = 1;
+                    double value = inputs[0];
+
+                    // Call the method to add the value to the database
+                    AddValueToChannel(channelId, value);
+
+                    // Adresse de la bobine à réinitialiser
+                    ushort coilAddress = 34;
+                    const int SlaveId = 1;
+
+                    // Lecture de l'état actuel de la bobine
+                    bool currentCoilState = master.ReadCoils(SlaveId, coilAddress, 1)[0];
+
+                    // Réinitialisation de la bobine (inversion de l'état)
+                    master.WriteSingleCoil(SlaveId, coilAddress, !currentCoilState);
+                }
+            }
+        }
+
     }
 }
