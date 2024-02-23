@@ -20,8 +20,8 @@ namespace application
 
         int numbchannel = 1;
         private int MaxXValue = 1440;
-        private const int chartHeight = 105;
-        private const int Margin = 10;
+        private const int chartHeight = 100;
+        private const int margin = 10;
         SQL_command sqlCommand = new SQL_command();
 
         public actogramPage()
@@ -86,9 +86,6 @@ namespace application
             return chart;
         }
 
-
-
-
         private void UpdateChart(Chart chart, int chartNumber, DateTime day)
         {
             // Réinitialiser les valeurs (temporaire en attendant la BD)
@@ -107,7 +104,6 @@ namespace application
                 chart.Series[$"Chart{chartNumber}"].Points.Add(dataPoint);
             }
         }
-
 
         private Chart CreateBlueLineChart(int chartHeight)
         {
@@ -144,12 +140,12 @@ namespace application
             return chart;
         }
 
-
         private void ConfigureChart(Chart chart, int chartNumber, int chartHeight)
         {
             // Ajuster les limites des l'axes 
             chart.ChartAreas[0].AxisX.Minimum = 0;
             chart.ChartAreas[0].AxisX.Maximum = MaxXValue;
+            chart.ChartAreas[0].AxisY.Minimum = 0;
 
             // Rendre les valeurs des axes invisibles
             chart.ChartAreas[0].AxisX.LabelStyle.Enabled = false;
@@ -171,15 +167,20 @@ namespace application
 
             // Supprimer les marqueurs de points
             chart.Series[0].MarkerStyle = MarkerStyle.None;
+
             // Définir la position et la taille du graphique
             if (chartHeight != panel2.Height)
             {
-                int top = (chartHeight + Margin) * (chartNumber - 1) + Margin;
+                int top = (chartHeight + margin) * (chartNumber - 1) + margin;
                 chart.Location = new System.Drawing.Point(10, top);
+                chart.Size = new System.Drawing.Size(panel1.Width - 30, chartHeight);
             }
-
-            chart.Size = new System.Drawing.Size(panel1.Width - 30, chartHeight);
+            else
+            {
+                chart.Size = new System.Drawing.Size(panel2.Width , chartHeight);
+            }  
         }
+
         private void actogramPage_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -204,7 +205,6 @@ namespace application
             this.KeyDown += new KeyEventHandler(actogramPage_KeyDown);
 
         }
-
 
         private void ChooseChanel_Click(object sender, EventArgs e)
         {
@@ -235,7 +235,6 @@ namespace application
             }
         }
 
-
         private void Exit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -249,10 +248,12 @@ namespace application
 
         private void zoomout_Click(object sender, EventArgs e)
         {
-            MaxXValue = (int)(MaxXValue * 1.2);
+            MaxXValue = (int)(MaxXValue * 1.25);
             if (MaxXValue <= 1440)
+            {
                 MaxXValue = 1440;
-            InitializeCharts();
+                InitializeCharts();
+            }
         }
     }
 }

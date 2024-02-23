@@ -105,6 +105,7 @@ namespace application
             // 
             // panel2
             // 
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panel2.AutoScroll = true;
             this.panel2.Location = new System.Drawing.Point(115, 783);
             this.panel2.Name = "panel2";

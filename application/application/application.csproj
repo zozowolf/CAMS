@@ -76,6 +76,7 @@
     <Compile Include="actogramPage.Designer.cs">
       <DependentUpon>actogramPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModbusNum.cs" />
     <Compile Include="SQL_command.cs" />
     <Compile Include="DBCAMSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -161,12 +162,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBCAMS.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="DBCAMS.mdf" />
     <Content Include="DBCAMS_log.ldf">
       <DependentUpon>DBCAMS.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

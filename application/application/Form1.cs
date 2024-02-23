@@ -39,6 +39,7 @@ namespace application
         private int currentChartIndex = 9; // Ajouter une variable pour suivre l'index du graphique actuel
         private int maxcharts = 2;
         SQL_command sqlCommand = new SQL_command();
+        ModbusNum modbusnum = new ModbusNum();
         public Form1()
         {
             InitializeComponent();
@@ -198,7 +199,7 @@ namespace application
             if (minutechrono >= ValueInterval)
             {
                 // Ajouter les valeurs dans la BD
-                sqlCommand.AddValue();
+                modbusnum.getNumValue();
                 minutechrono = 0; // Réinitialiser le temps écoulé
             }
         }
@@ -232,7 +233,6 @@ namespace application
             // Mettre à jour l'index actuel
             currentChartIndex = (currentChartIndex + 9) % charts.Count;
         }
-
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
