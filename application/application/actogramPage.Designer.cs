@@ -36,8 +36,8 @@ namespace application
             this.Chn = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.zoomin = new System.Windows.Forms.Button();
-            this.zoomout = new System.Windows.Forms.Button();
+            this.trackBarX = new System.Windows.Forms.TrackBar();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
             this.SuspendLayout();
             // 
             // Startdate
@@ -112,35 +112,26 @@ namespace application
             this.panel2.Size = new System.Drawing.Size(1600, 183);
             this.panel2.TabIndex = 8;
             // 
-            // zoomin
+            // trackBarX
             // 
-            this.zoomin.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zoomin.Location = new System.Drawing.Point(1777, 358);
-            this.zoomin.Name = "zoomin";
-            this.zoomin.Size = new System.Drawing.Size(55, 52);
-            this.zoomin.TabIndex = 9;
-            this.zoomin.Text = "+";
-            this.zoomin.UseVisualStyleBackColor = true;
-            this.zoomin.Click += new System.EventHandler(this.zoomin_Click);
-            // 
-            // zoomout
-            // 
-            this.zoomout.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zoomout.Location = new System.Drawing.Point(1777, 416);
-            this.zoomout.Name = "zoomout";
-            this.zoomout.Size = new System.Drawing.Size(55, 51);
-            this.zoomout.TabIndex = 10;
-            this.zoomout.Text = "-";
-            this.zoomout.UseVisualStyleBackColor = true;
-            this.zoomout.Click += new System.EventHandler(this.zoomout_Click);
+            this.trackBarX.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.trackBarX.LargeChange = 60;
+            this.trackBarX.Location = new System.Drawing.Point(779, 12);
+            this.trackBarX.Maximum = 1440;
+            this.trackBarX.Minimum = 60;
+            this.trackBarX.Name = "trackBarX";
+            this.trackBarX.Size = new System.Drawing.Size(448, 45);
+            this.trackBarX.TabIndex = 10;
+            this.trackBarX.TickFrequency = 60;
+            this.trackBarX.Value = 1440;
+            this.trackBarX.Scroll += new System.EventHandler(this.trackBarX_Scroll);
             // 
             // actogramPage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
-            this.Controls.Add(this.zoomout);
-            this.Controls.Add(this.zoomin);
+            this.Controls.Add(this.trackBarX);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Chn);
@@ -152,6 +143,7 @@ namespace application
             this.Text = "actogramPage";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.actogramPage_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,7 +157,6 @@ namespace application
         private System.Windows.Forms.Label Chn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button zoomin;
-        private System.Windows.Forms.Button zoomout;
+        private System.Windows.Forms.TrackBar trackBarX;
     }
 }

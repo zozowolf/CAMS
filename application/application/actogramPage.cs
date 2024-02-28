@@ -98,10 +98,21 @@ namespace application
             // Ajouter les valeurs au graphique
             for (int x = 0; x <= MaxXValue; x++)
             {
-                double valeur = valeursParMinute[x];
+                    double valeur = valeursParMinute[x];
                 DataPoint dataPoint = new DataPoint();
                 dataPoint.SetValueXY(x, valeur);
                 chart.Series[$"Chart{chartNumber}"].Points.Add(dataPoint);
+            }
+
+            for (int i = 360; i <= 1440; i += 360)
+            {
+                StripLine stripLine = new StripLine();
+                stripLine.Interval = 0;
+                stripLine.IntervalOffset = i;
+                stripLine.StripWidth = 1;
+                stripLine.BackColor = System.Drawing.Color.FromArgb(100, 255, 0, 0); // Couleur rouge semi-transparente
+
+                chart.ChartAreas[0].AxisX.StripLines.Add(stripLine);
             }
         }
 
@@ -177,8 +188,8 @@ namespace application
             }
             else
             {
-                chart.Size = new System.Drawing.Size(panel2.Width , chartHeight);
-            }  
+                chart.Size = new System.Drawing.Size(panel2.Width, chartHeight);
+            }
         }
 
         private void actogramPage_KeyDown(object sender, KeyEventArgs e)
@@ -191,10 +202,7 @@ namespace application
                 case Keys.E:
                     Exit.PerformClick();
                     break;
-
             }
-
-
         }
 
         private void actogramPage_Load(object sender, EventArgs e)
@@ -240,20 +248,12 @@ namespace application
             this.Close();
         }
 
-        private void zoomin_Click(object sender, EventArgs e)
+        private void trackBarX_Scroll(object sender, EventArgs e)
         {
-            MaxXValue = (int)(MaxXValue * 0.8);
+            // Met à jour avec la valeur actuelle du TrackBar
+            MaxXValue = trackBarX.Value;
             InitializeCharts();
         }
 
-        private void zoomout_Click(object sender, EventArgs e)
-        {
-            MaxXValue = (int)(MaxXValue * 1.25);
-            if (MaxXValue <= 1440)
-            {
-                MaxXValue = 1440;
-                InitializeCharts();
-            }
-        }
     }
 }
