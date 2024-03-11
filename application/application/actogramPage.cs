@@ -98,7 +98,7 @@ namespace application
             // Ajouter les valeurs au graphique
             for (int x = 0; x <= MaxXValue; x++)
             {
-                    double valeur = valeursParMinute[x];
+                double valeur = valeursParMinute[x];
                 DataPoint dataPoint = new DataPoint();
                 dataPoint.SetValueXY(x, valeur);
                 chart.Series[$"Chart{chartNumber}"].Points.Add(dataPoint);

@@ -125,7 +125,7 @@ namespace application
             this.trackBarX.TickFrequency = 60;
             this.trackBarX.Value = 1440;
             this.trackBarX.Scroll += new System.EventHandler(this.trackBarX_Scroll);
-            // 
+            //
             // actogramPage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;

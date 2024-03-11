@@ -54,9 +54,7 @@
     <Reference Include="NModbus4, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NModbus4.2.1.0\lib\net40\NModbus4.dll</HintPath>
     </Reference>
-    <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
-    </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
@@ -76,12 +74,17 @@
     <Compile Include="actogramPage.Designer.cs">
       <DependentUpon>actogramPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModbusNum.cs" />
-    <Compile Include="SQL_command.cs" />
-    <Compile Include="DBCAMSDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBCAMSDataSet.xsd</DependentUpon>
+    <Compile Include="channelDefinitionPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="channelDefinitionPage.Designer.cs">
+      <DependentUpon>channelDefinitionPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DialogEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogEvent.Designer.cs">
+      <DependentUpon>DialogEvent.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -101,11 +104,19 @@
     <Compile Include="InputDialog.Designer.cs">
       <DependentUpon>InputDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModbusNum.cs" />
     <Compile Include="MonBoutonPersonnalise1.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="recordingIntervalPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="recordingIntervalPage.Designer.cs">
+      <DependentUpon>recordingIntervalPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SQL_command.cs" />
     <Compile Include="systemInformationPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +125,12 @@
     </Compile>
     <EmbeddedResource Include="actogramPage.resx">
       <DependentUpon>actogramPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="channelDefinitionPage.resx">
+      <DependentUpon>channelDefinitionPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogEvent.resx">
+      <DependentUpon>DialogEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -136,17 +153,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="DBCAMSDataSet.xsc">
-      <DependentUpon>DBCAMSDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DBCAMSDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DBCAMSDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DBCAMSDataSet.xss">
-      <DependentUpon>DBCAMSDataSet.xsd</DependentUpon>
-    </None>
+    <EmbeddedResource Include="recordingIntervalPage.resx">
+      <DependentUpon>recordingIntervalPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="systemInformationPage.resx">
+      <DependentUpon>systemInformationPage.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -162,9 +174,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBCAMS.mdf" />
+    <Content Include="DBCAMS.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DBCAMS_log.ldf">
       <DependentUpon>DBCAMS.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -23,43 +23,49 @@ C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.csproj.
 C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.exe
 C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.pdb
 C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.actogramPage.resources
-C:\Users\cdf\Desktop\depot\application\application\bin\Debug\DBCAMS.mdf
-C:\Users\cdf\Desktop\depot\application\application\bin\Debug\DBCAMS_log.ldf
-C:\Users\cdf\Desktop\Projet\application\application\bin\Debug\application.exe.config
-C:\Users\cdf\Desktop\Projet\application\application\bin\Debug\application.exe
-C:\Users\cdf\Desktop\Projet\application\application\bin\Debug\application.pdb
-C:\Users\cdf\Desktop\Projet\application\application\obj\Debug\application.csproj.AssemblyReference.cache
-C:\Users\cdf\Desktop\Projet\application\application\obj\Debug\application.actogramPage.resources
-C:\Users\cdf\Desktop\Projet\application\application\obj\Debug\application.Form1.resources
-C:\Users\cdf\Desktop\Projet\application\application\obj\Debug\application.displayChannelsPage.resources
-C:\Users\cdf\Desktop\Projet\application\application\obj\Debug\MonBoutonPersonnalise1.resources
-C:\Users\cdf\Desktop\Projet\application\application\obj\Debug\application.Properties.Resources.resources
-C:\Users\cdf\Desktop\Projet\application\application\obj\Debug\application.csproj.GenerateResource.cache
-C:\Users\cdf\Desktop\Projet\application\application\obj\Debug\application.csproj.CoreCompileInputs.cache
-C:\Users\cdf\Desktop\Projet\application\application\obj\Debug\application.exe
-C:\Users\cdf\Desktop\Projet\application\application\obj\Debug\application.pdb
-C:\Users\cdf\Desktop\projet\application\application\obj\Debug\application.InputDialog.resources
-C:\Users\cdf\Desktop\projet\application\application\bin\Debug\NModbus.dll
-C:\Users\cdf\Desktop\projet\application\application\bin\Debug\NModbus4.dll
-C:\Users\cdf\Desktop\projet\application\application\bin\Debug\NModbus.xml
-C:\Users\cdf\Desktop\projet\application\application\bin\Debug\NModbus4.xml
-C:\Users\cdf\Desktop\projet\application\application\obj\Debug\application.csproj.CopyComplete
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\bin\Debug\application.exe.config
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\bin\Debug\application.exe
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\bin\Debug\application.pdb
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\bin\Debug\NModbus.dll
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\bin\Debug\NModbus4.dll
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\bin\Debug\NModbus.xml
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\bin\Debug\NModbus4.xml
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\obj\Debug\application.csproj.AssemblyReference.cache
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\obj\Debug\application.actogramPage.resources
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\obj\Debug\application.Form1.resources
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\obj\Debug\application.displayChannelsPage.resources
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\obj\Debug\application.InputDialog.resources
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\obj\Debug\MonBoutonPersonnalise1.resources
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\obj\Debug\application.Properties.Resources.resources
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\obj\Debug\application.csproj.GenerateResource.cache
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\obj\Debug\application.csproj.CoreCompileInputs.cache
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\obj\Debug\applicat.45FA8C82.Up2Date
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\obj\Debug\application.exe
-C:\Users\enzol\OneDrive\Bureau\depot\application\application\obj\Debug\application.pdb
+C:\Users\cdf\Desktop\depot git\application\application\bin\Debug\application.exe.config
+C:\Users\cdf\Desktop\depot git\application\application\bin\Debug\application.exe
+C:\Users\cdf\Desktop\depot git\application\application\bin\Debug\application.pdb
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.csproj.AssemblyReference.cache
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.actogramPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.Form1.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.displayChannelsPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\MonBoutonPersonnalise1.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.Properties.Resources.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.csproj.GenerateResource.cache
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.csproj.CoreCompileInputs.cache
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.exe
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.pdb
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.channelDefinitionPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.recordingIntervalPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.systemInformationPage.resources
+C:\Users\cdf\Desktop\depot git\application\application\obj\Debug\application.InputDialog.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.channelDefinitionPage.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.InputDialog.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.recordingIntervalPage.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.systemInformationPage.resources
+C:\Users\cdf\Desktop\comme JE veux\application\application\bin\Debug\application.exe.config
+C:\Users\cdf\Desktop\comme JE veux\application\application\bin\Debug\application.exe
+C:\Users\cdf\Desktop\comme JE veux\application\application\bin\Debug\application.pdb
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.csproj.AssemblyReference.cache
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.actogramPage.resources
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.channelDefinitionPage.resources
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.Form1.resources
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.displayChannelsPage.resources
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.InputDialog.resources
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\MonBoutonPersonnalise1.resources
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.Properties.Resources.resources
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.recordingIntervalPage.resources
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.systemInformationPage.resources
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.csproj.GenerateResource.cache
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.csproj.CoreCompileInputs.cache
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.exe
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.pdb
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.DialogEvent.resources
+C:\Users\cdf\Desktop\comme JE veux\application\application\bin\Debug\DBCAMS.mdf
+C:\Users\cdf\Desktop\comme JE veux\application\application\bin\Debug\DBCAMS_log.ldf
+C:\Users\cdf\Desktop\comme JE veux\application\application\bin\Debug\NModbus.dll
+C:\Users\cdf\Desktop\comme JE veux\application\application\bin\Debug\NModbus4.dll
+C:\Users\cdf\Desktop\comme JE veux\application\application\bin\Debug\NModbus.xml
+C:\Users\cdf\Desktop\comme JE veux\application\application\bin\Debug\NModbus4.xml
+C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.csproj.CopyComplete
