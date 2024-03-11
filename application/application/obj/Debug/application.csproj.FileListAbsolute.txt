@@ -69,3 +69,11 @@ C:\Users\cdf\Desktop\comme JE veux\application\application\bin\Debug\NModbus4.dl
 C:\Users\cdf\Desktop\comme JE veux\application\application\bin\Debug\NModbus.xml
 C:\Users\cdf\Desktop\comme JE veux\application\application\bin\Debug\NModbus4.xml
 C:\Users\cdf\Desktop\comme JE veux\application\application\obj\Debug\application.csproj.CopyComplete
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\DBCAMS.mdf
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\DBCAMS_log.ldf
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\NModbus.dll
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\NModbus4.dll
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\NModbus.xml
+C:\Users\cdf\Desktop\depot\application\application\bin\Debug\NModbus4.xml
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.DialogEvent.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.csproj.CopyComplete

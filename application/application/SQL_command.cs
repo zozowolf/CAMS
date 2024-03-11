@@ -6,6 +6,7 @@ using System.Text;
 using System.Data.SqlClient; // SQL Server local DB
 
 
+
 namespace application
 {
     public class SQL_command
