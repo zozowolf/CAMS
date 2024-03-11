@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Data.SqlClient; // SQL Server local DB
-
 /*! \mainpage CAMS
 \author Antonin Froment, Enzo Da Cunha, Hugo Martin-Coché, Joris Vejux
 \date 2024
@@ -34,18 +33,18 @@ namespace application
         private List<Chart> charts = new List<Chart>();
         private int previousHour = -1;
         private int elapsedTime = 0;
+        private int minutechrono = 60;
         private const int ChangeInterval = 30; // Intervalle en secondes pour changer les graphiques
+        private const int ValueInterval = 60;
         private int currentChartIndex = 9; // Ajouter une variable pour suivre l'index du graphique actuel
         private int maxcharts = 2;
-
+        SQL_command sqlCommand = new SQL_command();
+        ModbusNum modbusnum = new ModbusNum();
         public Form1()
         {
             InitializeComponent();
             InitializeCharts();
-            InitializeTimer();
-          
-            Bounds = Screen.PrimaryScreen.Bounds; // Ajuster la taille de la fenêtre à la taille de l'écran
-
+            InitializeTimer();      
         }
 
         private void InitializeCharts()
@@ -58,7 +57,7 @@ namespace application
             displayWindow.Controls.Add(tableLayoutPanel);
 
             // Créer plusieurs graphiques et les ajouter au TableLayoutPanel
-            for (int i = 0; i < maxcharts; i++) // Changez 9 au nombre de graphiques que vous voulez afficher
+            for (int i = 0; i < maxcharts; i++) 
             {
                 Chart chart = new Chart();
                 chart.Size = new Size(300, 150);
@@ -84,6 +83,7 @@ namespace application
             // Ajuster les limites des l'axes 
             chart.ChartAreas.Add(new ChartArea());
             chart.ChartAreas[0].AxisY.Minimum = 0;
+            chart.ChartAreas[0].AxisY.Maximum = 1500;
             chart.ChartAreas[0].AxisX.Minimum = 0;
             chart.ChartAreas[0].AxisX.Maximum = 26;
 
@@ -103,8 +103,10 @@ namespace application
 
             // Changer la couleur de la série à rouge
             chart.Series["Valeur"].Color = Color.Red;
+            chart.Series["Valeur"].IsValueShownAsLabel = true;
             chart.ChartAreas[0].AxisX.LineColor = Color.Red;
             chart.ChartAreas[0].AxisY.LineColor = Color.Red;
+
 
             // Ajouter un titre au graphique avec le numéro
             Title title = new Title($"Ch : {chartNumber}");
@@ -113,7 +115,7 @@ namespace application
             title.ForeColor = Color.Red;
             chart.Titles.Add(title);
 
-            
+
 
         }
 
@@ -125,47 +127,35 @@ namespace application
             // Récupérer le numéro du graphique à partir du titre
             int currentChartNumber = int.Parse(chart.Titles[0].Text.Split(':')[1].Trim());
 
-            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
-            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            Dictionary<int, double> valeursAgrégéesParHeure = sqlCommand.GetValeurheure(currentChartNumber);
+
+            if (valeursAgrégéesParHeure.Count == 0)
             {
-                cn_connection.Open();
-
-                // Récupérer la date actuelle pour filtrer les mesures du jour actuel
-                DateTime currentDate = DateTime.Now.Date;
-
-                string sql_Text = $"SELECT valeur, dateHeure FROM Mesure WHERE IdChannel = {currentChartNumber}";
-                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                // Masquer le graphique si aucune donnée n'est disponible
+                chart.Visible = false;
+            }
+            else
+            {
+                chart.Visible = true;
+                // Ajouter les valeurs agrégées au graphique
+                foreach (var kvp in valeursAgrégéesParHeure)
                 {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            DataPoint dataPoint = new DataPoint();
-
-                            // Utilisez la colonne correspondante pour récupérer les données
-                            double valeur = Convert.ToDouble(reader["valeur"]);
-                            DateTime dateHeure = Convert.ToDateTime(reader["dateHeure"]);
-
-                            if (dateHeure.Date == currentDate)
-                            {
-                                // Ajouter le point de données au graphique
-                                dataPoint.SetValueXY(dateHeure.Hour, valeur);
-                                chart.Series["Valeur"].Points.Add(dataPoint);
-                            }
-                        }
-                    }
+                    DataPoint dataPoint = new DataPoint();
+                    dataPoint.SetValueXY(kvp.Key, kvp.Value);
+                    chart.Series["Valeur"].Points.Add(dataPoint);
                 }
 
+                // Ajouter une ligne de séparation verticale à l'heure actuelle
+                StripLine stripLine = new StripLine();
+                stripLine.Interval = 0;
+                stripLine.IntervalOffset = DateTime.Now.Hour;
+                stripLine.StripWidth = 0.1; // Ajuster la largeur de la ligne de séparation selon vos besoins
+                stripLine.BackColor = Color.White;
+
+                chart.ChartAreas[0].AxisX.StripLines.Clear(); // Effacer les lignes de séparation existantes
+                chart.ChartAreas[0].AxisX.StripLines.Add(stripLine);
             }
-            // Ajout d'un point blanc pour l'heure actuel
-            DataPoint Point = new DataPoint();
-            Point.Color = Color.White;
-            Point.SetValueXY(DateTime.Now.Hour, 1);
-            chart.Series["Valeur"].Points.Add(Point);
         }
-
-
-
 
         private void InitializeTimer()
         {
@@ -203,10 +193,29 @@ namespace application
                 ChangeDisplayedCharts();
                 elapsedTime = 0; // Réinitialiser le temps écoulé
             }
+
+            // Vérifier si le temps écoulé atteint l'intervalle de changement
+            minutechrono++;
+            if (minutechrono >= ValueInterval)
+            {
+                // Ajouter les valeurs dans la BD
+                modbusnum.getNumValue();
+                minutechrono = 0; // Réinitialiser le temps écoulé
+            }
         }
 
         private void ChangeDisplayedCharts()
         {
+            // Count the number of currently visible charts
+            int visibleChartsCount = charts.Count(chart => chart.Visible);
+
+            // Check if there are fewer than 9 visible charts
+            if (visibleChartsCount < 9)
+            {
+                //Aucun changement des graphiques s'y en a pas assez
+                return;
+            }
+
             // Masquer tous les graphiques
             foreach (var chart in charts)
             {
@@ -239,12 +248,6 @@ namespace application
                 case Keys.S:
                     button3.PerformClick();
                     break;
-                case Keys.C:
-                    button5.PerformClick();
-                    break;
-                case Keys.R:
-                    button6.PerformClick();
-                    break;
             }
 
 
@@ -256,6 +259,8 @@ namespace application
 
             // Associer l'événement KeyDown au formulaire
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
+
+
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -318,22 +323,12 @@ namespace application
 
         private void button5_Click(object sender, EventArgs e)
         {
-            channelDefinitionPage nouvelleForme = new channelDefinitionPage();
-            if (nouvelleForme != null)
-            {
-                nouvelleForme.Show();
-            }
-            else
-            {
-                MessageBox.Show("La nouvelle forme est null.");
-            }
-            
+
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            recordingIntervalPage nouvelleForme = new recordingIntervalPage();
-            nouvelleForme.Show();
+
         }
 
         private void button7_Click(object sender, EventArgs e)

@@ -29,33 +29,134 @@ namespace application
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Startdate = new System.Windows.Forms.Label();
+            this.Enddate = new System.Windows.Forms.Label();
+            this.ChooseChanel = new System.Windows.Forms.Button();
+            this.Exit = new System.Windows.Forms.Button();
+            this.Chn = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.trackBarX = new System.Windows.Forms.TrackBar();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // Startdate
             // 
-            this.groupBox1.Location = new System.Drawing.Point(115, 98);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1600, 828);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.Startdate.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Startdate.AutoSize = true;
+            this.Startdate.Location = new System.Drawing.Point(13, 107);
+            this.Startdate.Name = "Startdate";
+            this.Startdate.Size = new System.Drawing.Size(50, 13);
+            this.Startdate.TabIndex = 1;
+            this.Startdate.Text = "Startdate";
             // 
+            // Enddate
+            // 
+            this.Enddate.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Enddate.AutoSize = true;
+            this.Enddate.Location = new System.Drawing.Point(13, 735);
+            this.Enddate.Name = "Enddate";
+            this.Enddate.Size = new System.Drawing.Size(47, 13);
+            this.Enddate.TabIndex = 2;
+            this.Enddate.Text = "Enddate";
+            // 
+            // ChooseChanel
+            // 
+            this.ChooseChanel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.ChooseChanel.Location = new System.Drawing.Point(1757, 632);
+            this.ChooseChanel.Name = "ChooseChanel";
+            this.ChooseChanel.Size = new System.Drawing.Size(105, 23);
+            this.ChooseChanel.TabIndex = 3;
+            this.ChooseChanel.Text = "Choose Chanel";
+            this.ChooseChanel.UseVisualStyleBackColor = true;
+            this.ChooseChanel.Click += new System.EventHandler(this.ChooseChanel_Click);
+            // 
+            // Exit
+            // 
+            this.Exit.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Exit.Location = new System.Drawing.Point(1757, 725);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(75, 23);
+            this.Exit.TabIndex = 4;
+            this.Exit.Text = "Exit";
+            this.Exit.UseVisualStyleBackColor = true;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
+            // 
+            // Chn
+            // 
+            this.Chn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Chn.AutoSize = true;
+            this.Chn.Location = new System.Drawing.Point(970, 981);
+            this.Chn.Name = "Chn";
+            this.Chn.Size = new System.Drawing.Size(32, 13);
+            this.Chn.TabIndex = 5;
+            this.Chn.Text = "Chn. ";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.AutoScroll = true;
+            this.panel1.Location = new System.Drawing.Point(115, 81);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1600, 696);
+            this.panel1.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.panel2.AutoScroll = true;
+            this.panel2.Location = new System.Drawing.Point(115, 783);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1600, 183);
+            this.panel2.TabIndex = 8;
+            // 
+            // trackBarX
+            // 
+            this.trackBarX.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.trackBarX.LargeChange = 60;
+            this.trackBarX.Location = new System.Drawing.Point(779, 12);
+            this.trackBarX.Maximum = 1440;
+            this.trackBarX.Minimum = 60;
+            this.trackBarX.Name = "trackBarX";
+            this.trackBarX.Size = new System.Drawing.Size(448, 45);
+            this.trackBarX.TabIndex = 10;
+            this.trackBarX.TickFrequency = 60;
+            this.trackBarX.Value = 1440;
+            this.trackBarX.Scroll += new System.EventHandler(this.trackBarX_Scroll);
+            //
             // actogramPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.trackBarX);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.Chn);
+            this.Controls.Add(this.Exit);
+            this.Controls.Add(this.ChooseChanel);
+            this.Controls.Add(this.Enddate);
+            this.Controls.Add(this.Startdate);
             this.Name = "actogramPage";
             this.Text = "actogramPage";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.actogramPage_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label Startdate;
+        private System.Windows.Forms.Label Enddate;
+        private System.Windows.Forms.Button ChooseChanel;
+        private System.Windows.Forms.Button Exit;
+        private System.Windows.Forms.Label Chn;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TrackBar trackBarX;
     }
 }
