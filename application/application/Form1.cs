@@ -104,6 +104,7 @@ namespace application
             // Changer la couleur de la série à rouge
             chart.Series["Valeur"].Color = Color.Red;
             chart.Series["Valeur"].IsValueShownAsLabel = true;
+            chart.Series["Valeur"].LabelForeColor = Color.White;
             chart.ChartAreas[0].AxisX.LineColor = Color.Red;
             chart.ChartAreas[0].AxisY.LineColor = Color.Red;
 

@@ -62,12 +62,12 @@ namespace application
             this.optionMenu.Controls.Add(this.button4);
             this.optionMenu.Controls.Add(this.button3);
             this.optionMenu.Controls.Add(this.button2);
+            this.optionMenu.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.optionMenu.Location = new System.Drawing.Point(489, 50);
             this.optionMenu.Name = "optionMenu";
             this.optionMenu.Size = new System.Drawing.Size(904, 141);
             this.optionMenu.TabIndex = 0;
             this.optionMenu.TabStop = false;
-            this.optionMenu.Text = "optionMenu";
             this.optionMenu.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // button10
@@ -206,7 +206,6 @@ namespace application
             this.displayWindow.Size = new System.Drawing.Size(960, 535);
             this.displayWindow.TabIndex = 2;
             this.displayWindow.TabStop = false;
-            this.displayWindow.Text = "displayWindow";
             this.displayWindow.Enter += new System.EventHandler(this.groupBox1_Enter_1);
             // 
             // lblDateTime
@@ -221,7 +220,7 @@ namespace application
             // 
             // Form1
             // 
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.displayWindow);

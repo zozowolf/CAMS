@@ -51,10 +51,8 @@ namespace application
             // Récupérer les jours uniques triés
             List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel);
 
-            //affichage du channel actuel et des dates
+            //affichage du channel actuel 
             Chn.Text = "Chn. " + numbchannel.ToString("000") + ": c" + numbchannel;
-            Startdate.Text = sortedDays[0].Date.ToString("dd/MM/yyyy");
-            Enddate.Text = sortedDays[sortedDays.Count - 1].Date.ToString("dd/MM/yyyy");
 
             // Créer les graphiques en fonction des jours triés
             for (int i = 0; i < sortedDays.Count; i++)
@@ -70,10 +68,19 @@ namespace application
 
         private Chart CreateChart(int chartNumber, int chartHeight, DateTime day)
         {
+            // Récupérer les jours uniques triés
+            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel);
+
             Chart chart = new Chart();
             chart.ChartAreas.Add(new ChartArea());
 
             Series series = chart.Series.Add($"Chart{chartNumber}");
+
+            Title title = new Title(sortedDays[chartNumber-1].Date.ToString("dd/MM/yyyy"));
+            title.Font = new Font("Arial", 10, FontStyle.Regular);
+            title.Alignment = ContentAlignment.TopLeft;
+            title.ForeColor = Color.White;
+            chart.Titles.Add(title);
 
             UpdateChart(chart, chartNumber, day);
 
@@ -159,7 +166,7 @@ namespace application
             chart.ChartAreas[0].AxisY.Minimum = 0;
 
             // Rendre les valeurs des axes invisibles
-            chart.ChartAreas[0].AxisX.LabelStyle.Enabled = false;
+            //chart.ChartAreas[0].AxisX.LabelStyle.Enabled = false;
             chart.ChartAreas[0].AxisY.LabelStyle.Enabled = false;
             chart.ChartAreas[0].AxisX.MajorTickMark.Enabled = false;
             chart.ChartAreas[0].AxisY.MajorTickMark.Enabled = false;
@@ -167,6 +174,14 @@ namespace application
             // Configurer la transparence du fond
             chart.BackColor = Color.Transparent;
             chart.ChartAreas[0].BackColor = Color.Transparent;
+
+            //couleur des axes
+            chart.ChartAreas[0].AxisX.LineColor = Color.White;
+            chart.ChartAreas[0].AxisY.LineColor = Color.White;
+
+            // Configurer la couleur du texte du label sur l'axe X
+            chart.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.White;
+
 
             // Configurer la transparence des valeurs des axes
             chart.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Transparent;
@@ -184,7 +199,7 @@ namespace application
             {
                 int top = (chartHeight + margin) * (chartNumber - 1) + margin;
                 chart.Location = new System.Drawing.Point(10, top);
-                chart.Size = new System.Drawing.Size(panel1.Width - 30, chartHeight);
+                chart.Size = new System.Drawing.Size(panel1.Width + trackBarX.Value, chartHeight);
             }
             else
             {
@@ -251,7 +266,6 @@ namespace application
         private void trackBarX_Scroll(object sender, EventArgs e)
         {
             // Met à jour avec la valeur actuelle du TrackBar
-            MaxXValue = trackBarX.Value;
             InitializeCharts();
         }
 

@@ -29,8 +29,6 @@ namespace application
         /// </summary>
         private void InitializeComponent()
         {
-            this.Startdate = new System.Windows.Forms.Label();
-            this.Enddate = new System.Windows.Forms.Label();
             this.ChooseChanel = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
             this.Chn = new System.Windows.Forms.Label();
@@ -39,26 +37,6 @@ namespace application
             this.trackBarX = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Startdate
-            // 
-            this.Startdate.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Startdate.AutoSize = true;
-            this.Startdate.Location = new System.Drawing.Point(13, 107);
-            this.Startdate.Name = "Startdate";
-            this.Startdate.Size = new System.Drawing.Size(50, 13);
-            this.Startdate.TabIndex = 1;
-            this.Startdate.Text = "Startdate";
-            // 
-            // Enddate
-            // 
-            this.Enddate.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Enddate.AutoSize = true;
-            this.Enddate.Location = new System.Drawing.Point(13, 735);
-            this.Enddate.Name = "Enddate";
-            this.Enddate.Size = new System.Drawing.Size(47, 13);
-            this.Enddate.TabIndex = 2;
-            this.Enddate.Text = "Enddate";
             // 
             // ChooseChanel
             // 
@@ -86,6 +64,7 @@ namespace application
             // 
             this.Chn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.Chn.AutoSize = true;
+            this.Chn.ForeColor = System.Drawing.Color.White;
             this.Chn.Location = new System.Drawing.Point(970, 981);
             this.Chn.Name = "Chn";
             this.Chn.Size = new System.Drawing.Size(32, 13);
@@ -115,21 +94,20 @@ namespace application
             // trackBarX
             // 
             this.trackBarX.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.trackBarX.LargeChange = 60;
+            this.trackBarX.LargeChange = 10;
             this.trackBarX.Location = new System.Drawing.Point(779, 12);
-            this.trackBarX.Maximum = 1440;
-            this.trackBarX.Minimum = 60;
+            this.trackBarX.Maximum = 3000;
             this.trackBarX.Name = "trackBarX";
             this.trackBarX.Size = new System.Drawing.Size(448, 45);
-            this.trackBarX.TabIndex = 10;
-            this.trackBarX.TickFrequency = 60;
-            this.trackBarX.Value = 1440;
+            this.trackBarX.SmallChange = 10;
+            this.trackBarX.TabIndex = 300;
+            this.trackBarX.TickFrequency = 100;
             this.trackBarX.Scroll += new System.EventHandler(this.trackBarX_Scroll);
-            //
+            // 
             // actogramPage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.trackBarX);
             this.Controls.Add(this.panel2);
@@ -137,8 +115,6 @@ namespace application
             this.Controls.Add(this.Chn);
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.ChooseChanel);
-            this.Controls.Add(this.Enddate);
-            this.Controls.Add(this.Startdate);
             this.Name = "actogramPage";
             this.Text = "actogramPage";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -150,8 +126,6 @@ namespace application
         }
 
         #endregion
-        private System.Windows.Forms.Label Startdate;
-        private System.Windows.Forms.Label Enddate;
         private System.Windows.Forms.Button ChooseChanel;
         private System.Windows.Forms.Button Exit;
         private System.Windows.Forms.Label Chn;
