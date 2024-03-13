@@ -36,17 +36,8 @@ namespace application
                     double value = inputs[0];
 
                     // Call the method to add the value to the database
-                    sqlCommand.AddValueToChannel(channelId, value);
+                    sqlCommand.AddValueToChannel(channelId, value- sqlCommand.GetTotalValeur(channelId));
 
-                    // Adresse de la bobine à réinitialiser
-                    ushort coilAddress = 34;
-                    const int SlaveId = 1;
-
-                    // Lecture de l'état actuel de la bobine
-                    bool currentCoilState = master.ReadCoils(SlaveId, coilAddress, 1)[0];
-
-                    // Réinitialisation de la bobine (inversion de l'état)
-                    master.WriteSingleCoil(SlaveId, coilAddress, !currentCoilState);
                 }
             }
         }

@@ -185,5 +185,33 @@ namespace application
             }
         }
 
+        public double GetTotalValeur(int channelId)
+        {
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            {
+                cn_connection.Open();
+
+                double totalValeurs = 0;
+
+                string sql_Text = $"SELECT SUM(valeur) AS TotalValeurs FROM Mesure WHERE IdChannel = '{channelId}' AND valeur IS NOT NULL";
+
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read() && !reader.IsDBNull(reader.GetOrdinal("TotalValeurs")))
+                        {
+                            // Utiliser la colonne correspondante pour récupérer la somme des valeurs
+                            totalValeurs = Convert.ToDouble(reader["TotalValeurs"]);
+                        }
+                    }
+                }
+
+                return totalValeurs;
+            }
+        }
+
+
     }
 }
