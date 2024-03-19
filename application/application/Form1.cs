@@ -45,7 +45,7 @@ namespace application
             if (!FirstExecutee)
             {
                 // Module mise a zero
-                modbusnum.RAZ();
+                //modbusnum.RAZ();
                 // Mettre à jour le graphique avec les nouvelles valeurs
                 foreach (var chart in charts)
                 {
@@ -201,7 +201,7 @@ namespace application
         private void timerMinute_Tick(object sender, EventArgs e)
         {
             // Ajouter les valeurs dans la BD
-            modbusnum.getNumValue();
+            //modbusnum.getNumValue();
         }
 
         private void ChangeDisplayedCharts()
