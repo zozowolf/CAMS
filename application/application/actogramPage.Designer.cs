@@ -64,10 +64,11 @@ namespace application
             // 
             this.Chn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.Chn.AutoSize = true;
+            this.Chn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Chn.ForeColor = System.Drawing.Color.White;
             this.Chn.Location = new System.Drawing.Point(970, 981);
             this.Chn.Name = "Chn";
-            this.Chn.Size = new System.Drawing.Size(32, 13);
+            this.Chn.Size = new System.Drawing.Size(63, 25);
             this.Chn.TabIndex = 5;
             this.Chn.Text = "Chn. ";
             // 

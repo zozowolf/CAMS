@@ -29,6 +29,7 @@ namespace application
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.optionMenu = new System.Windows.Forms.GroupBox();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -45,6 +46,10 @@ namespace application
             this.label1 = new System.Windows.Forms.Label();
             this.displayWindow = new System.Windows.Forms.GroupBox();
             this.lblDateTime = new System.Windows.Forms.Label();
+            this.timerDate = new System.Windows.Forms.Timer(this.components);
+            this.timerAffichage = new System.Windows.Forms.Timer(this.components);
+            this.timerMinute = new System.Windows.Forms.Timer(this.components);
+            this.timerHeure = new System.Windows.Forms.Timer(this.components);
             this.optionMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -211,12 +216,38 @@ namespace application
             // lblDateTime
             // 
             this.lblDateTime.AutoSize = true;
+            this.lblDateTime.BackColor = System.Drawing.Color.Transparent;
             this.lblDateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateTime.ForeColor = System.Drawing.Color.White;
             this.lblDateTime.Location = new System.Drawing.Point(883, 788);
             this.lblDateTime.Name = "lblDateTime";
             this.lblDateTime.Size = new System.Drawing.Size(110, 20);
             this.lblDateTime.TabIndex = 3;
             this.lblDateTime.Text = "Date et Heure";
+            // 
+            // timerDate
+            // 
+            this.timerDate.Enabled = true;
+            this.timerDate.Interval = 1000;
+            this.timerDate.Tick += new System.EventHandler(this.timerDate_Tick);
+            // 
+            // timerAffichage
+            // 
+            this.timerAffichage.Enabled = true;
+            this.timerAffichage.Interval = 30000;
+            this.timerAffichage.Tick += new System.EventHandler(this.timerAffichage_Tick);
+            // 
+            // timerMinute
+            // 
+            this.timerMinute.Enabled = true;
+            this.timerMinute.Interval = 60000;
+            this.timerMinute.Tick += new System.EventHandler(this.timerMinute_Tick);
+            // 
+            // timerHeure
+            // 
+            this.timerHeure.Enabled = true;
+            this.timerHeure.Interval = 3600000;
+            this.timerHeure.Tick += new System.EventHandler(this.timerHeure_Tick);
             // 
             // Form1
             // 
@@ -253,6 +284,10 @@ namespace application
         private System.Windows.Forms.GroupBox displayWindow;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblDateTime;
+        private System.Windows.Forms.Timer timerDate;
+        private System.Windows.Forms.Timer timerAffichage;
+        private System.Windows.Forms.Timer timerMinute;
+        private System.Windows.Forms.Timer timerHeure;
     }
 }
 

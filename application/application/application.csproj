@@ -80,10 +80,10 @@
     <Compile Include="channelDefinitionPage.Designer.cs">
       <DependentUpon>channelDefinitionPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="DBCAMSDataSet1.Designer.cs">
+    <Compile Include="DBCAMSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBCAMSDataSet1.xsd</DependentUpon>
+      <DependentUpon>DBCAMSDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DialogEvent.cs">
       <SubType>Form</SubType>
@@ -164,16 +164,16 @@
     <EmbeddedResource Include="systemInformationPage.resx">
       <DependentUpon>systemInformationPage.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DBCAMSDataSet1.xsc">
-      <DependentUpon>DBCAMSDataSet1.xsd</DependentUpon>
+    <None Include="DBCAMSDataSet.xsc">
+      <DependentUpon>DBCAMSDataSet.xsd</DependentUpon>
     </None>
-    <None Include="DBCAMSDataSet1.xsd">
+    <None Include="DBCAMSDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DBCAMSDataSet1.Designer.cs</LastGenOutput>
+      <LastGenOutput>DBCAMSDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DBCAMSDataSet1.xss">
-      <DependentUpon>DBCAMSDataSet1.xsd</DependentUpon>
+    <None Include="DBCAMSDataSet.xss">
+      <DependentUpon>DBCAMSDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

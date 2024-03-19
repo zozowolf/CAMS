@@ -15,6 +15,7 @@ namespace application
 {
     class ModbusNum
     {
+        int idEnregistrement = 1;
         SQL_command sqlCommand = new SQL_command();
         public void getNumValue()
         {
@@ -36,9 +37,30 @@ namespace application
                     double value = inputs[0];
 
                     // Call the method to add the value to the database
-                    sqlCommand.AddValueToChannel(channelId, value- sqlCommand.GetTotalValeur(channelId));
+                    if (value - sqlCommand.GetTotalValeur(channelId, idEnregistrement) > 0)
+                        sqlCommand.AddValueToChannel(channelId, value - sqlCommand.GetTotalValeur(channelId, idEnregistrement), idEnregistrement);
+                    else
+                        sqlCommand.AddValueToChannel(channelId, 0, idEnregistrement);
 
                 }
+            }
+        }
+
+        public void RAZ()
+        {
+            using (TcpClient client = new TcpClient("192.168.107.171", 502))
+            {
+                var factory = new ModbusFactory();
+                IModbusMaster master = factory.CreateMaster(client);
+                // Adresse de la bobine à réinitialiser
+                ushort coilAddress = 34;
+                const int SlaveId = 1;
+
+                // Lecture de l'état actuel de la bobine
+                bool currentCoilState = master.ReadCoils(SlaveId, coilAddress, 1)[0];
+
+                // Réinitialisation de la bobine (inversion de l'état)
+                master.WriteSingleCoil(SlaveId, coilAddress, !currentCoilState);
             }
         }
     }

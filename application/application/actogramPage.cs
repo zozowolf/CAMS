@@ -17,7 +17,7 @@ namespace application
     */
     public partial class actogramPage : Form
     {
-
+        int idEnregistrement = 1;
         int numbchannel = 1;
         private int MaxXValue = 1440;
         private const int chartHeight = 100;
@@ -49,7 +49,7 @@ namespace application
             panel2.Controls.Clear();
 
             // Récupérer les jours uniques triés
-            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel);
+            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel, idEnregistrement);
 
             //affichage du channel actuel 
             Chn.Text = "Chn. " + numbchannel.ToString("000") + ": c" + numbchannel;
@@ -69,14 +69,14 @@ namespace application
         private Chart CreateChart(int chartNumber, int chartHeight, DateTime day)
         {
             // Récupérer les jours uniques triés
-            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel);
+            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel, idEnregistrement);
 
             Chart chart = new Chart();
             chart.ChartAreas.Add(new ChartArea());
 
             Series series = chart.Series.Add($"Chart{chartNumber}");
 
-            Title title = new Title(sortedDays[chartNumber-1].Date.ToString("dd/MM/yyyy"));
+            Title title = new Title(sortedDays[chartNumber - 1].Date.ToString("dd/MM/yyyy"));
             title.Font = new Font("Arial", 10, FontStyle.Regular);
             title.Alignment = ContentAlignment.TopLeft;
             title.ForeColor = Color.White;
@@ -99,7 +99,7 @@ namespace application
             chart.Series[$"Chart{chartNumber}"].Points.Clear();
 
             // Initialiser un tableau pour stocker les valeurs par minute
-            double[] valeursParMinute = sqlCommand.GetValeurminutes(numbchannel, day);
+            double[] valeursParMinute = sqlCommand.GetValeurminutes(numbchannel, idEnregistrement, day);
 
 
             // Ajouter les valeurs au graphique
@@ -126,7 +126,7 @@ namespace application
         private Chart CreateBlueLineChart(int chartHeight)
         {
             // Récupérer les jours uniques triés
-            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel);
+            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel, idEnregistrement);
 
             Chart chart = new Chart();
             chart.ChartAreas.Add(new ChartArea());
@@ -134,19 +134,24 @@ namespace application
             Series series = chart.Series.Add("Total");
             series.ChartType = SeriesChartType.Line;
 
-            // Ajouter les valeurs totales des autres graphiques
+            // Initialiser un tableau pour stocker la somme des valeurs par minute pour chaque graphique
+            double[] sumValuesPerMinute = new double[MaxXValue + 1];
+
+            // Calculer la somme des valeurs de chaque point pour chaque graphique
+            foreach (Chart lineChart in panel1.Controls.OfType<Chart>())
+            {
+                int chartNumber = int.Parse(lineChart.Series[0].Name.Substring("Chart".Length));
+                for (int x = 0; x <= MaxXValue; x++)
+                {
+                    sumValuesPerMinute[x] += lineChart.Series[0].Points[x].YValues[0];
+                }
+            }
+
+            // Calculer la moyenne des valeurs pour chaque point
             for (int x = 0; x <= MaxXValue; x++)
             {
-                double totalValue = 0;
-                foreach (Chart lineChart in panel1.Controls.OfType<Chart>())
-                {
-                    if (lineChart != chart)
-                    {
-                        int chartNumber = int.Parse(lineChart.Series[0].Name.Substring("Chart".Length));
-                        totalValue += lineChart.Series[0].Points[x].YValues[0];
-                    }
-                }
-                series.Points.AddXY(x, totalValue);
+                double averageValue = sumValuesPerMinute[x] / panel1.Controls.Count;
+                series.Points.AddXY(x, averageValue);
             }
 
             // Configurer le style de la ligne en bleu
@@ -157,6 +162,7 @@ namespace application
 
             return chart;
         }
+
 
         private void ConfigureChart(Chart chart, int chartNumber, int chartHeight)
         {
@@ -232,7 +238,7 @@ namespace application
         private void ChooseChanel_Click(object sender, EventArgs e)
         {
             // Récupérer les identifiants de canal uniques
-            List<int> uniqueChannelIds = sqlCommand.GetUniqueChannelIds();
+            List<int> uniqueChannelIds = sqlCommand.GetUniqueChannelIds(idEnregistrement);
 
             // Afficher la boîte de dialogue de saisie de valeur
             InputDialog inputDialog = new InputDialog();

@@ -29,22 +29,33 @@ namespace application
     */
     public partial class Form1 : Form
     {
-        private Timer timer;
+        int idEnregistrement = 1;
         private List<Chart> charts = new List<Chart>();
         private int previousHour = -1;
-        private int elapsedTime = 0;
-        private int minutechrono = 60;
-        private const int ChangeInterval = 30; // Intervalle en secondes pour changer les graphiques
-        private const int ValueInterval = 60;
         private int currentChartIndex = 9; // Ajouter une variable pour suivre l'index du graphique actuel
         private int maxcharts = 2;
+        private bool FirstExecutee = false;
         SQL_command sqlCommand = new SQL_command();
         ModbusNum modbusnum = new ModbusNum();
+
         public Form1()
         {
+
             InitializeComponent();
             InitializeCharts();
-            InitializeTimer();      
+            if (!FirstExecutee)
+            {
+                // Module mise a zero
+                //modbusnum.RAZ();
+                // Mettre à jour le graphique avec les nouvelles valeurs
+                foreach (var chart in charts)
+                {
+                    UpdateChart(chart);
+                }
+                // Changer les graphiques affichés
+                ChangeDisplayedCharts();
+            }
+
         }
 
         private void InitializeCharts()
@@ -57,7 +68,7 @@ namespace application
             displayWindow.Controls.Add(tableLayoutPanel);
 
             // Créer plusieurs graphiques et les ajouter au TableLayoutPanel
-            for (int i = 0; i < maxcharts; i++) 
+            for (int i = 0; i < maxcharts; i++)
             {
                 Chart chart = new Chart();
                 chart.Size = new Size(300, 150);
@@ -128,7 +139,7 @@ namespace application
             // Récupérer le numéro du graphique à partir du titre
             int currentChartNumber = int.Parse(chart.Titles[0].Text.Split(':')[1].Trim());
 
-            Dictionary<int, double> valeursAgrégéesParHeure = sqlCommand.GetValeurheure(currentChartNumber);
+            Dictionary<int, double> valeursAgrégéesParHeure = sqlCommand.GetValeurheure(currentChartNumber, idEnregistrement);
 
             if (valeursAgrégéesParHeure.Count == 0)
             {
@@ -158,18 +169,23 @@ namespace application
             }
         }
 
-        private void InitializeTimer()
+
+        private void timerDate_Tick(object sender, EventArgs e)
         {
-            // Initialiser le timer
-            timer = new Timer();
-            timer.Interval = 1000; // Intervalle en millisecondes (1 seconde)
-            timer.Tick += Timer_Tick;
-            timer.Start();
+            // Mettre à jour le label avec l'heure et la date actuelles à chaque tick de timer
+            lblDateTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            lblDateTime.ForeColor = Color.White;
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void timerAffichage_Tick(object sender, EventArgs e)
         {
-            // Vérifier si l'heure actuelle a changé
+            // Changer les graphiques affichés
+            ChangeDisplayedCharts();
+        }
+
+        private void timerHeure_Tick(object sender, EventArgs e)
+        {
+            //Vérifier si l'heure actuelle a changé
             if (DateTime.Now.Hour != previousHour)
             {
                 // Mettre à jour le graphique avec les nouvelles valeurs
@@ -181,28 +197,12 @@ namespace application
                 // Mettre à jour l'heure précédente
                 previousHour = DateTime.Now.Hour;
             }
+        }
 
-            // Mettre à jour le label avec l'heure et la date actuelles à chaque tick de timer
-            lblDateTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            lblDateTime.ForeColor = Color.White;
-
-            // Vérifier si le temps écoulé atteint l'intervalle de changement
-            elapsedTime++;
-            if (elapsedTime >= ChangeInterval)
-            {
-                // Changer les graphiques affichés
-                ChangeDisplayedCharts();
-                elapsedTime = 0; // Réinitialiser le temps écoulé
-            }
-
-            // Vérifier si le temps écoulé atteint l'intervalle de changement
-            minutechrono++;
-            if (minutechrono >= ValueInterval)
-            {
-                // Ajouter les valeurs dans la BD
-                modbusnum.getNumValue();
-                minutechrono = 0; // Réinitialiser le temps écoulé
-            }
+        private void timerMinute_Tick(object sender, EventArgs e)
+        {
+            // Ajouter les valeurs dans la BD
+            //modbusnum.getNumValue();
         }
 
         private void ChangeDisplayedCharts()
@@ -242,13 +242,19 @@ namespace application
                 case Keys.D:
                     button1.PerformClick();
                     break;
-
                 case Keys.A:
                     button2.PerformClick();
                     break;
                 case Keys.S:
                     button3.PerformClick();
                     break;
+                case Keys.C:
+                    button5.PerformClick();
+                    break;
+                case Keys.R:
+                    button6.PerformClick();
+                    break;
+
             }
 
 
@@ -324,12 +330,22 @@ namespace application
 
         private void button5_Click(object sender, EventArgs e)
         {
+            channelDefinitionPage nouvelleForme = new channelDefinitionPage();
+            if (nouvelleForme != null)
+            {
+                nouvelleForme.Show();
+            }
+            else
+            {
+                MessageBox.Show("La nouvelle forme est null.");
+            }
 
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            recordingIntervalPage nouvelleForme = new recordingIntervalPage();
+            nouvelleForme.Show();
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -346,5 +362,6 @@ namespace application
         {
 
         }
+
     }
 }
