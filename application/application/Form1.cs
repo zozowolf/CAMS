@@ -31,8 +31,6 @@ namespace application
     {
         int idEnregistrement = 1;
         private List<Chart> charts = new List<Chart>();
-        private int previousHour = -1;
-        private int currentChartIndex = 9; // Ajouter une variable pour suivre l'index du graphique actuel
         private int maxcharts = 500;
         private bool FirstExecute = false;
         SQL_command sqlCommand = new SQL_command();
@@ -45,42 +43,32 @@ namespace application
             InitializeCharts();
             if (!FirstExecute)
             {
+                FirstExecute = true;
                 // Module mise a zero
-                modbusnum.RAZ();
+                //modbusnum.RAZ();
                 // Mettre à jour le graphique avec les nouvelles valeurs
                 foreach (var chart in charts)
                 {
                     UpdateChart(chart);
                 }
-                ChangeDisplayedCharts();
+
             }
 
         }
 
         private void InitializeCharts()
         {
-            // Utiliser un TableLayoutPanel pour organiser les graphiques
-            TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
-            tableLayoutPanel.Dock = DockStyle.Fill;
-            tableLayoutPanel.RowCount = 3;
-            tableLayoutPanel.ColumnCount = 3;
-            displayWindow.Controls.Add(tableLayoutPanel);
 
             // Créer plusieurs graphiques et les ajouter au TableLayoutPanel
             for (int i = 0; i < maxcharts; i++)
             {
                 Chart chart = new Chart();
-                chart.Size = new System.Drawing.Size(displayWindow.Width / 3, displayWindow.Height / 4);
+                chart.Size = new System.Drawing.Size((displayWindow.Width / 3) - 30, (displayWindow.Height / 3)-15);
                 charts.Add(chart);
-                tableLayoutPanel.Controls.Add(chart);
+                displayWindow.Controls.Add(chart);
                 InitializeChart(chart, i + 1); // Ajouter le numéro du graphique
             }
 
-            // Masquer les graphiques restants
-            for (int i = 8; i < maxcharts; i++)
-            {
-                charts[i].Visible = false;
-            }
         }
 
         private void InitializeChart(Chart chart, int chartNumber)
@@ -147,7 +135,7 @@ namespace application
             }
             else
             {
-                
+                chart.Visible = true;
                 // Ajouter les valeurs agrégées au graphique
                 foreach (var kvp in valeursAgrégéesParHeure)
                 {
@@ -175,77 +163,22 @@ namespace application
             lblDateTime.ForeColor = Color.White;
         }
 
-        private void timerAffichage_Tick(object sender, EventArgs e)
-        {
-            // Changer les graphiques affichés
-            ChangeDisplayedCharts();
-        }
-
         private void timerHeure_Tick(object sender, EventArgs e)
         {
-            //Vérifier si l'heure actuelle a changé
-            if (DateTime.Now.Hour != previousHour)
-            {
+
                 // Mettre à jour le graphique avec les nouvelles valeurs
                 foreach (var chart in charts)
                 {
                     UpdateChart(chart);
                 }
 
-                // Mettre à jour l'heure précédente
-                previousHour = DateTime.Now.Hour;
-            }
         }
 
         private void timerMinute_Tick(object sender, EventArgs e)
         {
             // Ajouter les valeurs dans la BD
-            modbusnum.getNumValue();
+            //modbusnum.getNumValue();
         }
-
-        private void ChangeDisplayedCharts()
-        {
-            if (!FirstExecute)
-            {
-                FirstExecute = true;
-                // Afficher les 9 premiers graphiques
-                for (int i = 0; i < 9; i++)
-                {
-                    charts[i].Visible = true;
-                    UpdateChart(charts[i]); // Mettre à jour les valeurs du graphique affiché
-                }
-                return;
-            }
-
-            // Masquer seulement les graphiques qui sont actuellement visibles
-            foreach (var chart in charts.Where(chart => chart.Visible))
-            {
-                chart.Visible = false;
-            }
-
-
-            int chartsToShow = 0; // Nombre de graphiques à afficher avec des valeurs
-
-            // Afficher les 9 graphiques suivants à partir de l'index actuel qui ont des valeurs
-            for (int i = 0; i < charts.Count; i++)
-            {
-                int indexToShow = (currentChartIndex + i) % charts.Count; // Assurer la circularité
-                if (charts[indexToShow].Series[0].Points.Count > 0)
-                {
-                    charts[indexToShow].Visible = true;
-                    UpdateChart(charts[indexToShow]); // Mettre à jour les valeurs du graphique affiché
-                    chartsToShow++;
-                }
-
-                // Si 9 graphiques avec des valeurs ont été trouvés, sortir de la boucle
-                if (chartsToShow == 9)
-                    break;
-            }
-
-            // Mettre à jour l'index actuel
-            currentChartIndex = (currentChartIndex + 9) % charts.Count;
-        }
-
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {

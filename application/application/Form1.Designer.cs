@@ -46,10 +46,9 @@ namespace application
             this.label1 = new System.Windows.Forms.Label();
             this.lblDateTime = new System.Windows.Forms.Label();
             this.timerDate = new System.Windows.Forms.Timer(this.components);
-            this.timerAffichage = new System.Windows.Forms.Timer(this.components);
             this.timerMinute = new System.Windows.Forms.Timer(this.components);
             this.timerHeure = new System.Windows.Forms.Timer(this.components);
-            this.displayWindow = new System.Windows.Forms.Panel();
+            this.displayWindow = new System.Windows.Forms.FlowLayoutPanel();
             this.optionMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -223,12 +222,6 @@ namespace application
             this.timerDate.Interval = 1000;
             this.timerDate.Tick += new System.EventHandler(this.timerDate_Tick);
             // 
-            // timerAffichage
-            // 
-            this.timerAffichage.Enabled = true;
-            this.timerAffichage.Interval = 30000;
-            this.timerAffichage.Tick += new System.EventHandler(this.timerAffichage_Tick);
-            // 
             // timerMinute
             // 
             this.timerMinute.Enabled = true;
@@ -243,17 +236,21 @@ namespace application
             // 
             // displayWindow
             // 
-            this.displayWindow.Location = new System.Drawing.Point(12, 243);
+            this.displayWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.displayWindow.AutoScroll = true;
+            this.displayWindow.Location = new System.Drawing.Point(12, 217);
             this.displayWindow.Name = "displayWindow";
             this.displayWindow.Size = new System.Drawing.Size(1870, 645);
-            this.displayWindow.TabIndex = 4;
+            this.displayWindow.TabIndex = 5;
             // 
             // Form1
             // 
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
-            this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.displayWindow);
+            this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.optionMenu);
             this.Name = "Form1";
@@ -283,10 +280,9 @@ namespace application
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblDateTime;
         private System.Windows.Forms.Timer timerDate;
-        private System.Windows.Forms.Timer timerAffichage;
         private System.Windows.Forms.Timer timerMinute;
         private System.Windows.Forms.Timer timerHeure;
-        private System.Windows.Forms.Panel displayWindow;
+        private System.Windows.Forms.FlowLayoutPanel displayWindow;
     }
 }
 
