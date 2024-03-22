@@ -205,11 +205,11 @@ namespace application
             {
                 int top = (chartHeight + margin) * (chartNumber - 1) + margin;
                 chart.Location = new System.Drawing.Point(10, top);
-                chart.Size = new System.Drawing.Size(panel1.Width + trackBarX.Value, chartHeight);
+                chart.Size = new System.Drawing.Size(panel1.Width + trackBarX.Value, chartHeight + trackBarX.Value/50);
             }
             else
             {
-                chart.Size = new System.Drawing.Size(panel2.Width, chartHeight);
+                chart.Size = new System.Drawing.Size(panel2.Width + trackBarX.Value, chartHeight-20 + trackBarX.Value/100);
             }
         }
 

@@ -95,14 +95,14 @@ namespace application
             // trackBarX
             // 
             this.trackBarX.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.trackBarX.LargeChange = 10;
+            this.trackBarX.LargeChange = 1000;
             this.trackBarX.Location = new System.Drawing.Point(779, 12);
-            this.trackBarX.Maximum = 3000;
+            this.trackBarX.Maximum = 5000;
             this.trackBarX.Name = "trackBarX";
             this.trackBarX.Size = new System.Drawing.Size(448, 45);
             this.trackBarX.SmallChange = 10;
             this.trackBarX.TabIndex = 300;
-            this.trackBarX.TickFrequency = 100;
+            this.trackBarX.TickFrequency = 1000;
             this.trackBarX.Scroll += new System.EventHandler(this.trackBarX_Scroll);
             // 
             // actogramPage
