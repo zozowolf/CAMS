@@ -77,7 +77,6 @@ namespace application
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.AutoScroll = true;
             this.panel1.Location = new System.Drawing.Point(115, 81);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1600, 696);
@@ -86,7 +85,6 @@ namespace application
             // panel2
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.panel2.AutoScroll = true;
             this.panel2.Location = new System.Drawing.Point(115, 783);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1600, 183);
@@ -100,7 +98,7 @@ namespace application
             this.trackBarX.Maximum = 5000;
             this.trackBarX.Name = "trackBarX";
             this.trackBarX.Size = new System.Drawing.Size(448, 45);
-            this.trackBarX.SmallChange = 10;
+            this.trackBarX.SmallChange = 1000;
             this.trackBarX.TabIndex = 300;
             this.trackBarX.TickFrequency = 1000;
             this.trackBarX.Scroll += new System.EventHandler(this.trackBarX_Scroll);

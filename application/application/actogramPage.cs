@@ -28,7 +28,25 @@ namespace application
         {
             InitializeComponent();
             InitializeCharts();
+            InitializeScroll();
 
+        }
+
+        private void InitializeScroll()
+        {
+            panel2.AutoScroll = true;
+
+            panel1.AutoScroll = false;
+            panel1.HorizontalScroll.Enabled = false;
+            panel1.HorizontalScroll.Visible = false;
+            panel1.AutoScroll = true;
+
+            panel2.Scroll += Panel2_Scroll;
+        }
+
+        private void Panel2_Scroll(object sender, ScrollEventArgs e)
+        {
+            panel1.HorizontalScroll.Value = panel2.HorizontalScroll.Value;
         }
 
         private void InitializeCharts()
@@ -111,16 +129,6 @@ namespace application
                 chart.Series[$"Chart{chartNumber}"].Points.Add(dataPoint);
             }
 
-            for (int i = 360; i <= 1440; i += 360)
-            {
-                StripLine stripLine = new StripLine();
-                stripLine.Interval = 0;
-                stripLine.IntervalOffset = i;
-                stripLine.StripWidth = 1;
-                stripLine.BackColor = System.Drawing.Color.FromArgb(100, 255, 0, 0); // Couleur rouge semi-transparente
-
-                chart.ChartAreas[0].AxisX.StripLines.Add(stripLine);
-            }
         }
 
         private Chart CreateBlueLineChart(int chartHeight)
@@ -163,7 +171,6 @@ namespace application
             return chart;
         }
 
-
         private void ConfigureChart(Chart chart, int chartNumber, int chartHeight)
         {
             // Ajuster les limites des l'axes 
@@ -203,13 +210,24 @@ namespace application
             // Définir la position et la taille du graphique
             if (chartHeight != panel2.Height)
             {
-                int top = (chartHeight + margin) * (chartNumber - 1) + margin;
+                int top = (chartHeight + margin + trackBarX.Value / 30) * (chartNumber - 1) + margin;
                 chart.Location = new System.Drawing.Point(10, top);
                 chart.Size = new System.Drawing.Size(panel1.Width + trackBarX.Value, chartHeight + trackBarX.Value/50);
             }
             else
             {
-                chart.Size = new System.Drawing.Size(panel2.Width + trackBarX.Value, chartHeight-20 + trackBarX.Value/100);
+                chart.Size = new System.Drawing.Size(panel2.Width + trackBarX.Value, chartHeight-25);
+            }
+
+            for (int i = 360; i <= 1440; i += 360)
+            {
+                StripLine stripLine = new StripLine();
+                stripLine.Interval = 0;
+                stripLine.IntervalOffset = i;
+                stripLine.StripWidth = 1;
+                stripLine.BackColor = System.Drawing.Color.FromArgb(100, 255, 0, 0); // Couleur rouge semi-transparente
+
+                chart.ChartAreas[0].AxisX.StripLines.Add(stripLine);
             }
         }
 
