@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -80,10 +80,10 @@
     <Compile Include="channelDefinitionPage.Designer.cs">
       <DependentUpon>channelDefinitionPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="DBCAMSDataSet.Designer.cs">
+    <Compile Include="DBCAMSDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBCAMSDataSet.xsd</DependentUpon>
+      <DependentUpon>DBCAMSDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="DialogEvent.cs">
       <SubType>Form</SubType>
@@ -164,16 +164,16 @@
     <EmbeddedResource Include="systemInformationPage.resx">
       <DependentUpon>systemInformationPage.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DBCAMSDataSet.xsc">
-      <DependentUpon>DBCAMSDataSet.xsd</DependentUpon>
+    <None Include="DBCAMSDataSet1.xsc">
+      <DependentUpon>DBCAMSDataSet1.xsd</DependentUpon>
     </None>
-    <None Include="DBCAMSDataSet.xsd">
+    <None Include="DBCAMSDataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DBCAMSDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>DBCAMSDataSet1.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DBCAMSDataSet.xss">
-      <DependentUpon>DBCAMSDataSet.xsd</DependentUpon>
+    <None Include="DBCAMSDataSet1.xss">
+      <DependentUpon>DBCAMSDataSet1.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -190,15 +190,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBCAMS.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DBCAMS_log.ldf">
-      <DependentUpon>DBCAMS.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.7.2 %28x86 et x64%29</ProductName>
@@ -209,6 +200,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DBCAMS.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DBCAMS_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>DBCAMS.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

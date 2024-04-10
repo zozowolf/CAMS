@@ -36,6 +36,9 @@ namespace application
             this.dBCAMSDataSet = new application.DBCAMSDataSet();
             this.dBCAMSDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.affichage = new System.Windows.Forms.Timer(this.components);
+            this.suivant = new System.Windows.Forms.Button();
+            this.precedent = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dBCAMSDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dBCAMSDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -89,12 +92,40 @@ namespace application
             this.dataGridView1.Size = new System.Drawing.Size(1081, 636);
             this.dataGridView1.TabIndex = 7;
             // 
+            // affichage
+            // 
+            this.affichage.Enabled = true;
+            this.affichage.Interval = 60000;
+            this.affichage.Tick += new System.EventHandler(this.affichage_Tick);
+            // 
+            // suivant
+            // 
+            this.suivant.Location = new System.Drawing.Point(1756, 366);
+            this.suivant.Name = "suivant";
+            this.suivant.Size = new System.Drawing.Size(75, 43);
+            this.suivant.TabIndex = 8;
+            this.suivant.Text = "suivant";
+            this.suivant.UseVisualStyleBackColor = true;
+            this.suivant.Click += new System.EventHandler(this.suivant_Click);
+            // 
+            // precedent
+            // 
+            this.precedent.Location = new System.Drawing.Point(1570, 366);
+            this.precedent.Name = "precedent";
+            this.precedent.Size = new System.Drawing.Size(75, 43);
+            this.precedent.TabIndex = 9;
+            this.precedent.Text = "precedent";
+            this.precedent.UseVisualStyleBackColor = true;
+            this.precedent.Click += new System.EventHandler(this.precedent_Click);
+            // 
             // displayChannelsPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.precedent);
+            this.Controls.Add(this.suivant);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.Exit);
@@ -118,5 +149,8 @@ namespace application
         private System.Windows.Forms.BindingSource dBCAMSDataSetBindingSource;
         private DBCAMSDataSet dBCAMSDataSet;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Timer affichage;
+        private System.Windows.Forms.Button suivant;
+        private System.Windows.Forms.Button precedent;
     }
 }

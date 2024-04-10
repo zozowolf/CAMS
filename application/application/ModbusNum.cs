@@ -38,9 +38,9 @@ namespace application
 
                     // Call the method to add the value to the database
                     if (value - sqlCommand.GetTotalValeur(channelId, idEnregistrement) > 0)
-                        sqlCommand.AddValueToChannel(channelId, value - sqlCommand.GetTotalValeur(channelId, idEnregistrement), idEnregistrement);
+                        sqlCommand.AddNumValueToChannel(channelId, value - sqlCommand.GetTotalValeur(channelId, idEnregistrement), idEnregistrement);
                     else
-                        sqlCommand.AddValueToChannel(channelId, 0, idEnregistrement);
+                        sqlCommand.AddNumValueToChannel(channelId, 0, idEnregistrement);
 
                 }
             }

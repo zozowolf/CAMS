@@ -177,7 +177,7 @@ namespace application
         private void timerMinute_Tick(object sender, EventArgs e)
         {
             // Ajouter les valeurs dans la BD
-            //modbusnum.getNumValue();
+            modbusnum.getNumValue();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
