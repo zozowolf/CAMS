@@ -186,7 +186,7 @@ namespace application
             }
         }
 
-        public double GetTotalValeur(int idChannel, int idEnregistrement)
+        public double GetTotalValeur(int idChannel, int idEnregistrement, string type)
         {
             string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
             using (SqlConnection cn_connection = new SqlConnection(cn_string))
@@ -195,7 +195,7 @@ namespace application
 
                 double totalValeurs = 0;
 
-                string sql_Text = $"SELECT SUM(valeur) AS TotalValeurs FROM Mesure WHERE Id = '{idChannel}' AND IdEnregistrement = '{idEnregistrement}' AND type = 'Num' AND valeur IS NOT NULL";
+                string sql_Text = $"SELECT SUM(valeur) AS TotalValeurs FROM Mesure WHERE Id = '{idChannel}' AND IdEnregistrement = '{idEnregistrement}' AND type = '{type}' AND valeur IS NOT NULL";
 
                 using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
                 {
@@ -266,7 +266,6 @@ namespace application
             }
         }
 
-
         public int GetLastValeurjour(int idChannel, int idEnregistrement)
         {
             string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
@@ -293,7 +292,6 @@ namespace application
                 return totalValeurs;
             }
         }
-
 
         public double GetLastTemp(int idChannel, int idEnregistrement)
         {
@@ -426,6 +424,98 @@ namespace application
                 return type;
             }
         }
+
+        public void AddValueToEvent(string message, DateTime currentDate, string nomChercheur)
+        {
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
+            int newEventId;
+
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            {
+                cn_connection.Open();
+
+                // Create the SQL command to insert a new record
+                string sql_Text = "INSERT INTO Event (Id, DateHeure, nomChercheur, Description) VALUES ((SELECT ISNULL(MAX(Id), 0) + 1 FROM Event), @currentDate, @nomChercheur, @message);";
+
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                {
+                    // Add parameters to the command to prevent SQL injection
+                    cmd.Parameters.AddWithValue("@currentDate", currentDate);
+                    cmd.Parameters.AddWithValue("@nomChercheur", nomChercheur);
+                    cmd.Parameters.AddWithValue("@message", message);
+
+                    // Execute the SQL command to insert the event
+                    cmd.ExecuteNonQuery();
+
+                    // Get the newly inserted event ID
+                    string getIdQuery = "SELECT TOP 1 Id FROM Event ORDER BY Id DESC;"; // Retrieve the last identity value generated in the current scope
+                    using (SqlCommand getIdCmd = new SqlCommand(getIdQuery, cn_connection))
+                    {
+                        newEventId = Convert.ToInt32(getIdCmd.ExecuteScalar());
+                    }
+                }
+
+                // Create the SQL command to insert a new record into the AssociationENR_EV table
+                string associationSql_Text = "INSERT INTO AssociationENR_EV (IdEnregistrement, IdEvent) VALUES (@idEnregistrement, @newEventId);";
+
+                using (SqlCommand associationCmd = new SqlCommand(associationSql_Text, cn_connection))
+                {
+                    // Add parameters to the command
+                    associationCmd.Parameters.AddWithValue("@idEnregistrement", 1); // ATTENTION : CODE STATIQUE POUR LE MOMENT
+                    associationCmd.Parameters.AddWithValue("@newEventId", newEventId);
+
+                    // Execute the SQL command to create the association
+                    associationCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void AddValueToAlerte(int idChannel, string message, DateTime currentDate, string nomChercheur)
+        {
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
+            int newAlertId;
+
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            {
+                cn_connection.Open();
+
+                // commande sql 
+                string sql_Text = "INSERT INTO Alerte (Id, DateHeure, nomChercheur, Description) VALUES ((SELECT ISNULL(MAX(Id), 0) + 1 FROM Alerte), @currentDate, @nomChercheur, @message);";
+
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                {
+                    // ajout paramatres
+                    cmd.Parameters.AddWithValue("@currentDate", currentDate);
+                    cmd.Parameters.AddWithValue("@nomChercheur", nomChercheur);
+                    cmd.Parameters.AddWithValue("@message", message);
+
+                    // on exec la commande
+                    cmd.ExecuteNonQuery();
+
+                    // on recupere l'id qu'on vient de créer
+                    string getIdQuery = "SELECT TOP 1 Id FROM Alerte ORDER BY Id DESC;"; // on récupère l'id de la derniere ligne ajoutée (qu'on vient de créer)
+
+                    using (SqlCommand getIdCmd = new SqlCommand(getIdQuery, cn_connection))
+                    {
+                        newAlertId = Convert.ToInt32(getIdCmd.ExecuteScalar());
+                    }
+                }
+
+                // commande sql pour AssociationENR_EV table
+                string associationSql_Text = "INSERT INTO AssociationCH_A (idChannel, idAlerte) VALUES (@idChannel, @newAlertId);";
+
+                using (SqlCommand associationCmd = new SqlCommand(associationSql_Text, cn_connection))
+                {
+                    // ajout parametres pour la commande
+                    associationCmd.Parameters.AddWithValue("@idChannel", idChannel);
+                    associationCmd.Parameters.AddWithValue("@newAlertId", newAlertId);
+
+                    // execution de la commande
+                    associationCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
 
     }
 }

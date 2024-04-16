@@ -37,8 +37,8 @@ namespace application
                     double value = inputs[0];
 
                     // Call the method to add the value to the database
-                    if (value - sqlCommand.GetTotalValeur(channelId, idEnregistrement) > 0)
-                        sqlCommand.AddNumValueToChannel(channelId, value - sqlCommand.GetTotalValeur(channelId, idEnregistrement), idEnregistrement);
+                    if (value - sqlCommand.GetTotalValeur(channelId, idEnregistrement,"Num") > 0)
+                        sqlCommand.AddNumValueToChannel(channelId, value - sqlCommand.GetTotalValeur(channelId, idEnregistrement,"Num"), idEnregistrement);
                     else
                         sqlCommand.AddNumValueToChannel(channelId, 0, idEnregistrement);
 
