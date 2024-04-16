@@ -17,7 +17,7 @@ namespace application
     */
     public partial class actogramPage : Form
     {
-
+        int idEnregistrement = 1;
         int numbchannel = 1;
         private int MaxXValue = 1440;
         private const int chartHeight = 100;
@@ -28,7 +28,25 @@ namespace application
         {
             InitializeComponent();
             InitializeCharts();
+            InitializeScroll();
 
+        }
+
+        private void InitializeScroll()
+        {
+            panel2.AutoScroll = true;
+
+            panel1.AutoScroll = false;
+            panel1.HorizontalScroll.Enabled = false;
+            panel1.HorizontalScroll.Visible = false;
+            panel1.AutoScroll = true;
+
+            panel2.Scroll += Panel2_Scroll;
+        }
+
+        private void Panel2_Scroll(object sender, ScrollEventArgs e)
+        {
+            panel1.HorizontalScroll.Value = panel2.HorizontalScroll.Value;
         }
 
         private void InitializeCharts()
@@ -49,7 +67,7 @@ namespace application
             panel2.Controls.Clear();
 
             // Récupérer les jours uniques triés
-            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel);
+            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel, idEnregistrement);
 
             //affichage du channel actuel 
             Chn.Text = "Chn. " + numbchannel.ToString("000") + ": c" + numbchannel;
@@ -69,14 +87,14 @@ namespace application
         private Chart CreateChart(int chartNumber, int chartHeight, DateTime day)
         {
             // Récupérer les jours uniques triés
-            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel);
+            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel, idEnregistrement);
 
             Chart chart = new Chart();
             chart.ChartAreas.Add(new ChartArea());
 
             Series series = chart.Series.Add($"Chart{chartNumber}");
 
-            Title title = new Title(sortedDays[chartNumber-1].Date.ToString("dd/MM/yyyy"));
+            Title title = new Title(sortedDays[chartNumber - 1].Date.ToString("dd/MM/yyyy"));
             title.Font = new Font("Arial", 10, FontStyle.Regular);
             title.Alignment = ContentAlignment.TopLeft;
             title.ForeColor = Color.White;
@@ -99,7 +117,7 @@ namespace application
             chart.Series[$"Chart{chartNumber}"].Points.Clear();
 
             // Initialiser un tableau pour stocker les valeurs par minute
-            double[] valeursParMinute = sqlCommand.GetValeurminutes(numbchannel, day);
+            double[] valeursParMinute = sqlCommand.GetValeurminutes(numbchannel, idEnregistrement, day);
 
 
             // Ajouter les valeurs au graphique
@@ -111,22 +129,12 @@ namespace application
                 chart.Series[$"Chart{chartNumber}"].Points.Add(dataPoint);
             }
 
-            for (int i = 360; i <= 1440; i += 360)
-            {
-                StripLine stripLine = new StripLine();
-                stripLine.Interval = 0;
-                stripLine.IntervalOffset = i;
-                stripLine.StripWidth = 1;
-                stripLine.BackColor = System.Drawing.Color.FromArgb(100, 255, 0, 0); // Couleur rouge semi-transparente
-
-                chart.ChartAreas[0].AxisX.StripLines.Add(stripLine);
-            }
         }
 
         private Chart CreateBlueLineChart(int chartHeight)
         {
             // Récupérer les jours uniques triés
-            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel);
+            List<DateTime> sortedDays = sqlCommand.GetSortedDays(numbchannel, idEnregistrement);
 
             Chart chart = new Chart();
             chart.ChartAreas.Add(new ChartArea());
@@ -162,7 +170,6 @@ namespace application
 
             return chart;
         }
-
 
         private void ConfigureChart(Chart chart, int chartNumber, int chartHeight)
         {
@@ -203,13 +210,24 @@ namespace application
             // Définir la position et la taille du graphique
             if (chartHeight != panel2.Height)
             {
-                int top = (chartHeight + margin) * (chartNumber - 1) + margin;
+                int top = (chartHeight + margin + trackBarX.Value / 30) * (chartNumber - 1) + margin;
                 chart.Location = new System.Drawing.Point(10, top);
-                chart.Size = new System.Drawing.Size(panel1.Width + trackBarX.Value, chartHeight);
+                chart.Size = new System.Drawing.Size(panel1.Width + trackBarX.Value, chartHeight + trackBarX.Value/50);
             }
             else
             {
-                chart.Size = new System.Drawing.Size(panel2.Width, chartHeight);
+                chart.Size = new System.Drawing.Size(panel2.Width + trackBarX.Value, chartHeight-25);
+            }
+
+            for (int i = 360; i <= 1440; i += 360)
+            {
+                StripLine stripLine = new StripLine();
+                stripLine.Interval = 0;
+                stripLine.IntervalOffset = i;
+                stripLine.StripWidth = 1;
+                stripLine.BackColor = System.Drawing.Color.FromArgb(100, 255, 0, 0); // Couleur rouge semi-transparente
+
+                chart.ChartAreas[0].AxisX.StripLines.Add(stripLine);
             }
         }
 
@@ -238,7 +256,7 @@ namespace application
         private void ChooseChanel_Click(object sender, EventArgs e)
         {
             // Récupérer les identifiants de canal uniques
-            List<int> uniqueChannelIds = sqlCommand.GetUniqueChannelIds();
+            List<int> uniqueChannelIds = sqlCommand.GetUniqueChannelIds(idEnregistrement);
 
             // Afficher la boîte de dialogue de saisie de valeur
             InputDialog inputDialog = new InputDialog();
@@ -275,5 +293,43 @@ namespace application
             InitializeCharts();
         }
 
+        private void warningButton_Click(object sender, EventArgs e)
+        {
+            InputDialog2 inputDialog2 = new InputDialog2();
+            if (inputDialog2.ShowDialog() == DialogResult.OK)
+            {
+                // on récup les valeurs
+                string message = inputDialog2.GetTextValue();
+                int idChannel = inputDialog2.GetNbChannelValue();
+                bool isGlobal = inputDialog2.IsGlobalMessage();
+                DateTime date = inputDialog2.GetCurrentDate();
+                string nomChercheur = inputDialog2.GetNomChercheur();
+
+                if (isGlobal) // on vérifie si la case message global est coché
+                {  // si c'est le cas, le message concerne tout l'enregistrement, donc on met dans Event  
+                    try
+                    {
+                        sqlCommand.AddValueToEvent(message, date, nomChercheur);
+                        MessageBox.Show("Message bien ajouté.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors de l'ajout du message : " + ex.Message);
+                    }
+                }
+                else
+                {  // sinon on met dans alerte et c'est lié qu'à un channel en particulier
+                    try
+                    {
+                        sqlCommand.AddValueToAlerte(idChannel, message, date, nomChercheur);
+                        MessageBox.Show("Message bien ajouté.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors de l'ajout du message : " + ex.Message);
+                    }
+                }
+            }
+        }
     }
 }

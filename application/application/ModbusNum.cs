@@ -15,6 +15,7 @@ namespace application
 {
     class ModbusNum
     {
+        int idEnregistrement = 1;
         SQL_command sqlCommand = new SQL_command();
         public void getNumValue()
         {
@@ -36,10 +37,10 @@ namespace application
                     double value = inputs[0];
 
                     // Call the method to add the value to the database
-                    if (value - sqlCommand.GetTotalValeur(channelId) > 0)
-                        sqlCommand.AddValueToChannel(channelId, value - sqlCommand.GetTotalValeur(channelId));
+                    if (value - sqlCommand.GetTotalValeur(channelId, idEnregistrement,"Num") > 0)
+                        sqlCommand.AddNumValueToChannel(channelId, value - sqlCommand.GetTotalValeur(channelId, idEnregistrement,"Num"), idEnregistrement);
                     else
-                        sqlCommand.AddValueToChannel(channelId, 0);
+                        sqlCommand.AddNumValueToChannel(channelId, 0, idEnregistrement);
 
                 }
             }

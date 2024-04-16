@@ -29,11 +29,10 @@ namespace application
     */
     public partial class Form1 : Form
     {
+        int idEnregistrement = 1;
         private List<Chart> charts = new List<Chart>();
-        private int previousHour = -1;
-        private int currentChartIndex = 9; // Ajouter une variable pour suivre l'index du graphique actuel
-        private int maxcharts = 2;
-        private bool FirstExecutee = false;
+        private int maxcharts = 500;
+        private bool FirstExecute = false;
         SQL_command sqlCommand = new SQL_command();
         ModbusNum modbusnum = new ModbusNum();
 
@@ -42,8 +41,9 @@ namespace application
 
             InitializeComponent();
             InitializeCharts();
-            if (!FirstExecutee)
+            if (!FirstExecute)
             {
+                FirstExecute = true;
                 // Module mise a zero
                 //modbusnum.RAZ();
                 // Mettre à jour le graphique avec les nouvelles valeurs
@@ -51,36 +51,24 @@ namespace application
                 {
                     UpdateChart(chart);
                 }
-                // Changer les graphiques affichés
-                ChangeDisplayedCharts();
+
             }
 
         }
 
         private void InitializeCharts()
         {
-            // Utiliser un TableLayoutPanel pour organiser les graphiques
-            TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
-            tableLayoutPanel.Dock = DockStyle.Fill;
-            tableLayoutPanel.RowCount = 3;
-            tableLayoutPanel.ColumnCount = 3;
-            displayWindow.Controls.Add(tableLayoutPanel);
 
             // Créer plusieurs graphiques et les ajouter au TableLayoutPanel
-            for (int i = 0; i < maxcharts; i++) 
+            for (int i = 0; i < maxcharts; i++)
             {
                 Chart chart = new Chart();
-                chart.Size = new Size(300, 150);
+                chart.Size = new System.Drawing.Size((displayWindow.Width / 3) - 30, (displayWindow.Height / 3)-15);
                 charts.Add(chart);
-                tableLayoutPanel.Controls.Add(chart);
+                displayWindow.Controls.Add(chart);
                 InitializeChart(chart, i + 1); // Ajouter le numéro du graphique
             }
 
-            // Masquer les graphiques restants
-            for (int i = 9; i < maxcharts; i++)
-            {
-                charts[i].Visible = false;
-            }
         }
 
         private void InitializeChart(Chart chart, int chartNumber)
@@ -121,7 +109,7 @@ namespace application
 
             // Ajouter un titre au graphique avec le numéro
             Title title = new Title($"Ch : {chartNumber}");
-            title.Font = new Font("Arial", 18, FontStyle.Regular);
+            title.Font = new Font("Arial", 16, FontStyle.Regular);
             title.Alignment = ContentAlignment.TopLeft;
             title.ForeColor = Color.Red;
             chart.Titles.Add(title);
@@ -138,7 +126,7 @@ namespace application
             // Récupérer le numéro du graphique à partir du titre
             int currentChartNumber = int.Parse(chart.Titles[0].Text.Split(':')[1].Trim());
 
-            Dictionary<int, double> valeursAgrégéesParHeure = sqlCommand.GetValeurheure(currentChartNumber);
+            Dictionary<int, double> valeursAgrégéesParHeure = sqlCommand.GetValeurheure(currentChartNumber, idEnregistrement);
 
             if (valeursAgrégéesParHeure.Count == 0)
             {
@@ -168,7 +156,6 @@ namespace application
             }
         }
 
-
         private void timerDate_Tick(object sender, EventArgs e)
         {
             // Mettre à jour le label avec l'heure et la date actuelles à chaque tick de timer
@@ -176,62 +163,21 @@ namespace application
             lblDateTime.ForeColor = Color.White;
         }
 
-        private void timerAffichage_Tick(object sender, EventArgs e)
-        {
-            // Changer les graphiques affichés
-            ChangeDisplayedCharts();
-        }
-
         private void timerHeure_Tick(object sender, EventArgs e)
         {
-            //Vérifier si l'heure actuelle a changé
-            if (DateTime.Now.Hour != previousHour)
-            {
+
                 // Mettre à jour le graphique avec les nouvelles valeurs
                 foreach (var chart in charts)
                 {
                     UpdateChart(chart);
                 }
 
-                // Mettre à jour l'heure précédente
-                previousHour = DateTime.Now.Hour;
-            }
         }
 
         private void timerMinute_Tick(object sender, EventArgs e)
         {
             // Ajouter les valeurs dans la BD
             //modbusnum.getNumValue();
-        }
-
-        private void ChangeDisplayedCharts()
-        {
-            // Count the number of currently visible charts
-            int visibleChartsCount = charts.Count(chart => chart.Visible);
-
-            // Check if there are fewer than 9 visible charts
-            if (visibleChartsCount < 9)
-            {
-                //Aucun changement des graphiques s'y en a pas assez
-                return;
-            }
-
-            // Masquer tous les graphiques
-            foreach (var chart in charts)
-            {
-                chart.Visible = false;
-            }
-
-            // Afficher les 9 graphiques suivants à partir de l'index actuel
-            for (int i = 0; i < 9; i++)
-            {
-                int indexToShow = (currentChartIndex + i) % charts.Count; // Assurer la circularité
-                charts[indexToShow].Visible = true;
-                UpdateChart(charts[indexToShow]); // Mettre à jour les valeurs du graphique affiché
-            }
-
-            // Mettre à jour l'index actuel
-            currentChartIndex = (currentChartIndex + 9) % charts.Count;
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -241,13 +187,19 @@ namespace application
                 case Keys.D:
                     button1.PerformClick();
                     break;
-
                 case Keys.A:
                     button2.PerformClick();
                     break;
                 case Keys.S:
                     button3.PerformClick();
                     break;
+                case Keys.C:
+                    button5.PerformClick();
+                    break;
+                case Keys.R:
+                    button6.PerformClick();
+                    break;
+
             }
 
 
@@ -323,12 +275,22 @@ namespace application
 
         private void button5_Click(object sender, EventArgs e)
         {
+            channelDefinitionPage nouvelleForme = new channelDefinitionPage();
+            if (nouvelleForme != null)
+            {
+                nouvelleForme.Show();
+            }
+            else
+            {
+                MessageBox.Show("La nouvelle forme est null.");
+            }
 
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            recordingIntervalPage nouvelleForme = new recordingIntervalPage();
+            nouvelleForme.Show();
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -341,9 +303,17 @@ namespace application
 
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void addChercheursButton_Click(object sender, EventArgs e)
         {
-
+            addChercheursPage nouvelleForme = new addChercheursPage();
+            if (nouvelleForme != null)
+            {
+                nouvelleForme.Show();
+            }
+            else
+            {
+                MessageBox.Show("La nouvelle forme est null.");
+            }
         }
 
     }

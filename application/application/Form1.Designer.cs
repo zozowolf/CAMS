@@ -36,7 +36,7 @@ namespace application
             this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
+            this.addChercheursButton = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -44,12 +44,11 @@ namespace application
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.displayWindow = new System.Windows.Forms.GroupBox();
             this.lblDateTime = new System.Windows.Forms.Label();
             this.timerDate = new System.Windows.Forms.Timer(this.components);
-            this.timerAffichage = new System.Windows.Forms.Timer(this.components);
             this.timerMinute = new System.Windows.Forms.Timer(this.components);
             this.timerHeure = new System.Windows.Forms.Timer(this.components);
+            this.displayWindow = new System.Windows.Forms.FlowLayoutPanel();
             this.optionMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +59,7 @@ namespace application
             this.optionMenu.Controls.Add(this.button7);
             this.optionMenu.Controls.Add(this.button5);
             this.optionMenu.Controls.Add(this.button1);
-            this.optionMenu.Controls.Add(this.button11);
+            this.optionMenu.Controls.Add(this.addChercheursButton);
             this.optionMenu.Controls.Add(this.button12);
             this.optionMenu.Controls.Add(this.button6);
             this.optionMenu.Controls.Add(this.button8);
@@ -124,15 +123,15 @@ namespace application
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // button11
+            // addChercheursButton
             // 
-            this.button11.Location = new System.Drawing.Point(597, 77);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(219, 23);
-            this.button11.TabIndex = 9;
-            this.button11.Text = "Version";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
+            this.addChercheursButton.Location = new System.Drawing.Point(597, 77);
+            this.addChercheursButton.Name = "addChercheursButton";
+            this.addChercheursButton.Size = new System.Drawing.Size(219, 23);
+            this.addChercheursButton.TabIndex = 9;
+            this.addChercheursButton.Text = "Chercheurs";
+            this.addChercheursButton.UseVisualStyleBackColor = true;
+            this.addChercheursButton.Click += new System.EventHandler(this.addChercheursButton_Click);
             // 
             // button12
             // 
@@ -204,22 +203,14 @@ namespace application
             this.label1.Text = "CIRCADIAN ACTIVITY MONITORING SYSTEM";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // displayWindow
-            // 
-            this.displayWindow.Location = new System.Drawing.Point(454, 197);
-            this.displayWindow.Name = "displayWindow";
-            this.displayWindow.Size = new System.Drawing.Size(960, 535);
-            this.displayWindow.TabIndex = 2;
-            this.displayWindow.TabStop = false;
-            this.displayWindow.Enter += new System.EventHandler(this.groupBox1_Enter_1);
-            // 
             // lblDateTime
             // 
+            this.lblDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDateTime.AutoSize = true;
             this.lblDateTime.BackColor = System.Drawing.Color.Transparent;
             this.lblDateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateTime.ForeColor = System.Drawing.Color.White;
-            this.lblDateTime.Location = new System.Drawing.Point(883, 788);
+            this.lblDateTime.Location = new System.Drawing.Point(897, 980);
             this.lblDateTime.Name = "lblDateTime";
             this.lblDateTime.Size = new System.Drawing.Size(110, 20);
             this.lblDateTime.TabIndex = 3;
@@ -230,12 +221,6 @@ namespace application
             this.timerDate.Enabled = true;
             this.timerDate.Interval = 1000;
             this.timerDate.Tick += new System.EventHandler(this.timerDate_Tick);
-            // 
-            // timerAffichage
-            // 
-            this.timerAffichage.Enabled = true;
-            this.timerAffichage.Interval = 30000;
-            this.timerAffichage.Tick += new System.EventHandler(this.timerAffichage_Tick);
             // 
             // timerMinute
             // 
@@ -249,12 +234,23 @@ namespace application
             this.timerHeure.Interval = 3600000;
             this.timerHeure.Tick += new System.EventHandler(this.timerHeure_Tick);
             // 
+            // displayWindow
+            // 
+            this.displayWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.displayWindow.AutoScroll = true;
+            this.displayWindow.Location = new System.Drawing.Point(12, 217);
+            this.displayWindow.Name = "displayWindow";
+            this.displayWindow.Size = new System.Drawing.Size(1870, 645);
+            this.displayWindow.TabIndex = 5;
+            // 
             // Form1
             // 
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
-            this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.displayWindow);
+            this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.optionMenu);
             this.Name = "Form1";
@@ -271,7 +267,7 @@ namespace application
         private System.Windows.Forms.GroupBox optionMenu;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button addChercheursButton;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
@@ -281,13 +277,12 @@ namespace application
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox displayWindow;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblDateTime;
         private System.Windows.Forms.Timer timerDate;
-        private System.Windows.Forms.Timer timerAffichage;
         private System.Windows.Forms.Timer timerMinute;
         private System.Windows.Forms.Timer timerHeure;
+        private System.Windows.Forms.FlowLayoutPanel displayWindow;
     }
 }
 

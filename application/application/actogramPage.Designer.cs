@@ -29,12 +29,14 @@ namespace application
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(actogramPage));
             this.ChooseChanel = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
             this.Chn = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.trackBarX = new System.Windows.Forms.TrackBar();
+            this.warningButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,7 +79,6 @@ namespace application
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.AutoScroll = true;
             this.panel1.Location = new System.Drawing.Point(115, 81);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1600, 696);
@@ -86,7 +87,6 @@ namespace application
             // panel2
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.panel2.AutoScroll = true;
             this.panel2.Location = new System.Drawing.Point(115, 783);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1600, 183);
@@ -95,21 +95,34 @@ namespace application
             // trackBarX
             // 
             this.trackBarX.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.trackBarX.LargeChange = 10;
+            this.trackBarX.LargeChange = 1000;
             this.trackBarX.Location = new System.Drawing.Point(779, 12);
-            this.trackBarX.Maximum = 3000;
+            this.trackBarX.Maximum = 5000;
             this.trackBarX.Name = "trackBarX";
             this.trackBarX.Size = new System.Drawing.Size(448, 45);
-            this.trackBarX.SmallChange = 10;
+            this.trackBarX.SmallChange = 1000;
             this.trackBarX.TabIndex = 300;
-            this.trackBarX.TickFrequency = 100;
+            this.trackBarX.TickFrequency = 1000;
             this.trackBarX.Scroll += new System.EventHandler(this.trackBarX_Scroll);
+            // 
+            // warningButton
+            // 
+            this.warningButton.BackColor = System.Drawing.Color.Transparent;
+            this.warningButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("warningButton.BackgroundImage")));
+            this.warningButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.warningButton.Location = new System.Drawing.Point(1757, 896);
+            this.warningButton.Name = "warningButton";
+            this.warningButton.Size = new System.Drawing.Size(75, 70);
+            this.warningButton.TabIndex = 301;
+            this.warningButton.UseVisualStyleBackColor = false;
+            this.warningButton.Click += new System.EventHandler(this.warningButton_Click);
             // 
             // actogramPage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.warningButton);
             this.Controls.Add(this.trackBarX);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -133,5 +146,6 @@ namespace application
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TrackBar trackBarX;
+        private System.Windows.Forms.Button warningButton;
     }
 }

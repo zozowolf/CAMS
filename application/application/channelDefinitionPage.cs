@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+// affichage de tous les channels "vide" de base dont on pourrait modifier le type par la suite 
+// au lieu d'ajouter à la main les no Channel
+
+// les types devraient être reliés à la table
 
 namespace application
 {
@@ -14,10 +20,14 @@ namespace application
     {
         private DataTable dataTable;
         private BindingSource bindingSource;
+        SQL_command sqlCommand = new SQL_command();
+        private SqlConnection connection; // Déclaration de la connexion à la base de données
 
         public channelDefinitionPage()
         {
             InitializeComponent();
+            string connectionString = Properties.Settings.Default.DBCAMSConnectionString;
+            connection = new SqlConnection(connectionString);
             Bounds = Screen.PrimaryScreen.Bounds;
 
             // Créer une DataTable
@@ -27,7 +37,7 @@ namespace application
             dataTable.Columns.Add("No", typeof(int));
             dataTable.Columns.Add("Type", typeof(string));
             dataTable.Columns.Add("Group", typeof(string));
-            dataTable.Columns.Add("Comments", typeof(string));
+            dataTable.Columns.Add("Comments", typeof(string)); 
 
             // Ajouter une colonne de ComboBox
             DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();

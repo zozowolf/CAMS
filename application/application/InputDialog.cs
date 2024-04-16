@@ -40,7 +40,22 @@ namespace application
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "Input Dialog";
             this.ResumeLayout(false);
+
+            // Gestion de l'événement KeyDown
+            this.KeyPreview = true; // Active la réception des événements de touche par le formulaire
+            this.KeyDown += InputDialog_KeyDown;
         }
+
+        private void InputDialog_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) // Vérifie si la touche enfoncée est "Entrée"
+            {
+                e.Handled = true; // Empêche la touche d'être traitée par les contrôles enfants
+                okButton.PerformClick();
+
+            }
+        }
+    
 
         private void InputDialog_Load(object sender, EventArgs e)
         {
@@ -49,6 +64,7 @@ namespace application
 
         private void OkButton_Click(object sender, EventArgs e)
         {
+
             this.Close(); // Close the dialog when OK button is clicked
         }
 
