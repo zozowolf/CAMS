@@ -86,6 +86,12 @@
     <Compile Include="channelDefinitionPage.Designer.cs">
       <DependentUpon>channelDefinitionPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="configurationModulePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="configurationModulePage.Designer.cs">
+      <DependentUpon>configurationModulePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="DBCAMSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="channelDefinitionPage.resx">
       <DependentUpon>channelDefinitionPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="configurationModulePage.resx">
+      <DependentUpon>configurationModulePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DialogEvent.resx">
       <DependentUpon>DialogEvent.cs</DependentUpon>

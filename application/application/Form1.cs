@@ -316,5 +316,17 @@ namespace application
             }
         }
 
+        private void configModulesButton_Click(object sender, EventArgs e)
+        {
+            configurationModulePage nouvelleForme = new configurationModulePage();
+            if (nouvelleForme != null)
+            {
+                nouvelleForme.Show();
+            }
+            else
+            {
+                MessageBox.Show("La nouvelle forme est null.");
+            }
+        }
     }
 }

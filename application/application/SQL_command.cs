@@ -516,6 +516,30 @@ namespace application
             }
         }
 
+        public void AddValueToModule(string adresseIp, string masque, string passerelle, string typeModule, int nbES)
+        {
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
 
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            {
+                cn_connection.Open();
+
+                // Create the SQL command to insert a new record
+                string sql_Text = "INSERT INTO Module (Id, Adresse_Ip, Masque, Passerelle, TypeModule, Nombre_ES) VALUES ((SELECT ISNULL(MAX(Id), 0) + 1 FROM Module), @adresseIp, @masque, @passerelle, @typeModule, @nbES);";
+
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                {
+                    // Add parameters to the command to prevent SQL injection
+                    cmd.Parameters.AddWithValue("@adresseIp", adresseIp);
+                    cmd.Parameters.AddWithValue("@masque", masque);
+                    cmd.Parameters.AddWithValue("@passerelle", passerelle);
+                    cmd.Parameters.AddWithValue("@typeModule", typeModule);
+                    cmd.Parameters.AddWithValue("@nbES", nbES);
+
+                    // Execute the SQL command to insert the event
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

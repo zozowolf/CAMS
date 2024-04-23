@@ -31,7 +31,7 @@ namespace application
         {
             this.components = new System.ComponentModel.Container();
             this.optionMenu = new System.Windows.Forms.GroupBox();
-            this.button10 = new System.Windows.Forms.Button();
+            this.configModulesButton = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -54,7 +54,7 @@ namespace application
             // 
             // optionMenu
             // 
-            this.optionMenu.Controls.Add(this.button10);
+            this.optionMenu.Controls.Add(this.configModulesButton);
             this.optionMenu.Controls.Add(this.button9);
             this.optionMenu.Controls.Add(this.button7);
             this.optionMenu.Controls.Add(this.button5);
@@ -74,14 +74,15 @@ namespace application
             this.optionMenu.TabStop = false;
             this.optionMenu.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // button10
+            // configModulesButton
             // 
-            this.button10.Location = new System.Drawing.Point(597, 48);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(219, 23);
-            this.button10.TabIndex = 10;
-            this.button10.Text = "Halt Acquisition";
-            this.button10.UseVisualStyleBackColor = true;
+            this.configModulesButton.Location = new System.Drawing.Point(597, 48);
+            this.configModulesButton.Name = "configModulesButton";
+            this.configModulesButton.Size = new System.Drawing.Size(219, 23);
+            this.configModulesButton.TabIndex = 10;
+            this.configModulesButton.Text = "Configuration Modules";
+            this.configModulesButton.UseVisualStyleBackColor = true;
+            this.configModulesButton.Click += new System.EventHandler(this.configModulesButton_Click);
             // 
             // button9
             // 
@@ -266,7 +267,7 @@ namespace application
 
         private System.Windows.Forms.GroupBox optionMenu;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button configModulesButton;
         private System.Windows.Forms.Button addChercheursButton;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button5;
