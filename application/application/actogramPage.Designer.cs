@@ -35,6 +35,8 @@ namespace application
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.trackBarX = new System.Windows.Forms.TrackBar();
+            this.captortype = new System.Windows.Forms.Label();
+            this.maxcount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,11 +105,37 @@ namespace application
             this.trackBarX.TickFrequency = 1000;
             this.trackBarX.Scroll += new System.EventHandler(this.trackBarX_Scroll);
             // 
+            // captortype
+            // 
+            this.captortype.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.captortype.AutoSize = true;
+            this.captortype.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.captortype.ForeColor = System.Drawing.Color.White;
+            this.captortype.Location = new System.Drawing.Point(1454, 981);
+            this.captortype.Name = "captortype";
+            this.captortype.Size = new System.Drawing.Size(92, 25);
+            this.captortype.TabIndex = 302;
+            this.captortype.Text = "(Type : )";
+            // 
+            // maxcount
+            // 
+            this.maxcount.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.maxcount.AutoSize = true;
+            this.maxcount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maxcount.ForeColor = System.Drawing.Color.White;
+            this.maxcount.Location = new System.Drawing.Point(1740, 81);
+            this.maxcount.Name = "maxcount";
+            this.maxcount.Size = new System.Drawing.Size(58, 25);
+            this.maxcount.TabIndex = 303;
+            this.maxcount.Text = "max ";
+            // 
             // actogramPage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.maxcount);
+            this.Controls.Add(this.captortype);
             this.Controls.Add(this.trackBarX);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -131,5 +159,7 @@ namespace application
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TrackBar trackBarX;
+        private System.Windows.Forms.Label captortype;
+        private System.Windows.Forms.Label maxcount;
     }
 }

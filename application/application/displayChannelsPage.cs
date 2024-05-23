@@ -26,6 +26,20 @@ namespace application
             dataGridView1.ColumnCount = 4;
             dataGridView1.RowCount = 28;
 
+            // Définir la couleur du fond du DataGridView en noir
+            dataGridView1.DefaultCellStyle.BackColor = Color.Black;
+
+            // Empêcher le redimensionnement des lignes et des colonnes
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AllowUserToResizeColumns = false;
+
+            // Masquer les en-têtes 
+            dataGridView1.ColumnHeadersVisible = false;
+            dataGridView1.RowHeadersVisible = false;
+
+            Color lightBlue = Color.FromArgb(49, 140, 231); // Valeur RGB pour bleu clair
+            Color lightRed = Color.FromArgb(238, 16, 16); // Valeur RGB pour rouge clair
+
             // Définir la largeur des colonnes pour qu'elles occupent tout l'espace disponible
             for (int i = 0; i < dataGridView1.ColumnCount; i++)
             {
@@ -36,11 +50,15 @@ namespace application
 
                 // Aligner le contenu à gauche pour toutes les cellules
                 dataGridView1.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                // Définir les colonnes en lecture seule
+                dataGridView1.Columns[i].ReadOnly = true;
             }
 
             // Remplir les cellules avec des valeurs de test et définir la police d'écriture à 16
             dataGridView1.Font = new System.Drawing.Font("Arial", 16);
             dataGridView1.ReadOnly = true; // Empêcher la modification des cellules
+
 
             int currentChartNumber = 1 + page;
             // Remplir les cellules avec des valeurs de test
@@ -56,7 +74,7 @@ namespace application
                         //mettre en couleur rouge
                         int sommeheure = sqlCommand.Getheuredown(currentChartNumber, idEnregistrement);
                         dataGridView1[col, row].Value = $"{id} inactive {sommeheure} Hrs";
-                        dataGridView1[col, row].Style.ForeColor = Color.Red;
+                        dataGridView1[col, row].Style.ForeColor = lightRed;
                     }
                     else if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Num")
                     {
@@ -65,21 +83,21 @@ namespace application
                         int jour = sqlCommand.GetLastValeurjour(currentChartNumber, idEnregistrement);
 
                         dataGridView1[col, row].Value = $"{id}   {min}   {heure}   {jour}";
-                        dataGridView1[col, row].Style.ForeColor = Color.Blue;
+                        dataGridView1[col, row].Style.ForeColor = lightBlue;
                     }
                     else if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Temp")
                     {
                         double temperature = sqlCommand.GetLastTemp(currentChartNumber, idEnregistrement);
 
                         dataGridView1[col, row].Value = $"{id}   {temperature}°C";
-                        dataGridView1[col, row].Style.ForeColor = Color.Blue;
+                        dataGridView1[col, row].Style.ForeColor = lightBlue;
                     }
                     else if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Lux")
                     {
                         double lumiere = sqlCommand.GetLastLux(currentChartNumber, idEnregistrement);
 
                         dataGridView1[col, row].Value = $"{id}   {lumiere} LUX";
-                        dataGridView1[col, row].Style.ForeColor = Color.Blue;
+                        dataGridView1[col, row].Style.ForeColor = lightBlue;
                     }
 
 

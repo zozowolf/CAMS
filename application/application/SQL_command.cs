@@ -383,7 +383,7 @@ namespace application
                 DateTime twentyFourHoursAgo = DateTime.Now.AddHours(-24);
 
                 // Vérifier s'il y a des valeurs différentes de zéro dans les 24 dernières heures
-                string sql_Text = $"SELECT COUNT(*) FROM Mesure WHERE Id = '{idChannel}' AND IdEnregistrement = '{idEnregistrement}' AND type = 'Num' AND dateHeure >= @TwentyFourHoursAgo AND valeur <> 0";
+                string sql_Text = $"SELECT COUNT(*) FROM Mesure WHERE Id = '{idChannel}' AND IdEnregistrement = '{idEnregistrement}' AND dateHeure >= @TwentyFourHoursAgo AND valeur <> 0";
 
                 using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
                 {
@@ -422,6 +422,58 @@ namespace application
                 }
 
                 return type;
+            }
+        }
+
+        public string GetTypeCapteur(int idChannel)
+        {
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            {
+                cn_connection.Open();
+
+                string type = null;
+
+                string sql_Text = $"SELECT TypeCapteur FROM Channel WHERE Id = '{idChannel}'";
+
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read() && !reader.IsDBNull(reader.GetOrdinal("TypeCapteur")))
+                        {
+                            type = reader["TypeCapteur"].ToString();
+                        }
+                    }
+                }
+
+                return type;
+            }
+        }
+
+        public int GetMaxValeur(int idChannel, int idEnregistrement)
+        {
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            {
+                cn_connection.Open();
+
+                int Maxvaleur = 0;
+
+                string sql_Text = $"SELECT MAX(valeur) AS max_valeur FROM Mesure WHERE Id = '{idChannel}' AND IdEnregistrement = '{idEnregistrement}'";
+
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read() && !reader.IsDBNull(reader.GetOrdinal("max_valeur")))
+                        {
+                            Maxvaleur = Convert.ToInt32(reader["max_valeur"]);
+                        }
+                    }
+                }
+
+                return Maxvaleur;
             }
         }
 

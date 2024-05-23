@@ -41,8 +41,10 @@ namespace application
 
             InitializeComponent();
             InitializeCharts();
+            RéorganiserBoutons();
             if (!FirstExecute)
             {
+                
                 FirstExecute = true;
                 // Module mise a zero
                 //modbusnum.RAZ();
@@ -54,6 +56,20 @@ namespace application
 
             }
 
+        }
+
+        private void RéorganiserBoutons()
+        {
+            // Calculer la largeur et la hauteur d'un bouton pour remplir le FlowLayoutPanel
+            int largeurBouton = optionMenu.ClientSize.Width / 5;
+            int hauteurBouton = optionMenu.ClientSize.Height / 4;
+
+            // Redimensionner chaque bouton
+            foreach (Button bouton in optionMenu.Controls)
+            {
+                bouton.Width = largeurBouton;
+                bouton.Height = hauteurBouton;
+            }
         }
 
         private void InitializeCharts()
@@ -101,8 +117,8 @@ namespace application
 
             // Changer la couleur de la série à rouge
             chart.Series["Valeur"].Color = Color.Red;
-            chart.Series["Valeur"].IsValueShownAsLabel = true;
-            chart.Series["Valeur"].LabelForeColor = Color.White;
+            //chart.Series["Valeur"].IsValueShownAsLabel = true;
+            //chart.Series["Valeur"].LabelForeColor = Color.White;
             chart.ChartAreas[0].AxisX.LineColor = Color.Red;
             chart.ChartAreas[0].AxisY.LineColor = Color.Red;
 

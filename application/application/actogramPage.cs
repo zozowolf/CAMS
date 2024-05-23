@@ -72,6 +72,10 @@ namespace application
             //affichage du channel actuel 
             Chn.Text = "Chn. " + numbchannel.ToString("000") + ": c" + numbchannel;
 
+            captortype.Text = "(Type : " + sqlCommand.GetTypeCapteur(numbchannel) + ")";
+
+            maxcount.Text = "max " + sqlCommand.GetMaxValeur(numbchannel, idEnregistrement) ;
+
             // Créer les graphiques en fonction des jours triés
             for (int i = 0; i < sortedDays.Count; i++)
             {
