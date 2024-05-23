@@ -37,6 +37,8 @@ namespace application
             this.panel2 = new System.Windows.Forms.Panel();
             this.trackBarX = new System.Windows.Forms.TrackBar();
             this.warningButton = new System.Windows.Forms.Button();
+            this.maxcount = new System.Windows.Forms.Label();
+            this.captortype = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,11 +119,36 @@ namespace application
             this.warningButton.UseVisualStyleBackColor = false;
             this.warningButton.Click += new System.EventHandler(this.warningButton_Click);
             // 
+            // maxcount
+            // 
+            this.maxcount.AutoSize = true;
+            this.maxcount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.maxcount.ForeColor = System.Drawing.Color.White;
+            this.maxcount.Location = new System.Drawing.Point(1721, 81);
+            this.maxcount.Name = "maxcount";
+            this.maxcount.Size = new System.Drawing.Size(52, 25);
+            this.maxcount.TabIndex = 302;
+            this.maxcount.Text = "max";
+            // 
+            // captortype
+            // 
+            this.captortype.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.captortype.AutoSize = true;
+            this.captortype.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.captortype.ForeColor = System.Drawing.Color.White;
+            this.captortype.Location = new System.Drawing.Point(1413, 981);
+            this.captortype.Name = "captortype";
+            this.captortype.Size = new System.Drawing.Size(92, 25);
+            this.captortype.TabIndex = 303;
+            this.captortype.Text = "(Type : )";
+            // 
             // actogramPage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.captortype);
+            this.Controls.Add(this.maxcount);
             this.Controls.Add(this.warningButton);
             this.Controls.Add(this.trackBarX);
             this.Controls.Add(this.panel2);
@@ -147,5 +174,7 @@ namespace application
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TrackBar trackBarX;
         private System.Windows.Forms.Button warningButton;
+        private System.Windows.Forms.Label maxcount;
+        private System.Windows.Forms.Label captortype;
     }
 }

@@ -30,13 +30,12 @@ namespace application
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.optionMenu = new System.Windows.Forms.GroupBox();
-            this.configModulesButton = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.addChercheursButton = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -49,44 +48,22 @@ namespace application
             this.timerMinute = new System.Windows.Forms.Timer(this.components);
             this.timerHeure = new System.Windows.Forms.Timer(this.components);
             this.displayWindow = new System.Windows.Forms.FlowLayoutPanel();
+            this.optionMenu = new System.Windows.Forms.FlowLayoutPanel();
             this.optionMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // optionMenu
+            // button10
             // 
-            this.optionMenu.Controls.Add(this.configModulesButton);
-            this.optionMenu.Controls.Add(this.button9);
-            this.optionMenu.Controls.Add(this.button7);
-            this.optionMenu.Controls.Add(this.button5);
-            this.optionMenu.Controls.Add(this.button1);
-            this.optionMenu.Controls.Add(this.addChercheursButton);
-            this.optionMenu.Controls.Add(this.button12);
-            this.optionMenu.Controls.Add(this.button6);
-            this.optionMenu.Controls.Add(this.button8);
-            this.optionMenu.Controls.Add(this.button4);
-            this.optionMenu.Controls.Add(this.button3);
-            this.optionMenu.Controls.Add(this.button2);
-            this.optionMenu.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.optionMenu.Location = new System.Drawing.Point(489, 50);
-            this.optionMenu.Name = "optionMenu";
-            this.optionMenu.Size = new System.Drawing.Size(904, 141);
-            this.optionMenu.TabIndex = 0;
-            this.optionMenu.TabStop = false;
-            this.optionMenu.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // configModulesButton
-            // 
-            this.configModulesButton.Location = new System.Drawing.Point(597, 48);
-            this.configModulesButton.Name = "configModulesButton";
-            this.configModulesButton.Size = new System.Drawing.Size(219, 23);
-            this.configModulesButton.TabIndex = 10;
-            this.configModulesButton.Text = "Configuration Modules";
-            this.configModulesButton.UseVisualStyleBackColor = true;
-            this.configModulesButton.Click += new System.EventHandler(this.configModulesButton_Click);
+            this.button10.Location = new System.Drawing.Point(228, 119);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(219, 23);
+            this.button10.TabIndex = 10;
+            this.button10.Text = "Configuration Modules";
+            this.button10.UseVisualStyleBackColor = true;
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(597, 19);
+            this.button9.Location = new System.Drawing.Point(228, 90);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(219, 23);
             this.button9.TabIndex = 11;
@@ -96,7 +73,7 @@ namespace application
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(299, 77);
+            this.button7.Location = new System.Drawing.Point(228, 32);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(219, 23);
             this.button7.TabIndex = 5;
@@ -106,7 +83,7 @@ namespace application
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(299, 19);
+            this.button5.Location = new System.Drawing.Point(3, 119);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(219, 23);
             this.button5.TabIndex = 7;
@@ -116,7 +93,7 @@ namespace application
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 19);
+            this.button1.Location = new System.Drawing.Point(3, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(219, 23);
             this.button1.TabIndex = 12;
@@ -124,19 +101,19 @@ namespace application
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // addChercheursButton
+            // button11
             // 
-            this.addChercheursButton.Location = new System.Drawing.Point(597, 77);
-            this.addChercheursButton.Name = "addChercheursButton";
-            this.addChercheursButton.Size = new System.Drawing.Size(219, 23);
-            this.addChercheursButton.TabIndex = 9;
-            this.addChercheursButton.Text = "Chercheurs";
-            this.addChercheursButton.UseVisualStyleBackColor = true;
-            this.addChercheursButton.Click += new System.EventHandler(this.addChercheursButton_Click);
+            this.button11.Location = new System.Drawing.Point(453, 3);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(219, 23);
+            this.button11.TabIndex = 9;
+            this.button11.Text = "Chercheurs";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(597, 106);
+            this.button12.Location = new System.Drawing.Point(453, 32);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(219, 23);
             this.button12.TabIndex = 8;
@@ -146,7 +123,7 @@ namespace application
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(299, 48);
+            this.button6.Location = new System.Drawing.Point(228, 3);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(219, 23);
             this.button6.TabIndex = 6;
@@ -156,7 +133,7 @@ namespace application
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(299, 106);
+            this.button8.Location = new System.Drawing.Point(228, 61);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(219, 23);
             this.button8.TabIndex = 4;
@@ -166,7 +143,7 @@ namespace application
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(6, 106);
+            this.button4.Location = new System.Drawing.Point(3, 90);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(219, 23);
             this.button4.TabIndex = 3;
@@ -176,7 +153,7 @@ namespace application
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(6, 77);
+            this.button3.Location = new System.Drawing.Point(3, 61);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(219, 23);
             this.button3.TabIndex = 2;
@@ -186,7 +163,7 @@ namespace application
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(6, 48);
+            this.button2.Location = new System.Drawing.Point(3, 32);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(219, 23);
             this.button2.TabIndex = 1;
@@ -246,14 +223,35 @@ namespace application
             this.displayWindow.Size = new System.Drawing.Size(1870, 645);
             this.displayWindow.TabIndex = 5;
             // 
+            // optionMenu
+            // 
+            this.optionMenu.AutoScroll = true;
+            this.optionMenu.Controls.Add(this.button1);
+            this.optionMenu.Controls.Add(this.button2);
+            this.optionMenu.Controls.Add(this.button3);
+            this.optionMenu.Controls.Add(this.button4);
+            this.optionMenu.Controls.Add(this.button5);
+            this.optionMenu.Controls.Add(this.button6);
+            this.optionMenu.Controls.Add(this.button7);
+            this.optionMenu.Controls.Add(this.button8);
+            this.optionMenu.Controls.Add(this.button9);
+            this.optionMenu.Controls.Add(this.button10);
+            this.optionMenu.Controls.Add(this.button11);
+            this.optionMenu.Controls.Add(this.button12);
+            this.optionMenu.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.optionMenu.Location = new System.Drawing.Point(404, 24);
+            this.optionMenu.Name = "optionMenu";
+            this.optionMenu.Size = new System.Drawing.Size(1320, 171);
+            this.optionMenu.TabIndex = 13;
+            // 
             // Form1
             // 
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.optionMenu);
             this.Controls.Add(this.displayWindow);
             this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.optionMenu);
             this.Name = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -264,11 +262,9 @@ namespace application
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox optionMenu;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button configModulesButton;
-        private System.Windows.Forms.Button addChercheursButton;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
@@ -280,10 +276,11 @@ namespace application
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblDateTime;
-        private System.Windows.Forms.Timer timerDate;
         private System.Windows.Forms.Timer timerMinute;
         private System.Windows.Forms.Timer timerHeure;
         private System.Windows.Forms.FlowLayoutPanel displayWindow;
+        private System.Windows.Forms.FlowLayoutPanel optionMenu;
+        private System.Windows.Forms.Timer timerDate;
     }
 }
 

@@ -72,6 +72,10 @@ namespace application
             //affichage du channel actuel 
             Chn.Text = "Chn. " + numbchannel.ToString("000") + ": c" + numbchannel;
 
+            captortype.Text = "(Type : " + sqlCommand.GetTypeCapteur(numbchannel) + ")";
+
+            maxcount.Text = "max " + sqlCommand.GetMaxValeur(numbchannel, idEnregistrement);
+
             // Créer les graphiques en fonction des jours triés
             for (int i = 0; i < sortedDays.Count; i++)
             {
@@ -212,11 +216,11 @@ namespace application
             {
                 int top = (chartHeight + margin + trackBarX.Value / 30) * (chartNumber - 1) + margin;
                 chart.Location = new System.Drawing.Point(10, top);
-                chart.Size = new System.Drawing.Size(panel1.Width + trackBarX.Value, chartHeight + trackBarX.Value/50);
+                chart.Size = new System.Drawing.Size(panel1.Width + trackBarX.Value, chartHeight + trackBarX.Value / 50);
             }
             else
             {
-                chart.Size = new System.Drawing.Size(panel2.Width + trackBarX.Value, chartHeight-25);
+                chart.Size = new System.Drawing.Size(panel2.Width + trackBarX.Value, chartHeight - 25);
             }
 
             for (int i = 360; i <= 1440; i += 360)

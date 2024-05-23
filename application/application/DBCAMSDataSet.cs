@@ -1,0 +1,7 @@
+﻿namespace application
+{
+}
+
+namespace application
+{
+}

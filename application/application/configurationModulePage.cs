@@ -19,9 +19,16 @@ namespace application
             InitializeComponent();
 
             // Connecter les gestionnaires d'événements aux contrôles
-            ipAdressTextBox.TextChanged += Fields_TextChanged;
-            maqueTextBox.TextChanged += Fields_TextChanged;
-            passerelleTextBox.TextChanged += Fields_TextChanged;
+            
+            ipAddressMaskedTextBox.Mask = @"000\.000\.000\.000";
+            ipAddressMaskedTextBox.TextChanged += Fields_TextChanged;
+
+            masqueMaskedTextBox.Mask = @"000\.000\.000\.000";
+            masqueMaskedTextBox.TextChanged += Fields_TextChanged;
+
+            passerelleMaskedTextBox.Mask = @"000\.000\.000\.000";
+            passerelleMaskedTextBox.TextChanged += Fields_TextChanged;
+
             nbEntreeSortieTextBox.TextChanged += Fields_TextChanged;
             typeModuleComboBox.SelectedIndexChanged += Fields_TextChanged;
 
@@ -48,7 +55,7 @@ namespace application
                 nbEntreeSortieTextBox.Enabled = false;
             }
 
-            // Vérifier si "Analogique" est sélectionné
+            // Vérifier si "Numérique" est sélectionné
             if (typeModuleComboBox.SelectedItem.ToString() == "ET_7217")
             {
                 // Remplir automatiquement le champ nbEntreeSortieTextBox à 16
@@ -62,9 +69,9 @@ namespace application
         private void Fields_TextChanged(object sender, EventArgs e)
         {
             // Vérifier si tous les champs sont remplis
-            bool allFieldsFilled = !string.IsNullOrWhiteSpace(ipAdressTextBox.Text) &&
-                                   !string.IsNullOrWhiteSpace(maqueTextBox.Text) &&
-                                   !string.IsNullOrWhiteSpace(passerelleTextBox.Text) &&
+            bool allFieldsFilled = !string.IsNullOrWhiteSpace(ipAddressMaskedTextBox.Text) &&
+                                   !string.IsNullOrWhiteSpace(masqueMaskedTextBox.Text) &&
+                                   !string.IsNullOrWhiteSpace(passerelleMaskedTextBox.Text) &&
                                    !string.IsNullOrWhiteSpace(nbEntreeSortieTextBox.Text) &&
                                    typeModuleComboBox.SelectedItem != null;
 
@@ -74,9 +81,9 @@ namespace application
 
         private void queryButton_Click(object sender, EventArgs e)
         {
-            string adresseIp = ipAdressTextBox.Text;
-            string masque = maqueTextBox.Text;
-            string passerlle = passerelleTextBox.Text;
+            string adresseIp = ipAddressMaskedTextBox.Text;
+            string masque = masqueMaskedTextBox.Text;
+            string passerlle = passerelleMaskedTextBox.Text;
             string typeModule = typeModuleComboBox.Text;
             string nbES = nbEntreeSortieTextBox.Text;
             int.TryParse(nbES, out int nombreES);

@@ -92,6 +92,9 @@
     <Compile Include="configurationModulePage.Designer.cs">
       <DependentUpon>configurationModulePage.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBCAMSDataSet.cs">
+      <DependentUpon>DBCAMSDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DBCAMSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

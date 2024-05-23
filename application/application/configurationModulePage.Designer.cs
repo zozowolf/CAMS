@@ -30,16 +30,16 @@ namespace application
         private void InitializeComponent()
         {
             this.ipAdressLabel = new System.Windows.Forms.Label();
-            this.ipAdressTextBox = new System.Windows.Forms.TextBox();
-            this.maqueTextBox = new System.Windows.Forms.TextBox();
             this.maskLabel = new System.Windows.Forms.Label();
-            this.passerelleTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.typeModuleLabel = new System.Windows.Forms.Label();
             this.nbEntreeSortieTextBox = new System.Windows.Forms.TextBox();
             this.nbEntreeSortieLabel = new System.Windows.Forms.Label();
             this.typeModuleComboBox = new System.Windows.Forms.ComboBox();
             this.queryButton = new System.Windows.Forms.Button();
+            this.ipAddressMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.masqueMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.passerelleMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // ipAdressLabel
@@ -51,20 +51,6 @@ namespace application
             this.ipAdressLabel.TabIndex = 0;
             this.ipAdressLabel.Text = "Adresse IP :";
             // 
-            // ipAdressTextBox
-            // 
-            this.ipAdressTextBox.Location = new System.Drawing.Point(92, 34);
-            this.ipAdressTextBox.Name = "ipAdressTextBox";
-            this.ipAdressTextBox.Size = new System.Drawing.Size(149, 20);
-            this.ipAdressTextBox.TabIndex = 1;
-            // 
-            // maqueTextBox
-            // 
-            this.maqueTextBox.Location = new System.Drawing.Point(92, 92);
-            this.maqueTextBox.Name = "maqueTextBox";
-            this.maqueTextBox.Size = new System.Drawing.Size(149, 20);
-            this.maqueTextBox.TabIndex = 3;
-            // 
             // maskLabel
             // 
             this.maskLabel.AutoSize = true;
@@ -73,13 +59,6 @@ namespace application
             this.maskLabel.Size = new System.Drawing.Size(51, 13);
             this.maskLabel.TabIndex = 2;
             this.maskLabel.Text = "Masque :";
-            // 
-            // passerelleTextBox
-            // 
-            this.passerelleTextBox.Location = new System.Drawing.Point(92, 147);
-            this.passerelleTextBox.Name = "passerelleTextBox";
-            this.passerelleTextBox.Size = new System.Drawing.Size(149, 20);
-            this.passerelleTextBox.TabIndex = 5;
             // 
             // label1
             // 
@@ -103,7 +82,7 @@ namespace application
             // 
             this.nbEntreeSortieTextBox.Location = new System.Drawing.Point(92, 262);
             this.nbEntreeSortieTextBox.Name = "nbEntreeSortieTextBox";
-            this.nbEntreeSortieTextBox.Size = new System.Drawing.Size(149, 20);
+            this.nbEntreeSortieTextBox.Size = new System.Drawing.Size(98, 20);
             this.nbEntreeSortieTextBox.TabIndex = 9;
             // 
             // nbEntreeSortieLabel
@@ -120,7 +99,7 @@ namespace application
             this.typeModuleComboBox.FormattingEnabled = true;
             this.typeModuleComboBox.Location = new System.Drawing.Point(93, 204);
             this.typeModuleComboBox.Name = "typeModuleComboBox";
-            this.typeModuleComboBox.Size = new System.Drawing.Size(148, 21);
+            this.typeModuleComboBox.Size = new System.Drawing.Size(97, 21);
             this.typeModuleComboBox.TabIndex = 10;
             this.typeModuleComboBox.SelectedIndexChanged += new System.EventHandler(this.typeModuleComboBox_SelectedIndexChanged);
             // 
@@ -134,21 +113,42 @@ namespace application
             this.queryButton.UseVisualStyleBackColor = true;
             this.queryButton.Click += new System.EventHandler(this.queryButton_Click);
             // 
+            // ipAddressMaskedTextBox
+            // 
+            this.ipAddressMaskedTextBox.Location = new System.Drawing.Point(92, 37);
+            this.ipAddressMaskedTextBox.Name = "ipAddressMaskedTextBox";
+            this.ipAddressMaskedTextBox.Size = new System.Drawing.Size(98, 20);
+            this.ipAddressMaskedTextBox.TabIndex = 12;
+            // 
+            // masqueMaskedTextBox
+            // 
+            this.masqueMaskedTextBox.Location = new System.Drawing.Point(92, 95);
+            this.masqueMaskedTextBox.Name = "masqueMaskedTextBox";
+            this.masqueMaskedTextBox.Size = new System.Drawing.Size(98, 20);
+            this.masqueMaskedTextBox.TabIndex = 13;
+            // 
+            // passerelleMaskedTextBox
+            // 
+            this.passerelleMaskedTextBox.Location = new System.Drawing.Point(92, 150);
+            this.passerelleMaskedTextBox.Name = "passerelleMaskedTextBox";
+            this.passerelleMaskedTextBox.Size = new System.Drawing.Size(98, 20);
+            this.passerelleMaskedTextBox.TabIndex = 14;
+            // 
             // configurationModulePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.passerelleMaskedTextBox);
+            this.Controls.Add(this.masqueMaskedTextBox);
+            this.Controls.Add(this.ipAddressMaskedTextBox);
             this.Controls.Add(this.queryButton);
             this.Controls.Add(this.typeModuleComboBox);
             this.Controls.Add(this.nbEntreeSortieTextBox);
             this.Controls.Add(this.nbEntreeSortieLabel);
             this.Controls.Add(this.typeModuleLabel);
-            this.Controls.Add(this.passerelleTextBox);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.maqueTextBox);
             this.Controls.Add(this.maskLabel);
-            this.Controls.Add(this.ipAdressTextBox);
             this.Controls.Add(this.ipAdressLabel);
             this.Name = "configurationModulePage";
             this.Text = "configurationModulePage";
@@ -161,15 +161,15 @@ namespace application
         #endregion
 
         private System.Windows.Forms.Label ipAdressLabel;
-        private System.Windows.Forms.TextBox ipAdressTextBox;
-        private System.Windows.Forms.TextBox maqueTextBox;
         private System.Windows.Forms.Label maskLabel;
-        private System.Windows.Forms.TextBox passerelleTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label typeModuleLabel;
         private System.Windows.Forms.TextBox nbEntreeSortieTextBox;
         private System.Windows.Forms.Label nbEntreeSortieLabel;
         private System.Windows.Forms.ComboBox typeModuleComboBox;
         private System.Windows.Forms.Button queryButton;
+        private System.Windows.Forms.MaskedTextBox ipAddressMaskedTextBox;
+        private System.Windows.Forms.MaskedTextBox masqueMaskedTextBox;
+        private System.Windows.Forms.MaskedTextBox passerelleMaskedTextBox;
     }
 }

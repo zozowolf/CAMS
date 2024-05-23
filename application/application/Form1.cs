@@ -38,9 +38,9 @@ namespace application
 
         public Form1()
         {
-
             InitializeComponent();
             InitializeCharts();
+            RéorganiserBoutons();
             if (!FirstExecute)
             {
                 FirstExecute = true;
@@ -51,24 +51,34 @@ namespace application
                 {
                     UpdateChart(chart);
                 }
-
             }
+        }
 
+        private void RéorganiserBoutons()
+        {
+            // Calculer la largeur et la hauteur d'un bouton pour remplir le FlowLayoutPanel
+            int largeurBouton = optionMenu.ClientSize.Width / 5;
+            int hauteurBouton = optionMenu.ClientSize.Height / 4;
+
+            // Redimensionner chaque bouton
+            foreach (Button bouton in optionMenu.Controls)
+            {
+                bouton.Width = largeurBouton;
+                bouton.Height = hauteurBouton;
+            }
         }
 
         private void InitializeCharts()
         {
-
             // Créer plusieurs graphiques et les ajouter au TableLayoutPanel
             for (int i = 0; i < maxcharts; i++)
             {
                 Chart chart = new Chart();
-                chart.Size = new System.Drawing.Size((displayWindow.Width / 3) - 30, (displayWindow.Height / 3)-15);
+                chart.Size = new System.Drawing.Size((displayWindow.Width / 3) - 30, (displayWindow.Height / 3) - 15);
                 charts.Add(chart);
                 displayWindow.Controls.Add(chart);
                 InitializeChart(chart, i + 1); // Ajouter le numéro du graphique
             }
-
         }
 
         private void InitializeChart(Chart chart, int chartNumber)
@@ -76,7 +86,6 @@ namespace application
             // Configuration du graphique
             Series series = new Series("Valeur");
             chart.Series.Add(series);
-
 
             // Ajuster les limites des l'axes 
             chart.ChartAreas.Add(new ChartArea());
@@ -106,16 +115,12 @@ namespace application
             chart.ChartAreas[0].AxisX.LineColor = Color.Red;
             chart.ChartAreas[0].AxisY.LineColor = Color.Red;
 
-
             // Ajouter un titre au graphique avec le numéro
             Title title = new Title($"Ch : {chartNumber}");
             title.Font = new Font("Arial", 16, FontStyle.Regular);
             title.Alignment = ContentAlignment.TopLeft;
             title.ForeColor = Color.Red;
             chart.Titles.Add(title);
-
-
-
         }
 
         private void UpdateChart(Chart chart)
@@ -159,19 +164,17 @@ namespace application
         private void timerDate_Tick(object sender, EventArgs e)
         {
             // Mettre à jour le label avec l'heure et la date actuelles à chaque tick de timer
-            lblDateTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            lblDateTime.ForeColor = Color.White;
+            //lblDateTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            //lblDateTime.ForeColor = Color.White;
         }
 
         private void timerHeure_Tick(object sender, EventArgs e)
         {
-
-                // Mettre à jour le graphique avec les nouvelles valeurs
-                foreach (var chart in charts)
-                {
-                    UpdateChart(chart);
-                }
-
+            // Mettre à jour le graphique avec les nouvelles valeurs
+            foreach (var chart in charts)
+            {
+                UpdateChart(chart);
+            }
         }
 
         private void timerMinute_Tick(object sender, EventArgs e)
@@ -199,10 +202,7 @@ namespace application
                 case Keys.R:
                     button6.PerformClick();
                     break;
-
             }
-
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -211,33 +211,26 @@ namespace application
 
             // Associer l'événement KeyDown au formulaire
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
-
-
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void groupBox1_Enter_1(object sender, EventArgs e)
         {
-
         }
 
         private void monBouton_Click(object sender, EventArgs e)
         {
-
         }
 
         private void monBouton_Click_1(object sender, EventArgs e)
         {
-
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -260,17 +253,14 @@ namespace application
 
         private void button4_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -284,7 +274,6 @@ namespace application
             {
                 MessageBox.Show("La nouvelle forme est null.");
             }
-
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -295,38 +284,14 @@ namespace application
 
         private void button7_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-
         }
 
-        private void addChercheursButton_Click(object sender, EventArgs e)
+        private void button11_Click(object sender, EventArgs e)
         {
-            addChercheursPage nouvelleForme = new addChercheursPage();
-            if (nouvelleForme != null)
-            {
-                nouvelleForme.Show();
-            }
-            else
-            {
-                MessageBox.Show("La nouvelle forme est null.");
-            }
-        }
-
-        private void configModulesButton_Click(object sender, EventArgs e)
-        {
-            configurationModulePage nouvelleForme = new configurationModulePage();
-            if (nouvelleForme != null)
-            {
-                nouvelleForme.Show();
-            }
-            else
-            {
-                MessageBox.Show("La nouvelle forme est null.");
-            }
         }
     }
 }
