@@ -434,6 +434,32 @@ namespace application
 
                 string type = null;
 
+                string sql_Text = $"SELECT Type FROM Type WHERE Id = '{GetTypeChannel(idChannel)}'";
+
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read() && !reader.IsDBNull(reader.GetOrdinal("Type")))
+                        {
+                            type = reader["Type"].ToString();
+                        }
+                    }
+                }
+
+                return type;
+            }
+        }
+
+        public int GetTypeChannel(int idChannel)
+        {
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            {
+                cn_connection.Open();
+
+                int type = 9;
+
                 string sql_Text = $"SELECT TypeCapteur FROM Channel WHERE Id = '{idChannel}'";
 
                 using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
@@ -442,7 +468,7 @@ namespace application
                     {
                         if (reader.Read() && !reader.IsDBNull(reader.GetOrdinal("TypeCapteur")))
                         {
-                            type = reader["TypeCapteur"].ToString();
+                            type = Convert.ToInt32(reader["TypeCapteur"]);
                         }
                     }
                 }

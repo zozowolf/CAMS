@@ -110,8 +110,7 @@ namespace application
 
             // Changer la couleur de la série à rouge
             chart.Series["Valeur"].Color = Color.Red;
-            chart.Series["Valeur"].IsValueShownAsLabel = true;
-            chart.Series["Valeur"].LabelForeColor = Color.White;
+
             chart.ChartAreas[0].AxisX.LineColor = Color.Red;
             chart.ChartAreas[0].AxisY.LineColor = Color.Red;
 
@@ -161,12 +160,7 @@ namespace application
             }
         }
 
-        private void timerDate_Tick(object sender, EventArgs e)
-        {
-            // Mettre à jour le label avec l'heure et la date actuelles à chaque tick de timer
-            //lblDateTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            //lblDateTime.ForeColor = Color.White;
-        }
+
 
         private void timerHeure_Tick(object sender, EventArgs e)
         {

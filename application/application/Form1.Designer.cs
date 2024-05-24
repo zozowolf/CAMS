@@ -44,7 +44,6 @@ namespace application
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblDateTime = new System.Windows.Forms.Label();
-            this.timerDate = new System.Windows.Forms.Timer(this.components);
             this.timerMinute = new System.Windows.Forms.Timer(this.components);
             this.timerHeure = new System.Windows.Forms.Timer(this.components);
             this.displayWindow = new System.Windows.Forms.FlowLayoutPanel();
@@ -194,12 +193,6 @@ namespace application
             this.lblDateTime.TabIndex = 3;
             this.lblDateTime.Text = "Date et Heure";
             // 
-            // timerDate
-            // 
-            this.timerDate.Enabled = true;
-            this.timerDate.Interval = 1000;
-            this.timerDate.Tick += new System.EventHandler(this.timerDate_Tick);
-            // 
             // timerMinute
             // 
             this.timerMinute.Enabled = true;
@@ -280,7 +273,6 @@ namespace application
         private System.Windows.Forms.Timer timerHeure;
         private System.Windows.Forms.FlowLayoutPanel displayWindow;
         private System.Windows.Forms.FlowLayoutPanel optionMenu;
-        private System.Windows.Forms.Timer timerDate;
     }
 }
 

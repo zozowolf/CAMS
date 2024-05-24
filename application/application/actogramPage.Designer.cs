@@ -124,7 +124,7 @@ namespace application
             this.maxcount.AutoSize = true;
             this.maxcount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
             this.maxcount.ForeColor = System.Drawing.Color.White;
-            this.maxcount.Location = new System.Drawing.Point(1721, 81);
+            this.maxcount.Location = new System.Drawing.Point(1752, 81);
             this.maxcount.Name = "maxcount";
             this.maxcount.Size = new System.Drawing.Size(52, 25);
             this.maxcount.TabIndex = 302;
