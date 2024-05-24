@@ -43,8 +43,6 @@ namespace application
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblDateTime = new System.Windows.Forms.Label();
-            this.timerDate = new System.Windows.Forms.Timer(this.components);
             this.timerMinute = new System.Windows.Forms.Timer(this.components);
             this.timerHeure = new System.Windows.Forms.Timer(this.components);
             this.displayWindow = new System.Windows.Forms.FlowLayoutPanel();
@@ -181,25 +179,6 @@ namespace application
             this.label1.Text = "CIRCADIAN ACTIVITY MONITORING SYSTEM";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // lblDateTime
-            // 
-            this.lblDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDateTime.AutoSize = true;
-            this.lblDateTime.BackColor = System.Drawing.Color.Transparent;
-            this.lblDateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateTime.ForeColor = System.Drawing.Color.White;
-            this.lblDateTime.Location = new System.Drawing.Point(897, 980);
-            this.lblDateTime.Name = "lblDateTime";
-            this.lblDateTime.Size = new System.Drawing.Size(110, 20);
-            this.lblDateTime.TabIndex = 3;
-            this.lblDateTime.Text = "Date et Heure";
-            // 
-            // timerDate
-            // 
-            this.timerDate.Enabled = true;
-            this.timerDate.Interval = 1000;
-            this.timerDate.Tick += new System.EventHandler(this.timerDate_Tick);
-            // 
             // timerMinute
             // 
             this.timerMinute.Enabled = true;
@@ -250,14 +229,12 @@ namespace application
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.optionMenu);
             this.Controls.Add(this.displayWindow);
-            this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.optionMenu.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -275,12 +252,10 @@ namespace application
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label lblDateTime;
         private System.Windows.Forms.Timer timerMinute;
         private System.Windows.Forms.Timer timerHeure;
         private System.Windows.Forms.FlowLayoutPanel displayWindow;
         private System.Windows.Forms.FlowLayoutPanel optionMenu;
-        private System.Windows.Forms.Timer timerDate;
     }
 }
 

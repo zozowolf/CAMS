@@ -172,12 +172,6 @@ namespace application
             }
         }
 
-        private void timerDate_Tick(object sender, EventArgs e)
-        {
-            // Mettre à jour le label avec l'heure et la date actuelles à chaque tick de timer
-            lblDateTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            lblDateTime.ForeColor = Color.White;
-        }
 
         private void timerHeure_Tick(object sender, EventArgs e)
         {
