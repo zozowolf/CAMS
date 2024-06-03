@@ -1,0 +1,7 @@
+to do list
+
+cardinalité sur la base de donnée
+la date sur les events (renommer le champ)
+une table pour Joris avec un champ pour l'ip, le n°d'esclave, entrée/sortie
+Modifier la table enregistrement pour que dans un channel il y est plusieurs enregistrements
+table de transition entre enregistrement et channel du genre 

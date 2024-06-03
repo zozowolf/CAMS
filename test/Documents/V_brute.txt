@@ -1,0 +1,74 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace test
+{
+    class Program
+    {
+        static void Main()
+        {
+            // requete sql qui recupere tout split dans les variables les valeurs
+            //header de base
+            string chaine = "c1      11/04/24";
+
+            byte[] donneesBytes = Encoding.UTF8.GetBytes(chaine);
+
+            int reserve = 01;
+            // Convertir l'entier en une chaîne hexadécimale
+            string reserveHex = reserve.ToString("X2");
+            // Convertir la valeur hexadécimale en byte
+            byte reserveHexBytes = Convert.ToByte(reserveHex, 16);
+
+            //faire un if qui ecrit un entier different suivant le type du chanel
+            int type = 01; // 01 pour IR
+            // Convertir l'entier en une chaîne hexadécimale
+            string typeHex = type.ToString("X2");
+            // Convertir la valeur hexadécimale en byte
+            byte typeHexBytes = Convert.ToByte(typeHex, 16);
+
+            // Convertir l'entier en un tableau de bytes (sur 2 octets)
+            int numero = 1;
+            byte[] entierBytes = BitConverter.GetBytes((short)numero);
+
+            // Données
+            byte[] valeurs = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255};
+
+            // Chemin vers le fichier binaire
+            string cheminFichier = @"C:\Users\cdf\source\repos\test\test\donnees.dat";
+
+            // Écriture des données dans le fichier binaire
+            using (FileStream fs = new FileStream(cheminFichier, FileMode.Create))
+            {
+                // Chaine "c1      11/04/24"
+                fs.Write(donneesBytes, 0, donneesBytes.Length);
+
+                // L'heure
+                fs.WriteByte(15);
+
+                // Bit réservé
+                fs.WriteByte(reserveHexBytes);
+
+                // Type de capteur
+                fs.WriteByte(typeHexBytes);
+
+                // Bit réservé
+                fs.WriteByte(reserveHexBytes);
+
+                // Numero de Channel
+                fs.Write(entierBytes, 0, entierBytes.Length);
+
+                fs.Write(valeurs, 0, valeurs.Length);
+                //ajout des données voir diff entre IR et wheel
+            }
+
+            Console.WriteLine("Données écrites dans le fichier binaire avec succès.");
+        }
+
+    }
+
+}
+
