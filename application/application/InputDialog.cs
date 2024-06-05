@@ -31,6 +31,7 @@ namespace application
             this.okButton.Text = "OK";
             this.okButton.DialogResult = DialogResult.OK;
             this.okButton.Click += OkButton_Click;
+
             // Configure Form
             this.ClientSize = new System.Drawing.Size(224, 75);
             this.Controls.Add(this.textBox);
@@ -54,7 +55,7 @@ namespace application
 
             }
         }
-
+    
 
         private void InputDialog_Load(object sender, EventArgs e)
         {

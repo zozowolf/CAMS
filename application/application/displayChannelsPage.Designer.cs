@@ -31,8 +31,6 @@ namespace application
         {
             this.components = new System.ComponentModel.Container();
             this.Exit = new System.Windows.Forms.Button();
-            this.timerDate = new System.Windows.Forms.Timer(this.components);
-            this.lblDateTime = new System.Windows.Forms.Label();
             this.dBCAMSDataSet = new application.DBCAMSDataSet();
             this.dBCAMSDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -54,25 +52,6 @@ namespace application
             this.Exit.Text = "Exit";
             this.Exit.UseVisualStyleBackColor = true;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
-            // 
-            // timerDate
-            // 
-            this.timerDate.Enabled = true;
-            this.timerDate.Interval = 1000;
-            this.timerDate.Tick += new System.EventHandler(this.timerDate_Tick);
-            // 
-            // lblDateTime
-            // 
-            this.lblDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDateTime.AutoSize = true;
-            this.lblDateTime.BackColor = System.Drawing.Color.Transparent;
-            this.lblDateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateTime.ForeColor = System.Drawing.Color.White;
-            this.lblDateTime.Location = new System.Drawing.Point(869, 943);
-            this.lblDateTime.Name = "lblDateTime";
-            this.lblDateTime.Size = new System.Drawing.Size(110, 20);
-            this.lblDateTime.TabIndex = 6;
-            this.lblDateTime.Text = "Date et Heure";
             // 
             // dBCAMSDataSet
             // 
@@ -127,7 +106,6 @@ namespace application
             this.Controls.Add(this.precedent);
             this.Controls.Add(this.suivant);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.Exit);
             this.Name = "displayChannelsPage";
             this.Text = "displayChannelsPage";
@@ -137,15 +115,12 @@ namespace application
             ((System.ComponentModel.ISupportInitialize)(this.dBCAMSDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button Exit;
-        private System.Windows.Forms.Timer timerDate;
-        private System.Windows.Forms.Label lblDateTime;
         private System.Windows.Forms.BindingSource dBCAMSDataSetBindingSource;
         private DBCAMSDataSet dBCAMSDataSet;
         private System.Windows.Forms.DataGridView dataGridView1;

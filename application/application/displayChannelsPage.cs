@@ -76,7 +76,7 @@ namespace application
                         dataGridView1[col, row].Value = $"{id} inactive {sommeheure} Hrs";
                         dataGridView1[col, row].Style.ForeColor = lightRed;
                     }
-                    else if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Num")
+                    if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Num")
                     {
                         int min = sqlCommand.GetLastValeurmin(currentChartNumber, idEnregistrement);
                         int heure = sqlCommand.GetLastValeurheure(currentChartNumber, idEnregistrement);
@@ -85,14 +85,14 @@ namespace application
                         dataGridView1[col, row].Value = $"{id}   {min}   {heure}   {jour}";
                         dataGridView1[col, row].Style.ForeColor = lightBlue;
                     }
-                    else if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Temp")
+                    if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Temp")
                     {
                         double temperature = sqlCommand.GetLastTemp(currentChartNumber, idEnregistrement);
 
                         dataGridView1[col, row].Value = $"{id}   {temperature}°C";
                         dataGridView1[col, row].Style.ForeColor = lightBlue;
                     }
-                    else if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Lux")
+                    if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Lux")
                     {
                         double lumiere = sqlCommand.GetLastLux(currentChartNumber, idEnregistrement);
 
@@ -129,12 +129,6 @@ namespace application
             this.Close();
         }
 
-        private void timerDate_Tick(object sender, EventArgs e)
-        {
-            // Mettre à jour le label avec l'heure et la date actuelles à chaque tick de timer
-            lblDateTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            lblDateTime.ForeColor = Color.White;
-        }
 
         private void affichage_Tick(object sender, EventArgs e)
         {

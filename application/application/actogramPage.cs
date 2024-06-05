@@ -24,12 +24,16 @@ namespace application
         private const int margin = 10;
         SQL_command sqlCommand = new SQL_command();
 
+        private ToolTip toolTip1; // Ajouter un champ ToolTip
+
         public actogramPage()
         {
             InitializeComponent();
             InitializeCharts();
             InitializeScroll();
 
+            // Initialiser le ToolTip
+            toolTip1 = new ToolTip();
         }
 
         private void InitializeScroll()
@@ -74,7 +78,7 @@ namespace application
 
             captortype.Text = "(Type : " + sqlCommand.GetTypeCapteur(numbchannel) + ")";
 
-            maxcount.Text = "max " + sqlCommand.GetMaxValeur(numbchannel, idEnregistrement) ;
+            maxcount.Text = "max " + sqlCommand.GetMaxValeur(numbchannel, idEnregistrement);
 
             // Créer les graphiques en fonction des jours triés
             for (int i = 0; i < sortedDays.Count; i++)
@@ -196,9 +200,8 @@ namespace application
             chart.ChartAreas[0].AxisX.LineColor = Color.White;
             chart.ChartAreas[0].AxisY.LineColor = Color.White;
 
-            // Configurer la couleur du texte du label sur l'axe X
-            chart.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.White;
-
+            // Ne pas afficher les valeurs des X
+            chart.ChartAreas[0].AxisX.LabelStyle.Enabled = false;
 
             // Configurer la transparence des valeurs des axes
             chart.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Transparent;
@@ -216,11 +219,11 @@ namespace application
             {
                 int top = (chartHeight + margin + trackBarX.Value / 30) * (chartNumber - 1) + margin;
                 chart.Location = new System.Drawing.Point(10, top);
-                chart.Size = new System.Drawing.Size(panel1.Width + trackBarX.Value, chartHeight + trackBarX.Value/50);
+                chart.Size = new System.Drawing.Size(panel1.Width + trackBarX.Value, chartHeight + trackBarX.Value / 50);
             }
             else
             {
-                chart.Size = new System.Drawing.Size(panel2.Width + trackBarX.Value, chartHeight-25);
+                chart.Size = new System.Drawing.Size(panel2.Width + trackBarX.Value, chartHeight - 25);
             }
 
             for (int i = 360; i <= 1440; i += 360)
@@ -233,6 +236,8 @@ namespace application
 
                 chart.ChartAreas[0].AxisX.StripLines.Add(stripLine);
             }
+            // Attacher l'événement MouseMove
+            chart.MouseMove += Chart_MouseMove;
         }
 
         private void actogramPage_KeyDown(object sender, KeyEventArgs e)
@@ -297,5 +302,66 @@ namespace application
             InitializeCharts();
         }
 
+        private void Chart_MouseMove(object sender, MouseEventArgs e)
+        {
+            Chart chart = sender as Chart;
+            HitTestResult hit = chart.HitTest(e.X, e.Y);
+
+            if (hit.ChartElementType == ChartElementType.DataPoint)
+            {
+                DataPoint dataPoint = hit.Series.Points[hit.PointIndex];
+                string time = ConvertMinutesToTime(dataPoint.XValue);
+                toolTip1.Show($"Time: {time}, Value: {dataPoint.YValues[0]}", chart, e.X, e.Y - 15);
+            }
+            else
+            {
+                toolTip1.Hide(chart);
+            }
+        }
+        private string ConvertMinutesToTime(double minutes)
+        {
+            int hours = (int)minutes / 60;
+            int mins = (int)minutes % 60;
+            return $"{hours:D2}:{mins:D2}";
+        }
+
+        private void warningButton_Click(object sender, EventArgs e)
+        {
+            InputDialog2 inputDialog2 = new InputDialog2();
+            if (inputDialog2.ShowDialog() == DialogResult.OK)
+            {
+                // on récup les valeurs
+                string message = inputDialog2.GetTextValue();
+                int idChannel = inputDialog2.GetNbChannelValue();
+                bool isGlobal = inputDialog2.IsGlobalMessage();
+                DateTime date = inputDialog2.GetCurrentDate();
+                string nomChercheur = inputDialog2.GetNomChercheur();
+
+                if (isGlobal) // on vérifie si la case message global est coché
+                {  // si c'est le cas, le message concerne tout l'enregistrement, donc on met dans Event  
+                    try
+                    {
+                        sqlCommand.AddValueToEvent(message, date, nomChercheur);
+                        MessageBox.Show("Message bien ajouté.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors de l'ajout du message : " + ex.Message);
+                    }
+                }
+                else
+                {  // sinon on met dans alerte et c'est lié qu'à un channel en particulier
+                    try
+                    {
+                        sqlCommand.AddValueToAlerte(idChannel, message, date, nomChercheur);
+                        MessageBox.Show("Message bien ajouté.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors de l'ajout du message : " + ex.Message);
+                    }
+                }
+            }
+        }
     }
 }

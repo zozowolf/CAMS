@@ -1036,6 +1036,8 @@ namespace application {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class AssociationCH_ADataTable : global::System.Data.TypedTableBase<AssociationCH_ARow> {
             
+            private global::System.Data.DataColumn columnId;
+            
             private global::System.Data.DataColumn columnIdChannel;
             
             private global::System.Data.DataColumn columnIdAlerte;
@@ -1071,6 +1073,14 @@ namespace application {
             protected AssociationCH_ADataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IdColumn {
+                get {
+                    return this.columnId;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1126,16 +1136,17 @@ namespace application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssociationCH_ARow AddAssociationCH_ARow(ChannelRow parentChannelRowByFK_AssociationCH_A_Channel, AlerteRow parentAlerteRowByFK_AssociationCH_A_Alerte) {
+            public AssociationCH_ARow AddAssociationCH_ARow(int Id, ChannelRow parentChannelRowByFK_AssociationCH_A_Channel, AlerteRow parentAlerteRowByFK_AssociationCH_A_Alerte) {
                 AssociationCH_ARow rowAssociationCH_ARow = ((AssociationCH_ARow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        Id,
                         null,
                         null};
                 if ((parentChannelRowByFK_AssociationCH_A_Channel != null)) {
-                    columnValuesArray[0] = parentChannelRowByFK_AssociationCH_A_Channel[0];
+                    columnValuesArray[1] = parentChannelRowByFK_AssociationCH_A_Channel[0];
                 }
                 if ((parentAlerteRowByFK_AssociationCH_A_Alerte != null)) {
-                    columnValuesArray[1] = parentAlerteRowByFK_AssociationCH_A_Alerte[0];
+                    columnValuesArray[2] = parentAlerteRowByFK_AssociationCH_A_Alerte[0];
                 }
                 rowAssociationCH_ARow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAssociationCH_ARow);
@@ -1144,10 +1155,9 @@ namespace application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssociationCH_ARow FindByIdChannelIdAlerte(int IdChannel, int IdAlerte) {
+            public AssociationCH_ARow FindById(int Id) {
                 return ((AssociationCH_ARow)(this.Rows.Find(new object[] {
-                            IdChannel,
-                            IdAlerte})));
+                            Id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1167,6 +1177,7 @@ namespace application {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
+                this.columnId = base.Columns["Id"];
                 this.columnIdChannel = base.Columns["IdChannel"];
                 this.columnIdAlerte = base.Columns["IdAlerte"];
             }
@@ -1174,13 +1185,16 @@ namespace application {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
+                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId);
                 this.columnIdChannel = new global::System.Data.DataColumn("IdChannel", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIdChannel);
                 this.columnIdAlerte = new global::System.Data.DataColumn("IdAlerte", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIdAlerte);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnIdChannel,
-                                this.columnIdAlerte}, true));
+                                this.columnId}, true));
+                this.columnId.AllowDBNull = false;
+                this.columnId.Unique = true;
                 this.columnIdChannel.AllowDBNull = false;
                 this.columnIdAlerte.AllowDBNull = false;
             }
@@ -1316,6 +1330,8 @@ namespace application {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class AssociationCH_RDataTable : global::System.Data.TypedTableBase<AssociationCH_RRow> {
             
+            private global::System.Data.DataColumn columnId;
+            
             private global::System.Data.DataColumn columnIdChannel;
             
             private global::System.Data.DataColumn columnIdEnregistrement;
@@ -1351,6 +1367,14 @@ namespace application {
             protected AssociationCH_RDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IdColumn {
+                get {
+                    return this.columnId;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1406,16 +1430,17 @@ namespace application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssociationCH_RRow AddAssociationCH_RRow(ChannelRow parentChannelRowByFK_AssociationCH_R_Channel, EnregistrementRow parentEnregistrementRowByFK_AssociationCH_R_Enregistrement) {
+            public AssociationCH_RRow AddAssociationCH_RRow(int Id, ChannelRow parentChannelRowByFK_AssociationCH_R_Channel, EnregistrementRow parentEnregistrementRowByFK_AssociationCH_R_Enregistrement) {
                 AssociationCH_RRow rowAssociationCH_RRow = ((AssociationCH_RRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        Id,
                         null,
                         null};
                 if ((parentChannelRowByFK_AssociationCH_R_Channel != null)) {
-                    columnValuesArray[0] = parentChannelRowByFK_AssociationCH_R_Channel[0];
+                    columnValuesArray[1] = parentChannelRowByFK_AssociationCH_R_Channel[0];
                 }
                 if ((parentEnregistrementRowByFK_AssociationCH_R_Enregistrement != null)) {
-                    columnValuesArray[1] = parentEnregistrementRowByFK_AssociationCH_R_Enregistrement[0];
+                    columnValuesArray[2] = parentEnregistrementRowByFK_AssociationCH_R_Enregistrement[0];
                 }
                 rowAssociationCH_RRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAssociationCH_RRow);
@@ -1424,10 +1449,9 @@ namespace application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssociationCH_RRow FindByIdChannelIdEnregistrement(int IdChannel, int IdEnregistrement) {
+            public AssociationCH_RRow FindById(int Id) {
                 return ((AssociationCH_RRow)(this.Rows.Find(new object[] {
-                            IdChannel,
-                            IdEnregistrement})));
+                            Id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1447,6 +1471,7 @@ namespace application {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
+                this.columnId = base.Columns["Id"];
                 this.columnIdChannel = base.Columns["IdChannel"];
                 this.columnIdEnregistrement = base.Columns["IdEnregistrement"];
             }
@@ -1454,13 +1479,16 @@ namespace application {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
+                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId);
                 this.columnIdChannel = new global::System.Data.DataColumn("IdChannel", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIdChannel);
                 this.columnIdEnregistrement = new global::System.Data.DataColumn("IdEnregistrement", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIdEnregistrement);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnIdChannel,
-                                this.columnIdEnregistrement}, true));
+                                this.columnId}, true));
+                this.columnId.AllowDBNull = false;
+                this.columnId.Unique = true;
                 this.columnIdChannel.AllowDBNull = false;
                 this.columnIdEnregistrement.AllowDBNull = false;
             }
@@ -1596,6 +1624,8 @@ namespace application {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class AssociationENR_EVDataTable : global::System.Data.TypedTableBase<AssociationENR_EVRow> {
             
+            private global::System.Data.DataColumn columnId;
+            
             private global::System.Data.DataColumn columnIdEnregistrement;
             
             private global::System.Data.DataColumn columnIdEvent;
@@ -1631,6 +1661,14 @@ namespace application {
             protected AssociationENR_EVDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IdColumn {
+                get {
+                    return this.columnId;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1686,16 +1724,17 @@ namespace application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssociationENR_EVRow AddAssociationENR_EVRow(EnregistrementRow parentEnregistrementRowByFK_AssociationENR_EV_Enregistrement, EventRow parentEventRowByFK_AssociationENR_EV_Event) {
+            public AssociationENR_EVRow AddAssociationENR_EVRow(int Id, EnregistrementRow parentEnregistrementRowByFK_AssociationENR_EV_Enregistrement, EventRow parentEventRowByFK_AssociationENR_EV_Event) {
                 AssociationENR_EVRow rowAssociationENR_EVRow = ((AssociationENR_EVRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        Id,
                         null,
                         null};
                 if ((parentEnregistrementRowByFK_AssociationENR_EV_Enregistrement != null)) {
-                    columnValuesArray[0] = parentEnregistrementRowByFK_AssociationENR_EV_Enregistrement[0];
+                    columnValuesArray[1] = parentEnregistrementRowByFK_AssociationENR_EV_Enregistrement[0];
                 }
                 if ((parentEventRowByFK_AssociationENR_EV_Event != null)) {
-                    columnValuesArray[1] = parentEventRowByFK_AssociationENR_EV_Event[0];
+                    columnValuesArray[2] = parentEventRowByFK_AssociationENR_EV_Event[0];
                 }
                 rowAssociationENR_EVRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAssociationENR_EVRow);
@@ -1704,10 +1743,9 @@ namespace application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssociationENR_EVRow FindByIdEnregistrementIdEvent(int IdEnregistrement, int IdEvent) {
+            public AssociationENR_EVRow FindById(int Id) {
                 return ((AssociationENR_EVRow)(this.Rows.Find(new object[] {
-                            IdEnregistrement,
-                            IdEvent})));
+                            Id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1727,6 +1765,7 @@ namespace application {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
+                this.columnId = base.Columns["Id"];
                 this.columnIdEnregistrement = base.Columns["IdEnregistrement"];
                 this.columnIdEvent = base.Columns["IdEvent"];
             }
@@ -1734,13 +1773,16 @@ namespace application {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
+                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId);
                 this.columnIdEnregistrement = new global::System.Data.DataColumn("IdEnregistrement", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIdEnregistrement);
                 this.columnIdEvent = new global::System.Data.DataColumn("IdEvent", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIdEvent);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnIdEnregistrement,
-                                this.columnIdEvent}, true));
+                                this.columnId}, true));
+                this.columnId.AllowDBNull = false;
+                this.columnId.Unique = true;
                 this.columnIdEnregistrement.AllowDBNull = false;
                 this.columnIdEvent.AllowDBNull = false;
             }
@@ -4563,6 +4605,17 @@ namespace application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int Id {
+                get {
+                    return ((int)(this[this.tableAssociationCH_A.IdColumn]));
+                }
+                set {
+                    this[this.tableAssociationCH_A.IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int IdChannel {
                 get {
                     return ((int)(this[this.tableAssociationCH_A.IdChannelColumn]));
@@ -4622,6 +4675,17 @@ namespace application {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int Id {
+                get {
+                    return ((int)(this[this.tableAssociationCH_R.IdColumn]));
+                }
+                set {
+                    this[this.tableAssociationCH_R.IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int IdChannel {
                 get {
                     return ((int)(this[this.tableAssociationCH_R.IdChannelColumn]));
@@ -4677,6 +4741,17 @@ namespace application {
             internal AssociationENR_EVRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tableAssociationENR_EV = ((AssociationENR_EVDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int Id {
+                get {
+                    return ((int)(this[this.tableAssociationENR_EV.IdColumn]));
+                }
+                set {
+                    this[this.tableAssociationENR_EV.IdColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6912,31 +6987,36 @@ SELECT Id, DateHeure, nomChercheur, Description FROM Alerte WHERE (Id = @Id)";
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "AssociationCH_A";
+            tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("IdChannel", "IdChannel");
             tableMapping.ColumnMappings.Add("IdAlerte", "IdAlerte");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[AssociationCH_A] WHERE (([IdChannel] = @Original_IdChannel) AN" +
-                "D ([IdAlerte] = @Original_IdAlerte))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[AssociationCH_A] WHERE (([Id] = @Original_Id) AND ([IdChannel]" +
+                " = @Original_IdChannel) AND ([IdAlerte] = @Original_IdAlerte))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdChannel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdChannel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdAlerte", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdAlerte", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[AssociationCH_A] ([IdChannel], [IdAlerte]) VALUES (@IdChannel," +
-                " @IdAlerte);\r\nSELECT IdChannel, IdAlerte FROM AssociationCH_A WHERE (IdAlerte = " +
-                "@IdAlerte) AND (IdChannel = @IdChannel)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[AssociationCH_A] ([Id], [IdChannel], [IdAlerte]) VALUES (@Id, " +
+                "@IdChannel, @IdAlerte);\r\nSELECT Id, IdChannel, IdAlerte FROM AssociationCH_A WHE" +
+                "RE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdChannel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdChannel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdAlerte", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdAlerte", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[AssociationCH_A] SET [IdChannel] = @IdChannel, [IdAlerte] = @IdAlerte WHERE (([IdChannel] = @Original_IdChannel) AND ([IdAlerte] = @Original_IdAlerte));
-SELECT IdChannel, IdAlerte FROM AssociationCH_A WHERE (IdAlerte = @IdAlerte) AND (IdChannel = @IdChannel)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[AssociationCH_A] SET [Id] = @Id, [IdChannel] = @IdChannel, [IdAlerte] = @IdAlerte WHERE (([Id] = @Original_Id) AND ([IdChannel] = @Original_IdChannel) AND ([IdAlerte] = @Original_IdAlerte));
+SELECT Id, IdChannel, IdAlerte FROM AssociationCH_A WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdChannel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdChannel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdAlerte", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdAlerte", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdChannel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdChannel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdAlerte", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdAlerte", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
@@ -6954,7 +7034,7 @@ SELECT IdChannel, IdAlerte FROM AssociationCH_A WHERE (IdAlerte = @IdAlerte) AND
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT IdChannel, IdAlerte FROM dbo.AssociationCH_A";
+            this._commandCollection[0].CommandText = "SELECT Id, IdChannel, IdAlerte FROM dbo.AssociationCH_A";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7015,9 +7095,10 @@ SELECT IdChannel, IdAlerte FROM AssociationCH_A WHERE (IdAlerte = @IdAlerte) AND
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_IdChannel, int Original_IdAlerte) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_IdChannel));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_IdAlerte));
+        public virtual int Delete(int Original_Id, int Original_IdChannel, int Original_IdAlerte) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_IdChannel));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_IdAlerte));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7038,9 +7119,10 @@ SELECT IdChannel, IdAlerte FROM AssociationCH_A WHERE (IdAlerte = @IdAlerte) AND
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int IdChannel, int IdAlerte) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(IdChannel));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(IdAlerte));
+        public virtual int Insert(int Id, int IdChannel, int IdAlerte) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Id));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(IdChannel));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(IdAlerte));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7061,11 +7143,13 @@ SELECT IdChannel, IdAlerte FROM AssociationCH_A WHERE (IdAlerte = @IdAlerte) AND
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int IdChannel, int IdAlerte, int Original_IdChannel, int Original_IdAlerte) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(IdChannel));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(IdAlerte));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_IdChannel));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_IdAlerte));
+        public virtual int Update(int Id, int IdChannel, int IdAlerte, int Original_Id, int Original_IdChannel, int Original_IdAlerte) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Id));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(IdChannel));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(IdAlerte));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_Id));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_IdChannel));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_IdAlerte));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7086,8 +7170,8 @@ SELECT IdChannel, IdAlerte FROM AssociationCH_A WHERE (IdAlerte = @IdAlerte) AND
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Original_IdChannel, int Original_IdAlerte) {
-            return this.Update(Original_IdChannel, Original_IdAlerte, Original_IdChannel, Original_IdAlerte);
+        public virtual int Update(int IdChannel, int IdAlerte, int Original_Id, int Original_IdChannel, int Original_IdAlerte) {
+            return this.Update(Original_Id, IdChannel, IdAlerte, Original_Id, Original_IdChannel, Original_IdAlerte);
         }
     }
     
@@ -7212,31 +7296,36 @@ SELECT IdChannel, IdAlerte FROM AssociationCH_A WHERE (IdAlerte = @IdAlerte) AND
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "AssociationCH_R";
+            tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("IdChannel", "IdChannel");
             tableMapping.ColumnMappings.Add("IdEnregistrement", "IdEnregistrement");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[AssociationCH_R] WHERE (([IdChannel] = @Original_IdChannel) AN" +
-                "D ([IdEnregistrement] = @Original_IdEnregistrement))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[AssociationCH_R] WHERE (([Id] = @Original_Id) AND ([IdChannel]" +
+                " = @Original_IdChannel) AND ([IdEnregistrement] = @Original_IdEnregistrement))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdChannel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdChannel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdEnregistrement", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdEnregistrement", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[AssociationCH_R] ([IdChannel], [IdEnregistrement]) VALUES (@Id" +
-                "Channel, @IdEnregistrement);\r\nSELECT IdChannel, IdEnregistrement FROM Associatio" +
-                "nCH_R WHERE (IdChannel = @IdChannel) AND (IdEnregistrement = @IdEnregistrement)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[AssociationCH_R] ([Id], [IdChannel], [IdEnregistrement]) VALUE" +
+                "S (@Id, @IdChannel, @IdEnregistrement);\r\nSELECT Id, IdChannel, IdEnregistrement " +
+                "FROM AssociationCH_R WHERE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdChannel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdChannel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdEnregistrement", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdEnregistrement", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[AssociationCH_R] SET [IdChannel] = @IdChannel, [IdEnregistrement] = @IdEnregistrement WHERE (([IdChannel] = @Original_IdChannel) AND ([IdEnregistrement] = @Original_IdEnregistrement));
-SELECT IdChannel, IdEnregistrement FROM AssociationCH_R WHERE (IdChannel = @IdChannel) AND (IdEnregistrement = @IdEnregistrement)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[AssociationCH_R] SET [Id] = @Id, [IdChannel] = @IdChannel, [IdEnregistrement] = @IdEnregistrement WHERE (([Id] = @Original_Id) AND ([IdChannel] = @Original_IdChannel) AND ([IdEnregistrement] = @Original_IdEnregistrement));
+SELECT Id, IdChannel, IdEnregistrement FROM AssociationCH_R WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdChannel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdChannel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdEnregistrement", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdEnregistrement", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdChannel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdChannel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdEnregistrement", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdEnregistrement", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
@@ -7254,7 +7343,7 @@ SELECT IdChannel, IdEnregistrement FROM AssociationCH_R WHERE (IdChannel = @IdCh
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT IdChannel, IdEnregistrement FROM dbo.AssociationCH_R";
+            this._commandCollection[0].CommandText = "SELECT Id, IdChannel, IdEnregistrement FROM dbo.AssociationCH_R";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7315,9 +7404,10 @@ SELECT IdChannel, IdEnregistrement FROM AssociationCH_R WHERE (IdChannel = @IdCh
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_IdChannel, int Original_IdEnregistrement) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_IdChannel));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_IdEnregistrement));
+        public virtual int Delete(int Original_Id, int Original_IdChannel, int Original_IdEnregistrement) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_IdChannel));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_IdEnregistrement));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7338,9 +7428,10 @@ SELECT IdChannel, IdEnregistrement FROM AssociationCH_R WHERE (IdChannel = @IdCh
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int IdChannel, int IdEnregistrement) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(IdChannel));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(IdEnregistrement));
+        public virtual int Insert(int Id, int IdChannel, int IdEnregistrement) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Id));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(IdChannel));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(IdEnregistrement));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7361,11 +7452,13 @@ SELECT IdChannel, IdEnregistrement FROM AssociationCH_R WHERE (IdChannel = @IdCh
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int IdChannel, int IdEnregistrement, int Original_IdChannel, int Original_IdEnregistrement) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(IdChannel));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(IdEnregistrement));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_IdChannel));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_IdEnregistrement));
+        public virtual int Update(int Id, int IdChannel, int IdEnregistrement, int Original_Id, int Original_IdChannel, int Original_IdEnregistrement) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Id));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(IdChannel));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(IdEnregistrement));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_Id));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_IdChannel));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_IdEnregistrement));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7386,8 +7479,8 @@ SELECT IdChannel, IdEnregistrement FROM AssociationCH_R WHERE (IdChannel = @IdCh
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Original_IdChannel, int Original_IdEnregistrement) {
-            return this.Update(Original_IdChannel, Original_IdEnregistrement, Original_IdChannel, Original_IdEnregistrement);
+        public virtual int Update(int IdChannel, int IdEnregistrement, int Original_Id, int Original_IdChannel, int Original_IdEnregistrement) {
+            return this.Update(Original_Id, IdChannel, IdEnregistrement, Original_Id, Original_IdChannel, Original_IdEnregistrement);
         }
     }
     
@@ -7512,31 +7605,36 @@ SELECT IdChannel, IdEnregistrement FROM AssociationCH_R WHERE (IdChannel = @IdCh
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "AssociationENR_EV";
+            tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("IdEnregistrement", "IdEnregistrement");
             tableMapping.ColumnMappings.Add("IdEvent", "IdEvent");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[AssociationENR_EV] WHERE (([IdEnregistrement] = @Original_IdEn" +
-                "registrement) AND ([IdEvent] = @Original_IdEvent))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[AssociationENR_EV] WHERE (([Id] = @Original_Id) AND ([IdEnregi" +
+                "strement] = @Original_IdEnregistrement) AND ([IdEvent] = @Original_IdEvent))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdEnregistrement", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdEnregistrement", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdEvent", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdEvent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[AssociationENR_EV] ([IdEnregistrement], [IdEvent]) VALUES (@Id" +
-                "Enregistrement, @IdEvent);\r\nSELECT IdEnregistrement, IdEvent FROM AssociationENR" +
-                "_EV WHERE (IdEnregistrement = @IdEnregistrement) AND (IdEvent = @IdEvent)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[AssociationENR_EV] ([Id], [IdEnregistrement], [IdEvent]) VALUE" +
+                "S (@Id, @IdEnregistrement, @IdEvent);\r\nSELECT Id, IdEnregistrement, IdEvent FROM" +
+                " AssociationENR_EV WHERE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdEnregistrement", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdEnregistrement", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdEvent", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdEvent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[AssociationENR_EV] SET [IdEnregistrement] = @IdEnregistrement, [IdEvent] = @IdEvent WHERE (([IdEnregistrement] = @Original_IdEnregistrement) AND ([IdEvent] = @Original_IdEvent));
-SELECT IdEnregistrement, IdEvent FROM AssociationENR_EV WHERE (IdEnregistrement = @IdEnregistrement) AND (IdEvent = @IdEvent)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[AssociationENR_EV] SET [Id] = @Id, [IdEnregistrement] = @IdEnregistrement, [IdEvent] = @IdEvent WHERE (([Id] = @Original_Id) AND ([IdEnregistrement] = @Original_IdEnregistrement) AND ([IdEvent] = @Original_IdEvent));
+SELECT Id, IdEnregistrement, IdEvent FROM AssociationENR_EV WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdEnregistrement", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdEnregistrement", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdEvent", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdEvent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdEnregistrement", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdEnregistrement", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdEvent", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdEvent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
@@ -7554,7 +7652,7 @@ SELECT IdEnregistrement, IdEvent FROM AssociationENR_EV WHERE (IdEnregistrement 
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT IdEnregistrement, IdEvent FROM dbo.AssociationENR_EV";
+            this._commandCollection[0].CommandText = "SELECT Id, IdEnregistrement, IdEvent FROM dbo.AssociationENR_EV";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7615,9 +7713,10 @@ SELECT IdEnregistrement, IdEvent FROM AssociationENR_EV WHERE (IdEnregistrement 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_IdEnregistrement, int Original_IdEvent) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_IdEnregistrement));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_IdEvent));
+        public virtual int Delete(int Original_Id, int Original_IdEnregistrement, int Original_IdEvent) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_IdEnregistrement));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_IdEvent));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7638,9 +7737,10 @@ SELECT IdEnregistrement, IdEvent FROM AssociationENR_EV WHERE (IdEnregistrement 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int IdEnregistrement, int IdEvent) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(IdEnregistrement));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(IdEvent));
+        public virtual int Insert(int Id, int IdEnregistrement, int IdEvent) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Id));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(IdEnregistrement));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(IdEvent));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7661,11 +7761,13 @@ SELECT IdEnregistrement, IdEvent FROM AssociationENR_EV WHERE (IdEnregistrement 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int IdEnregistrement, int IdEvent, int Original_IdEnregistrement, int Original_IdEvent) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(IdEnregistrement));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(IdEvent));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_IdEnregistrement));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_IdEvent));
+        public virtual int Update(int Id, int IdEnregistrement, int IdEvent, int Original_Id, int Original_IdEnregistrement, int Original_IdEvent) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Id));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(IdEnregistrement));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(IdEvent));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_Id));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_IdEnregistrement));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_IdEvent));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7686,8 +7788,8 @@ SELECT IdEnregistrement, IdEvent FROM AssociationENR_EV WHERE (IdEnregistrement 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Original_IdEnregistrement, int Original_IdEvent) {
-            return this.Update(Original_IdEnregistrement, Original_IdEvent, Original_IdEnregistrement, Original_IdEvent);
+        public virtual int Update(int IdEnregistrement, int IdEvent, int Original_Id, int Original_IdEnregistrement, int Original_IdEvent) {
+            return this.Update(Original_Id, IdEnregistrement, IdEvent, Original_Id, Original_IdEnregistrement, Original_IdEvent);
         }
     }
     

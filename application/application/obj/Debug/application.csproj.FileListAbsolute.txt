@@ -77,3 +77,7 @@ C:\Users\cdf\Desktop\depot\application\application\bin\Debug\NModbus.xml
 C:\Users\cdf\Desktop\depot\application\application\bin\Debug\NModbus4.xml
 C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.DialogEvent.resources
 C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.csproj.CopyComplete
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.InputDialog2.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.addChercheursPage.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.eventPage.resources
+C:\Users\cdf\Desktop\depot\application\application\obj\Debug\application.configurationModulePage.resources

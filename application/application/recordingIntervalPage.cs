@@ -53,11 +53,11 @@ namespace application
             if (inputDialog.ShowDialog() == DialogResult.OK)
             {
                 // Récupérer la valeur saisie par l'utilisateur
-                //string valeurSaisie = inputDialog.GetInputValue();
+                string valeurSaisie = inputDialog.GetInputValue();
 
                 // Stocker la valeur saisie dans votre code
-                // Par exemple, vous pouvez stocker la valeur dans une variable de votre formulaire
-                //maVariable = int.Parse(valeurSaisie);
+
+                maVariable = int.Parse(valeurSaisie);
             }
             label4.Text = maVariable.ToString();
         }
