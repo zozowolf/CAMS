@@ -46,6 +46,35 @@ namespace application
             }
         }
 
+        public void getNumValueTOR()
+        {
+            using (TcpClient client = new TcpClient("192.168.107.171", 502))
+            {
+                var factory = new ModbusFactory();
+                IModbusMaster master = factory.CreateMaster(client);
+
+                // read five input values
+                ushort startAddress = 18;
+                ushort numInputs = 1;
+
+                ushort[] inputs = master.ReadInputRegisters(1, startAddress, numInputs);
+
+                if (inputs.Length > 0)
+                {
+                    // Assuming you want to add the first input value to a specific channel (e.g., channel ID 1)
+                    int channelId = 2;
+                    double value = inputs[0];
+
+                    // Call the method to add the value to the database
+                    if (value - sqlCommand.GetTotalValeur(channelId, idEnregistrement, "Num") > 0)
+                        sqlCommand.AddNumValueToChannel(channelId, value - sqlCommand.GetTotalValeur(channelId, idEnregistrement, "Num"), idEnregistrement);
+                    else
+                        sqlCommand.AddNumValueToChannel(channelId, 0, idEnregistrement);
+
+                }
+            }
+        }
+
         public void RAZ()
         {
             using (TcpClient client = new TcpClient("192.168.107.171", 502))
@@ -60,6 +89,11 @@ namespace application
                 bool currentCoilState = master.ReadCoils(SlaveId, coilAddress, 1)[0];
 
                 // Réinitialisation de la bobine (inversion de l'état)
+                master.WriteSingleCoil(SlaveId, coilAddress, !currentCoilState);
+
+                coilAddress = 35;
+                // Lecture de l'état actuel de la bobine
+                currentCoilState = master.ReadCoils(SlaveId, coilAddress, 1)[0];
                 master.WriteSingleCoil(SlaveId, coilAddress, !currentCoilState);
             }
         }

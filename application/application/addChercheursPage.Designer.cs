@@ -29,36 +29,61 @@ namespace application
         /// </summary>
         private void InitializeComponent()
         {
-            this.AddChercheurButton = new System.Windows.Forms.Button();
             this.listBoxChercheurs = new System.Windows.Forms.ListBox();
-            this.deleteChercheurButton = new System.Windows.Forms.Button();
+            this.addChercheurButton = new MaterialSkin.Controls.MaterialButton();
+            this.deleteChercheurButton = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
-            // 
-            // AddChercheurButton
-            // 
-            this.AddChercheurButton.Location = new System.Drawing.Point(44, 159);
-            this.AddChercheurButton.Name = "AddChercheurButton";
-            this.AddChercheurButton.Size = new System.Drawing.Size(229, 23);
-            this.AddChercheurButton.TabIndex = 0;
-            this.AddChercheurButton.Text = "Ajouter un chercheur";
-            this.AddChercheurButton.UseVisualStyleBackColor = true;
-            this.AddChercheurButton.Click += new System.EventHandler(this.AddChercheurButton_Click_1);
             // 
             // listBoxChercheurs
             // 
             this.listBoxChercheurs.FormattingEnabled = true;
-            this.listBoxChercheurs.Location = new System.Drawing.Point(472, 33);
+            this.listBoxChercheurs.Location = new System.Drawing.Point(18, 193);
             this.listBoxChercheurs.Name = "listBoxChercheurs";
-            this.listBoxChercheurs.Size = new System.Drawing.Size(277, 368);
+            this.listBoxChercheurs.Size = new System.Drawing.Size(776, 251);
             this.listBoxChercheurs.TabIndex = 1;
+            // 
+            // addChercheurButton
+            // 
+            this.addChercheurButton.AllowDrop = true;
+            this.addChercheurButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addChercheurButton.AutoSize = false;
+            this.addChercheurButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addChercheurButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.addChercheurButton.Depth = 0;
+            this.addChercheurButton.HighEmphasis = true;
+            this.addChercheurButton.Icon = null;
+            this.addChercheurButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.addChercheurButton.Location = new System.Drawing.Point(18, 83);
+            this.addChercheurButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.addChercheurButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.addChercheurButton.Name = "addChercheurButton";
+            this.addChercheurButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.addChercheurButton.Size = new System.Drawing.Size(336, 72);
+            this.addChercheurButton.TabIndex = 0;
+            this.addChercheurButton.Text = "Add a researcher";
+            this.addChercheurButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.addChercheurButton.UseAccentColor = false;
+            this.addChercheurButton.UseVisualStyleBackColor = true;
+            this.addChercheurButton.Click += new System.EventHandler(this.AddChercheurButton_Click_1);
             // 
             // deleteChercheurButton
             // 
-            this.deleteChercheurButton.Location = new System.Drawing.Point(44, 233);
+            this.deleteChercheurButton.AutoSize = false;
+            this.deleteChercheurButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.deleteChercheurButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.deleteChercheurButton.Depth = 0;
+            this.deleteChercheurButton.HighEmphasis = true;
+            this.deleteChercheurButton.Icon = null;
+            this.deleteChercheurButton.Location = new System.Drawing.Point(409, 83);
+            this.deleteChercheurButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.deleteChercheurButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.deleteChercheurButton.Name = "deleteChercheurButton";
-            this.deleteChercheurButton.Size = new System.Drawing.Size(229, 23);
+            this.deleteChercheurButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.deleteChercheurButton.Size = new System.Drawing.Size(374, 72);
             this.deleteChercheurButton.TabIndex = 2;
-            this.deleteChercheurButton.Text = "Supprimer un chercheur";
+            this.deleteChercheurButton.Text = "Delete a researcher";
+            this.deleteChercheurButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.deleteChercheurButton.UseAccentColor = false;
             this.deleteChercheurButton.UseVisualStyleBackColor = true;
             this.deleteChercheurButton.Click += new System.EventHandler(this.deleteChercheurButton_Click);
             // 
@@ -66,21 +91,21 @@ namespace application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.deleteChercheurButton);
+            this.Controls.Add(this.addChercheurButton);
             this.Controls.Add(this.listBoxChercheurs);
-            this.Controls.Add(this.AddChercheurButton);
             this.Name = "addChercheursPage";
-            this.Text = "addChercheursPage";
+            this.Text = "Researchers";
             this.Load += new System.EventHandler(this.addChercheursPage_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button AddChercheurButton;
         private System.Windows.Forms.ListBox listBoxChercheurs;
-        private System.Windows.Forms.Button deleteChercheurButton;
+        private MaterialSkin.Controls.MaterialButton addChercheurButton;
+        private MaterialSkin.Controls.MaterialButton deleteChercheurButton;
     }
 }

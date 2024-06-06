@@ -49,7 +49,7 @@ namespace application
             comboBoxColumn.DataPropertyName = "Type"; // Assurez-vous que cela correspond à votre DataTable
             dataGridView1.Columns.Add(comboBoxColumn);
 
-            AjouterDonneesFactices();
+            AjouterDonnees();
 
             // Initialiser le BindingSource
             bindingSource = new BindingSource();
@@ -66,23 +66,68 @@ namespace application
         }
 
         // Méthode pour ajouter des données factices pour les tests
-        private void AjouterDonneesFactices()
+        private void AjouterDonnees()
         {
-            // Ajouter des lignes avec des valeurs factices
-            for (int i = 1; i <= 1; i++)
+
+
+            // Ajouter des lignes avec les valeurs de la BDD
+            for (int i = 1; ; i++)
             {
+                int? channelId = sqlCommand.GetIdChannel(i);
+
+                if (!channelId.HasValue)
+                {
+                    // Break the loop if channelId is null, indicating the end of the table
+                    break;
+                }
+
                 // créer une ligne
                 DataRow newRow = dataTable.NewRow();
 
+                // on recup le type : cest un int, et on attribue la type correspondant
+                int type = sqlCommand.GetTypeChannel(i);
+                string finType;
+                switch (type)
+                {
+                    case 1:
+                        finType = "Wheel";
+                        break;
+                    case 2:
+                        finType = "IR";
+                        break;
+                    case 3:
+                        finType = "Light";
+                        break;
+                    case 4:
+                        finType = "Temp";
+                        break;
+                    case 5:
+                        finType = "CC";
+                        break;
+                    case 6:
+                        finType = "OC";
+                        break;
+                    case 7:
+                        finType = "Off";
+                        break;
+                    default:
+                        finType = "Unknown"; // Par défaut, si le type n'est pas trouvé
+                        break;
+                }
+
                 // attribuer des valeurs à chaque colonne
                 newRow["No"] = i;
-                newRow["Type"] = "Wheel";
+                newRow["Type"] = finType;
                 newRow["Group"] = "";
-                newRow["Comments"] = "10/14 LD Cycle";
+                newRow["Comments"] = sqlCommand.GetDescriptionChannel(i);
 
                 // ajouter à la grille
                 dataTable.Rows.Add(newRow);
+
             }
+
+            
+
         }
 
         private DataTable GetListeChoix()
@@ -98,8 +143,6 @@ namespace application
             choixTable.Rows.Add("CC");
             choixTable.Rows.Add("OC");
             choixTable.Rows.Add("Off");
-
-            // Ajoutez d'autres choix selon vos besoins
 
             return choixTable;
         }

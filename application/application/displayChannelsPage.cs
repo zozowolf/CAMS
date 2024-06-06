@@ -76,7 +76,7 @@ namespace application
                         dataGridView1[col, row].Value = $"{id} inactive {sommeheure} Hrs";
                         dataGridView1[col, row].Style.ForeColor = lightRed;
                     }
-                    if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Num")
+                    if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Num" && !sqlCommand.GetActivity(currentChartNumber, idEnregistrement))
                     {
                         int min = sqlCommand.GetLastValeurmin(currentChartNumber, idEnregistrement);
                         int heure = sqlCommand.GetLastValeurheure(currentChartNumber, idEnregistrement);
@@ -99,7 +99,7 @@ namespace application
                         dataGridView1[col, row].Value = $"{id}   {lumiere} LUX";
                         dataGridView1[col, row].Style.ForeColor = lightBlue;
                     }
-
+                    
 
                     currentChartNumber++;
                 }

@@ -24,12 +24,16 @@ namespace application
         private const int margin = 10;
         SQL_command sqlCommand = new SQL_command();
 
+        private ToolTip toolTip1; // Ajouter un champ ToolTip
+
         public actogramPage()
         {
             InitializeComponent();
             InitializeCharts();
             InitializeScroll();
 
+            // Initialiser le ToolTip
+            toolTip1 = new ToolTip();
         }
 
         private void InitializeScroll()
@@ -196,9 +200,8 @@ namespace application
             chart.ChartAreas[0].AxisX.LineColor = Color.White;
             chart.ChartAreas[0].AxisY.LineColor = Color.White;
 
-            // Configurer la couleur du texte du label sur l'axe X
-            chart.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.White;
-
+            // Ne pas afficher les valeurs des X
+            chart.ChartAreas[0].AxisX.LabelStyle.Enabled = false;
 
             // Configurer la transparence des valeurs des axes
             chart.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Transparent;
@@ -233,6 +236,8 @@ namespace application
 
                 chart.ChartAreas[0].AxisX.StripLines.Add(stripLine);
             }
+            // Attacher l'événement MouseMove
+            chart.MouseMove += Chart_MouseMove;
         }
 
         private void actogramPage_KeyDown(object sender, KeyEventArgs e)
@@ -295,6 +300,29 @@ namespace application
         {
             // Met à jour avec la valeur actuelle du TrackBar
             InitializeCharts();
+        }
+
+        private void Chart_MouseMove(object sender, MouseEventArgs e)
+        {
+            Chart chart = sender as Chart;
+            HitTestResult hit = chart.HitTest(e.X, e.Y);
+
+            if (hit.ChartElementType == ChartElementType.DataPoint)
+            {
+                DataPoint dataPoint = hit.Series.Points[hit.PointIndex];
+                string time = ConvertMinutesToTime(dataPoint.XValue);
+                toolTip1.Show($"Time: {time}, Value: {dataPoint.YValues[0]}", chart, e.X, e.Y - 15);
+            }
+            else
+            {
+                toolTip1.Hide(chart);
+            }
+        }
+        private string ConvertMinutesToTime(double minutes)
+        {
+            int hours = (int)minutes / 60;
+            int mins = (int)minutes % 60;
+            return $"{hours:D2}:{mins:D2}";
         }
 
         private void warningButton_Click(object sender, EventArgs e)

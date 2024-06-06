@@ -174,7 +174,8 @@ namespace application
         private void timerMinute_Tick(object sender, EventArgs e)
         {
             // Ajouter les valeurs dans la BD
-            //modbusnum.getNumValue();
+            modbusnum.getNumValue();
+            modbusnum.getNumValueTTOR();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -182,19 +183,19 @@ namespace application
             switch (e.KeyCode)
             {
                 case Keys.D:
-                    button1.PerformClick();
+                    displayChannelButton.PerformClick();
                     break;
                 case Keys.A:
-                    button2.PerformClick();
+                    actogramButton.PerformClick();
                     break;
                 case Keys.S:
-                    button3.PerformClick();
+                    systemInformationButton.PerformClick();
                     break;
                 case Keys.C:
-                    button5.PerformClick();
+                    channelDefinitionButton.PerformClick();
                     break;
                 case Keys.R:
-                    button6.PerformClick();
+                    recordingIntervalButton.PerformClick();
                     break;
             }
         }
@@ -227,37 +228,38 @@ namespace application
         {
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void displayChannelButton_Click(object sender, EventArgs e)
         {
             displayChannelsPage nouvelleForme = new displayChannelsPage();
             nouvelleForme.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void actogramButton_Click(object sender, EventArgs e)
         {
             actogramPage nouvelleForme = new actogramPage();
             nouvelleForme.Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void systemInformationButton_Click(object sender, EventArgs e)
         {
             systemInformationPage nouvelleForme = new systemInformationPage();
             nouvelleForme.Show();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void helpButton_Click(object sender, EventArgs e)
         {
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void lightControlsButton_Click(object sender, EventArgs e)
         {
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void exitButton_Click(object sender, EventArgs e)
         {
+            Application.Exit();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void channelDefinitionButton_Click(object sender, EventArgs e)
         {
             channelDefinitionPage nouvelleForme = new channelDefinitionPage();
             if (nouvelleForme != null)
@@ -270,22 +272,44 @@ namespace application
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void recordingIntervalButton_Click(object sender, EventArgs e)
         {
             recordingIntervalPage nouvelleForme = new recordingIntervalPage();
             nouvelleForme.Show();
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void inactivityCheckButton_Click(object sender, EventArgs e)
         {
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void fileManagementButton_Click(object sender, EventArgs e)
         {
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void researcherButton_Click(object sender, EventArgs e)
         {
+            addChercheursPage nouvelleForme = new addChercheursPage();
+            if (nouvelleForme != null)
+            {
+                nouvelleForme.Show();
+            }
+            else
+            {
+                MessageBox.Show("La nouvelle forme est null.");
+            }
+        }
+
+        private void configurationModulesButton_Click(object sender, EventArgs e)
+        {
+            configurationModulePage nouvelleForme = new configurationModulePage();
+            if (nouvelleForme != null)
+            {
+                nouvelleForme.Show();
+            }
+            else
+            {
+                MessageBox.Show("La nouvelle forme est null.");
+            }
         }
     }
 }

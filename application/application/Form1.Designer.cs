@@ -30,20 +30,19 @@ namespace application
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.configurationModulesButton = new FontAwesome.Sharp.IconButton();
+            this.fileManagementButton = new FontAwesome.Sharp.IconButton();
+            this.inactivityCheckButton = new FontAwesome.Sharp.IconButton();
+            this.channelDefinitionButton = new FontAwesome.Sharp.IconButton();
+            this.displayChannelButton = new FontAwesome.Sharp.IconButton();
+            this.researcherButton = new FontAwesome.Sharp.IconButton();
+            this.exitButton = new FontAwesome.Sharp.IconButton();
+            this.recordingIntervalButton = new FontAwesome.Sharp.IconButton();
+            this.lightControlsButton = new FontAwesome.Sharp.IconButton();
+            this.helpButton = new FontAwesome.Sharp.IconButton();
+            this.systemInformationButton = new FontAwesome.Sharp.IconButton();
+            this.actogramButton = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblDateTime = new System.Windows.Forms.Label();
             this.timerMinute = new System.Windows.Forms.Timer(this.components);
             this.timerHeure = new System.Windows.Forms.Timer(this.components);
             this.displayWindow = new System.Windows.Forms.FlowLayoutPanel();
@@ -51,124 +50,185 @@ namespace application
             this.optionMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button10
+            // configurationModulesButton
             // 
-            this.button10.Location = new System.Drawing.Point(228, 119);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(219, 23);
-            this.button10.TabIndex = 10;
-            this.button10.Text = "Configuration Modules";
-            this.button10.UseVisualStyleBackColor = true;
+            this.configurationModulesButton.IconChar = FontAwesome.Sharp.IconChar.Gear;
+            this.configurationModulesButton.IconColor = System.Drawing.Color.Black;
+            this.configurationModulesButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.configurationModulesButton.IconSize = 32;
+            this.configurationModulesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.configurationModulesButton.Location = new System.Drawing.Point(228, 119);
+            this.configurationModulesButton.Name = "configurationModulesButton";
+            this.configurationModulesButton.Size = new System.Drawing.Size(219, 23);
+            this.configurationModulesButton.TabIndex = 10;
+            this.configurationModulesButton.Text = "Configuration Modules";
+            this.configurationModulesButton.UseVisualStyleBackColor = true;
+            this.configurationModulesButton.Click += new System.EventHandler(this.configurationModulesButton_Click);
             // 
-            // button9
+            // fileManagementButton
             // 
-            this.button9.Location = new System.Drawing.Point(228, 90);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(219, 23);
-            this.button9.TabIndex = 11;
-            this.button9.Text = "File management";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.fileManagementButton.IconChar = FontAwesome.Sharp.IconChar.File;
+            this.fileManagementButton.IconColor = System.Drawing.Color.Black;
+            this.fileManagementButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.fileManagementButton.IconSize = 32;
+            this.fileManagementButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.fileManagementButton.Location = new System.Drawing.Point(228, 90);
+            this.fileManagementButton.Name = "fileManagementButton";
+            this.fileManagementButton.Size = new System.Drawing.Size(219, 23);
+            this.fileManagementButton.TabIndex = 11;
+            this.fileManagementButton.Text = "File management";
+            this.fileManagementButton.UseVisualStyleBackColor = true;
+            this.fileManagementButton.Click += new System.EventHandler(this.fileManagementButton_Click);
             // 
-            // button7
+            // inactivityCheckButton
             // 
-            this.button7.Location = new System.Drawing.Point(228, 32);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(219, 23);
-            this.button7.TabIndex = 5;
-            this.button7.Text = "Inactivity Check";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.inactivityCheckButton.IconChar = FontAwesome.Sharp.IconChar.Bed;
+            this.inactivityCheckButton.IconColor = System.Drawing.Color.Black;
+            this.inactivityCheckButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.inactivityCheckButton.IconSize = 32;
+            this.inactivityCheckButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.inactivityCheckButton.Location = new System.Drawing.Point(228, 32);
+            this.inactivityCheckButton.Name = "inactivityCheckButton";
+            this.inactivityCheckButton.Size = new System.Drawing.Size(219, 23);
+            this.inactivityCheckButton.TabIndex = 5;
+            this.inactivityCheckButton.Text = "Inactivity Check";
+            this.inactivityCheckButton.UseVisualStyleBackColor = true;
+            this.inactivityCheckButton.Click += new System.EventHandler(this.inactivityCheckButton_Click);
             // 
-            // button5
+            // channelDefinitionButton
             // 
-            this.button5.Location = new System.Drawing.Point(3, 119);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(219, 23);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Channels Definitions";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.channelDefinitionButton.IconChar = FontAwesome.Sharp.IconChar.Table;
+            this.channelDefinitionButton.IconColor = System.Drawing.Color.Black;
+            this.channelDefinitionButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.channelDefinitionButton.IconSize = 32;
+            this.channelDefinitionButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.channelDefinitionButton.Location = new System.Drawing.Point(3, 119);
+            this.channelDefinitionButton.Name = "channelDefinitionButton";
+            this.channelDefinitionButton.Size = new System.Drawing.Size(219, 23);
+            this.channelDefinitionButton.TabIndex = 7;
+            this.channelDefinitionButton.Text = "Channels Definitions";
+            this.channelDefinitionButton.UseVisualStyleBackColor = true;
+            this.channelDefinitionButton.Click += new System.EventHandler(this.channelDefinitionButton_Click);
             // 
-            // button1
+            // displayChannelButton
             // 
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(219, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Display channels";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.displayChannelButton.IconChar = FontAwesome.Sharp.IconChar.List;
+            this.displayChannelButton.IconColor = System.Drawing.Color.Black;
+            this.displayChannelButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.displayChannelButton.IconSize = 32;
+            this.displayChannelButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.displayChannelButton.Location = new System.Drawing.Point(3, 3);
+            this.displayChannelButton.Name = "displayChannelButton";
+            this.displayChannelButton.Size = new System.Drawing.Size(219, 23);
+            this.displayChannelButton.TabIndex = 12;
+            this.displayChannelButton.Text = "Display channels";
+            this.displayChannelButton.UseVisualStyleBackColor = true;
+            this.displayChannelButton.Click += new System.EventHandler(this.displayChannelButton_Click);
             // 
-            // button11
+            // researcherButton
             // 
-            this.button11.Location = new System.Drawing.Point(453, 3);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(219, 23);
-            this.button11.TabIndex = 9;
-            this.button11.Text = "Chercheurs";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
+            this.researcherButton.IconChar = FontAwesome.Sharp.IconChar.PersonDress;
+            this.researcherButton.IconColor = System.Drawing.Color.Black;
+            this.researcherButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.researcherButton.IconSize = 32;
+            this.researcherButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.researcherButton.Location = new System.Drawing.Point(453, 3);
+            this.researcherButton.Name = "researcherButton";
+            this.researcherButton.Size = new System.Drawing.Size(219, 23);
+            this.researcherButton.TabIndex = 9;
+            this.researcherButton.Text = "Researchers";
+            this.researcherButton.UseVisualStyleBackColor = true;
+            this.researcherButton.Click += new System.EventHandler(this.researcherButton_Click);
             // 
-            // button12
+            // exitButton
             // 
-            this.button12.Location = new System.Drawing.Point(453, 32);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(219, 23);
-            this.button12.TabIndex = 8;
-            this.button12.Text = "EXit / System Settings";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            this.exitButton.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
+            this.exitButton.IconColor = System.Drawing.Color.Black;
+            this.exitButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.exitButton.IconSize = 32;
+            this.exitButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.exitButton.Location = new System.Drawing.Point(453, 32);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(219, 23);
+            this.exitButton.TabIndex = 8;
+            this.exitButton.Text = "EXit / System Settings";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // button6
+            // recordingIntervalButton
             // 
-            this.button6.Location = new System.Drawing.Point(228, 3);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(219, 23);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "Recording Interval";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.recordingIntervalButton.IconChar = FontAwesome.Sharp.IconChar.Hourglass3;
+            this.recordingIntervalButton.IconColor = System.Drawing.Color.Black;
+            this.recordingIntervalButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.recordingIntervalButton.IconSize = 32;
+            this.recordingIntervalButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.recordingIntervalButton.Location = new System.Drawing.Point(228, 3);
+            this.recordingIntervalButton.Name = "recordingIntervalButton";
+            this.recordingIntervalButton.Size = new System.Drawing.Size(219, 23);
+            this.recordingIntervalButton.TabIndex = 6;
+            this.recordingIntervalButton.Text = "Recording Interval";
+            this.recordingIntervalButton.UseVisualStyleBackColor = true;
+            this.recordingIntervalButton.Click += new System.EventHandler(this.recordingIntervalButton_Click);
             // 
-            // button8
+            // lightControlsButton
             // 
-            this.button8.Location = new System.Drawing.Point(228, 61);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(219, 23);
-            this.button8.TabIndex = 4;
-            this.button8.Text = "Light Controls";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.lightControlsButton.IconChar = FontAwesome.Sharp.IconChar.Lightbulb;
+            this.lightControlsButton.IconColor = System.Drawing.Color.Black;
+            this.lightControlsButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.lightControlsButton.IconSize = 32;
+            this.lightControlsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lightControlsButton.Location = new System.Drawing.Point(228, 61);
+            this.lightControlsButton.Name = "lightControlsButton";
+            this.lightControlsButton.Size = new System.Drawing.Size(219, 23);
+            this.lightControlsButton.TabIndex = 4;
+            this.lightControlsButton.Text = "Light Controls";
+            this.lightControlsButton.UseVisualStyleBackColor = true;
+            this.lightControlsButton.Click += new System.EventHandler(this.lightControlsButton_Click);
             // 
-            // button4
+            // helpButton
             // 
-            this.button4.Location = new System.Drawing.Point(3, 90);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(219, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Help (F1)";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.helpButton.IconChar = FontAwesome.Sharp.IconChar.Book;
+            this.helpButton.IconColor = System.Drawing.Color.Black;
+            this.helpButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.helpButton.IconSize = 32;
+            this.helpButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.helpButton.Location = new System.Drawing.Point(3, 90);
+            this.helpButton.Name = "helpButton";
+            this.helpButton.Size = new System.Drawing.Size(219, 23);
+            this.helpButton.TabIndex = 3;
+            this.helpButton.Text = "Help (F1)";
+            this.helpButton.UseVisualStyleBackColor = true;
+            this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
             // 
-            // button3
+            // systemInformationButton
             // 
-            this.button3.Location = new System.Drawing.Point(3, 61);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(219, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "System Information";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.systemInformationButton.IconChar = FontAwesome.Sharp.IconChar.Info;
+            this.systemInformationButton.IconColor = System.Drawing.Color.Black;
+            this.systemInformationButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.systemInformationButton.IconSize = 32;
+            this.systemInformationButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.systemInformationButton.Location = new System.Drawing.Point(3, 61);
+            this.systemInformationButton.Name = "systemInformationButton";
+            this.systemInformationButton.Size = new System.Drawing.Size(219, 23);
+            this.systemInformationButton.TabIndex = 2;
+            this.systemInformationButton.Text = "System Information";
+            this.systemInformationButton.UseVisualStyleBackColor = true;
+            this.systemInformationButton.Click += new System.EventHandler(this.systemInformationButton_Click);
             // 
-            // button2
+            // actogramButton
             // 
-            this.button2.Location = new System.Drawing.Point(3, 32);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(219, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Actogram";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.actogramButton.IconChar = FontAwesome.Sharp.IconChar.ChartSimple;
+            this.actogramButton.IconColor = System.Drawing.Color.Black;
+            this.actogramButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.actogramButton.IconSize = 32;
+            this.actogramButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.actogramButton.Location = new System.Drawing.Point(3, 32);
+            this.actogramButton.Name = "actogramButton";
+            this.actogramButton.Size = new System.Drawing.Size(219, 23);
+            this.actogramButton.TabIndex = 1;
+            this.actogramButton.Text = "Actogram";
+            this.actogramButton.UseVisualStyleBackColor = true;
+            this.actogramButton.Click += new System.EventHandler(this.actogramButton_Click);
             // 
             // label1
             // 
@@ -179,19 +239,6 @@ namespace application
             this.label1.TabIndex = 1;
             this.label1.Text = "CIRCADIAN ACTIVITY MONITORING SYSTEM";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // lblDateTime
-            // 
-            this.lblDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDateTime.AutoSize = true;
-            this.lblDateTime.BackColor = System.Drawing.Color.Transparent;
-            this.lblDateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateTime.ForeColor = System.Drawing.Color.White;
-            this.lblDateTime.Location = new System.Drawing.Point(897, 980);
-            this.lblDateTime.Name = "lblDateTime";
-            this.lblDateTime.Size = new System.Drawing.Size(110, 20);
-            this.lblDateTime.TabIndex = 3;
-            this.lblDateTime.Text = "Date et Heure";
             // 
             // timerMinute
             // 
@@ -218,19 +265,20 @@ namespace application
             // 
             // optionMenu
             // 
+            this.optionMenu.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.optionMenu.AutoScroll = true;
-            this.optionMenu.Controls.Add(this.button1);
-            this.optionMenu.Controls.Add(this.button2);
-            this.optionMenu.Controls.Add(this.button3);
-            this.optionMenu.Controls.Add(this.button4);
-            this.optionMenu.Controls.Add(this.button5);
-            this.optionMenu.Controls.Add(this.button6);
-            this.optionMenu.Controls.Add(this.button7);
-            this.optionMenu.Controls.Add(this.button8);
-            this.optionMenu.Controls.Add(this.button9);
-            this.optionMenu.Controls.Add(this.button10);
-            this.optionMenu.Controls.Add(this.button11);
-            this.optionMenu.Controls.Add(this.button12);
+            this.optionMenu.Controls.Add(this.displayChannelButton);
+            this.optionMenu.Controls.Add(this.actogramButton);
+            this.optionMenu.Controls.Add(this.systemInformationButton);
+            this.optionMenu.Controls.Add(this.helpButton);
+            this.optionMenu.Controls.Add(this.channelDefinitionButton);
+            this.optionMenu.Controls.Add(this.recordingIntervalButton);
+            this.optionMenu.Controls.Add(this.inactivityCheckButton);
+            this.optionMenu.Controls.Add(this.lightControlsButton);
+            this.optionMenu.Controls.Add(this.fileManagementButton);
+            this.optionMenu.Controls.Add(this.configurationModulesButton);
+            this.optionMenu.Controls.Add(this.researcherButton);
+            this.optionMenu.Controls.Add(this.exitButton);
             this.optionMenu.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.optionMenu.Location = new System.Drawing.Point(404, 24);
             this.optionMenu.Name = "optionMenu";
@@ -243,32 +291,29 @@ namespace application
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.optionMenu);
             this.Controls.Add(this.displayWindow);
-            this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.optionMenu.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private FontAwesome.Sharp.IconButton fileManagementButton;
+        private FontAwesome.Sharp.IconButton configurationModulesButton;
+        private FontAwesome.Sharp.IconButton researcherButton;
+        private FontAwesome.Sharp.IconButton exitButton;
+        private FontAwesome.Sharp.IconButton channelDefinitionButton;
+        private FontAwesome.Sharp.IconButton recordingIntervalButton;
+        private FontAwesome.Sharp.IconButton inactivityCheckButton;
+        private FontAwesome.Sharp.IconButton lightControlsButton;
+        private FontAwesome.Sharp.IconButton helpButton;
+        private FontAwesome.Sharp.IconButton systemInformationButton;
+        private FontAwesome.Sharp.IconButton actogramButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label lblDateTime;
+        private FontAwesome.Sharp.IconButton displayChannelButton;
         private System.Windows.Forms.Timer timerMinute;
         private System.Windows.Forms.Timer timerHeure;
         private System.Windows.Forms.FlowLayoutPanel displayWindow;

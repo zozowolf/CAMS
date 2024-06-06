@@ -451,6 +451,34 @@ namespace application
             }
         }
 
+        public int? GetIdChannel(int i)
+        {
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            {
+                cn_connection.Open();
+
+                int? id = null;
+
+                string sql_Text = "SELECT Id FROM Channel WHERE Id = @Id";
+
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                {
+                    cmd.Parameters.AddWithValue("@Id", i);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read() && !reader.IsDBNull(reader.GetOrdinal("Id")))
+                        {
+                            id = reader.GetInt32(reader.GetOrdinal("Id"));
+                        }
+                    }
+                }
+
+                return id;
+            }
+        }
+
         public int GetTypeChannel(int idChannel)
         {
             string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
@@ -474,6 +502,35 @@ namespace application
                 }
 
                 return type;
+            }
+        }
+
+        public string GetDescriptionChannel(int idChannel)
+        {
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            {
+                cn_connection.Open();
+
+                string description = null;  // Initialiser la variable description
+
+                // Utiliser des paramètres SQL pour éviter les injections SQL
+                string sql_Text = "SELECT Description FROM Channel WHERE Id = @idChannel";
+
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                {
+                    cmd.Parameters.AddWithValue("@idChannel", idChannel);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read() && !reader.IsDBNull(reader.GetOrdinal("Description")))
+                        {
+                            description = reader["Description"].ToString();
+                        }
+                    }
+                }
+
+                return description;
             }
         }
 
@@ -619,5 +676,7 @@ namespace application
                 }
             }
         }
+
+
     }
 }

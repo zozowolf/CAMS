@@ -2,16 +2,33 @@
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
+using MaterialSkin;
+using MaterialSkin.Controls;
+using System.Drawing;
 
 namespace application
 {
-    public partial class addChercheursPage : Form
+    public partial class addChercheursPage : MaterialForm
     {
         private SqlConnection connection; // Déclaration de la connexion à la base de données
 
+        private readonly MaterialSkinManager materialSkinManager;
         public addChercheursPage()
         {
             InitializeComponent();
+
+            // Initialize MaterialSkinManager
+            materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+
+            // Optional: Set the color scheme
+            materialSkinManager.ColorScheme = new ColorScheme(
+                Primary.BlueGrey800, Primary.BlueGrey900,
+                Primary.BlueGrey500, Accent.LightBlue200,
+                TextShade.WHITE
+            ); 
+
 
             // Initialisation de la connexion à la base de données
             string connectionString = Properties.Settings.Default.DBCAMSConnectionString;

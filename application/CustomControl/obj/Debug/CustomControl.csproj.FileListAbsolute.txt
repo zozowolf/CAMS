@@ -1,0 +1,6 @@
+C:\Users\cdf\Desktop\depot\application\CustomControl\bin\Debug\CustomControl.dll
+C:\Users\cdf\Desktop\depot\application\CustomControl\bin\Debug\CustomControl.pdb
+C:\Users\cdf\Desktop\depot\application\CustomControl\obj\Debug\CustomControl.csproj.CoreCompileInputs.cache
+C:\Users\cdf\Desktop\depot\application\CustomControl\obj\Debug\CustomControl.dll
+C:\Users\cdf\Desktop\depot\application\CustomControl\obj\Debug\CustomControl.pdb
+C:\Users\cdf\Desktop\depot\application\CustomControl\obj\Debug\CustomControl.csproj.AssemblyReference.cache
