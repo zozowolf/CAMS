@@ -19,10 +19,12 @@ namespace application
     {
         int idEnregistrement = 1;
         int numbchannel = 1;
+        int luxnumbchannel;
         private int MaxXValue = 1440;
         private const int chartHeight = 100;
         private const int margin = 10;
         SQL_command sqlCommand = new SQL_command();
+        bool luxbool = false;
 
         private ToolTip toolTip1; // Ajouter un champ ToolTip
 
@@ -103,10 +105,22 @@ namespace application
             Series series = chart.Series.Add($"Chart{chartNumber}");
 
             Title title = new Title(sortedDays[chartNumber - 1].Date.ToString("dd/MM/yyyy"));
-            title.Font = new Font("Arial", 10, FontStyle.Regular);
+            title.Font = new Font("Arial", 16, FontStyle.Regular);
             title.Alignment = ContentAlignment.TopLeft;
             title.ForeColor = Color.White;
             chart.Titles.Add(title);
+
+            // Ajouter une deuxième série de points non visible
+            Series hiddenSeries = chart.Series.Add($"HiddenChart{chartNumber}");
+            hiddenSeries.ChartType = SeriesChartType.Line;
+            hiddenSeries.Color = Color.Orange;
+            hiddenSeries.IsVisibleInLegend = false;
+            if (!luxbool)
+            {
+                hiddenSeries.Enabled = false;
+            }
+
+
 
             UpdateChart(chart, chartNumber, day);
 
@@ -123,6 +137,7 @@ namespace application
         {
             // Réinitialiser les valeurs (temporaire en attendant la BD)
             chart.Series[$"Chart{chartNumber}"].Points.Clear();
+            chart.Series[$"HiddenChart{chartNumber}"].Points.Clear();
 
             // Initialiser un tableau pour stocker les valeurs par minute
             double[] valeursParMinute = sqlCommand.GetValeurminutes(numbchannel, idEnregistrement, day);
@@ -137,6 +152,20 @@ namespace application
                 chart.Series[$"Chart{chartNumber}"].Points.Add(dataPoint);
             }
 
+            double[] hiddenValues;
+            if (luxbool)
+            {
+                // Initialiser un tableau pour stocker les valeurs par minute
+                hiddenValues = sqlCommand.GetLUXValeurminutes(luxnumbchannel, idEnregistrement, day);
+                // Ajouter les valeurs au graphique
+                for (int x = 0; x <= MaxXValue; x++)
+                {
+                    // Ajouter des points à la série cachée
+                    DataPoint hiddenDataPoint = new DataPoint();
+                    hiddenDataPoint.SetValueXY(x, hiddenValues[x]);
+                    chart.Series[$"HiddenChart{chartNumber}"].Points.Add(hiddenDataPoint);
+                }
+            }
         }
 
         private Chart CreateBlueLineChart(int chartHeight)
@@ -150,8 +179,20 @@ namespace application
             Series series = chart.Series.Add("Total");
             series.ChartType = SeriesChartType.Line;
 
+            // Ajouter la série cachée pour les moyennes des hiddenSeries
+            Series hiddenSeries = chart.Series.Add("HiddenTotal");
+            hiddenSeries.ChartType = SeriesChartType.Line;
+            hiddenSeries.Color = Color.Orange;
+            hiddenSeries.IsVisibleInLegend = false;
+            if (!luxbool)
+            {
+                hiddenSeries.Enabled = false;
+            }
+
+
             // Initialiser un tableau pour stocker la somme des valeurs par minute pour chaque graphique
             double[] sumValuesPerMinute = new double[MaxXValue + 1];
+            double[] sumHiddenValuesPerMinute = new double[MaxXValue + 1];
 
             // Calculer la somme des valeurs de chaque point pour chaque graphique
             foreach (Chart lineChart in panel1.Controls.OfType<Chart>())
@@ -160,6 +201,10 @@ namespace application
                 for (int x = 0; x <= MaxXValue; x++)
                 {
                     sumValuesPerMinute[x] += lineChart.Series[0].Points[x].YValues[0];
+                    if (luxbool)
+                    {
+                        sumHiddenValuesPerMinute[x] += lineChart.Series[$"HiddenChart{chartNumber}"].Points[x].YValues[0];
+                    }
                 }
             }
 
@@ -168,6 +213,11 @@ namespace application
             {
                 double averageValue = sumValuesPerMinute[x] / panel1.Controls.Count;
                 series.Points.AddXY(x, averageValue);
+                if (luxbool)
+                {
+                    double averageHiddenValue = sumHiddenValuesPerMinute[x] / panel1.Controls.Count;
+                    hiddenSeries.Points.AddXY(x, averageHiddenValue);
+                }
             }
 
             // Configurer le style de la ligne en bleu
@@ -178,6 +228,7 @@ namespace application
 
             return chart;
         }
+
 
         private void ConfigureChart(Chart chart, int chartNumber, int chartHeight)
         {
@@ -231,8 +282,8 @@ namespace application
                 StripLine stripLine = new StripLine();
                 stripLine.Interval = 0;
                 stripLine.IntervalOffset = i;
-                stripLine.StripWidth = 1;
-                stripLine.BackColor = System.Drawing.Color.FromArgb(100, 255, 0, 0); // Couleur rouge semi-transparente
+                stripLine.StripWidth = 2;
+                stripLine.BackColor = Color.Red; // Couleur rouge 
 
                 chart.ChartAreas[0].AxisX.StripLines.Add(stripLine);
             }
@@ -250,6 +301,9 @@ namespace application
                 case Keys.E:
                     Exit.PerformClick();
                     break;
+                case Keys.L:
+                    LUX.PerformClick();
+                    break;
             }
         }
 
@@ -259,7 +313,6 @@ namespace application
 
             // Associer l'événement KeyDown au formulaire
             this.KeyDown += new KeyEventHandler(actogramPage_KeyDown);
-
         }
 
         private void ChooseChanel_Click(object sender, EventArgs e)
@@ -359,6 +412,64 @@ namespace application
                     catch (Exception ex)
                     {
                         MessageBox.Show("Erreur lors de l'ajout du message : " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void LUX_Click(object sender, EventArgs e)
+        {
+            // Récupérer les identifiants de canal uniques
+            List<int> uniqueLuxChannelIds = sqlCommand.GetUniqueLuxChannelIds(idEnregistrement);
+
+            // Afficher la boîte de dialogue de saisie de valeur
+            InputDialog inputDialog = new InputDialog();
+            if (inputDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Récupérer la valeur saisie par l'utilisateur
+                string userInput = inputDialog.GetInputValue();
+
+                // Vérifier si la valeur saisie est un identifiant de canal valide
+                if (int.TryParse(userInput, out int selectedChannel) && uniqueLuxChannelIds.Contains(selectedChannel))
+                {
+                    // Mettre à jour le numéro de canal
+                    luxnumbchannel = selectedChannel;
+
+                    // Initialiser les graphiques avec le numéro de canal mis à jour
+                    luxbool = !luxbool;
+                    InitializeCharts();
+                    checkBox1.Visible = true;
+
+                }
+                else
+                {
+                    // Afficher un message d'erreur ou prendre une action appropriée si l'entrée est invalide
+                    MessageBox.Show("Identifiant de canal invalide. Veuillez saisir un identifiant de canal valide.");
+                }
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (Chart chart in panel1.Controls.OfType<Chart>())
+            {
+                foreach (Series series in chart.Series)
+                {
+                    if (series.Name.StartsWith("HiddenChart"))
+                    {
+                        series.Enabled = !series.Enabled;
+                    }
+                }
+            }
+
+            // Gérer la série cachée du blueChart
+            foreach (Chart chart in panel2.Controls.OfType<Chart>())
+            {
+                foreach (Series series in chart.Series)
+                {
+                    if (series.Name == "HiddenTotal")
+                    {
+                        series.Enabled = !series.Enabled;
                     }
                 }
             }

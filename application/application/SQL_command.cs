@@ -89,6 +89,40 @@ namespace application
             }
         }
 
+        public double[] GetLUXValeurminutes(int idChannel, int idEnregistrement, DateTime day)
+        {
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            {
+                cn_connection.Open();
+
+                // Initialiser un tableau pour stocker les valeurs par minute
+                double[] LUXvaleursParMinute = new double[1440 + 1];
+
+                string sql_Text = $"SELECT valeur, dateHeure FROM Mesure WHERE Id = '{idChannel}' AND IdEnregistrement = '{idEnregistrement}' AND type = 'Lux' AND CONVERT(date, dateHeure) = '{day.ToString("yyyy-MM-dd")}' ORDER BY dateHeure ASC";
+
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Utiliser la colonne correspondante pour récupérer les données
+                            double valeur = Convert.ToDouble(reader["valeur"]);
+                            DateTime dateHeure = Convert.ToDateTime(reader["dateHeure"]);
+
+                            // Calculer l'index de la minute dans la journée
+                            int minuteIndex = dateHeure.Hour * 60 + dateHeure.Minute;
+
+                            // Stocker la valeur dans le tableau
+                            LUXvaleursParMinute[minuteIndex] = valeur;
+                        }
+                        return LUXvaleursParMinute;
+                    }
+                }
+            }
+        }
+
         public List<DateTime> GetSortedDays(int idChannel, int idEnregistrement)
         {
             string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
@@ -136,6 +170,39 @@ namespace application
                 cn_connection.Open();
                 // Sélectionner les identifiants de canal distincts
                 string sql_Text = $"SELECT DISTINCT Id FROM Mesure WHERE IdEnregistrement = '{idEnregistrement}' ";
+
+                using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Parcourir les résultats et ajouter les identifiants de canal à la liste
+                        while (reader.Read())
+                        {
+                            if (reader["Id"] != DBNull.Value)
+                            {
+                                int idChannel = (int)reader["Id"];
+                                uniqueChannelIds.Add(idChannel);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Retourner la liste des identifiants de canal uniques
+            return uniqueChannelIds;
+        }
+
+        public List<int> GetUniqueLuxChannelIds(int idEnregistrement)
+        {
+            string cn_string = Properties.Settings.Default.DBCAMSConnectionString;
+            List<int> uniqueChannelIds = new List<int>();
+
+            // Ouvrir la connexion à la base de données
+            using (SqlConnection cn_connection = new SqlConnection(cn_string))
+            {
+                cn_connection.Open();
+                // Sélectionner les identifiants de canal distincts
+                string sql_Text = $"SELECT DISTINCT Id FROM Mesure WHERE IdEnregistrement = '{idEnregistrement}'AND type = 'Lux' ";
 
                 using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
                 {
@@ -583,7 +650,7 @@ namespace application
                     cmd.ExecuteNonQuery();
 
                     // on récupere l'ID qu'on vient de créer
-                    string getIdQuery = "SELECT TOP 1 Id FROM Event ORDER BY Id DESC;"; 
+                    string getIdQuery = "SELECT TOP 1 Id FROM Event ORDER BY Id DESC;";
                     using (SqlCommand getIdCmd = new SqlCommand(getIdQuery, cn_connection))
                     {
                         newEventId = Convert.ToInt32(getIdCmd.ExecuteScalar());

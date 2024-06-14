@@ -39,6 +39,8 @@ namespace application
             this.warningButton = new System.Windows.Forms.Button();
             this.maxcount = new System.Windows.Forms.Label();
             this.captortype = new System.Windows.Forms.Label();
+            this.LUX = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,7 +101,7 @@ namespace application
             this.trackBarX.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.trackBarX.LargeChange = 1000;
             this.trackBarX.Location = new System.Drawing.Point(779, 12);
-            this.trackBarX.Maximum = 5000;
+            this.trackBarX.Maximum = 20000;
             this.trackBarX.Name = "trackBarX";
             this.trackBarX.Size = new System.Drawing.Size(448, 45);
             this.trackBarX.SmallChange = 1000;
@@ -142,11 +144,37 @@ namespace application
             this.captortype.TabIndex = 303;
             this.captortype.Text = "(Type : )";
             // 
+            // LUX
+            // 
+            this.LUX.Location = new System.Drawing.Point(1757, 365);
+            this.LUX.Name = "LUX";
+            this.LUX.Size = new System.Drawing.Size(75, 23);
+            this.LUX.TabIndex = 304;
+            this.LUX.Text = "LUX";
+            this.LUX.UseVisualStyleBackColor = true;
+            this.LUX.Click += new System.EventHandler(this.LUX_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(1838, 371);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(80, 17);
+            this.checkBox1.TabIndex = 305;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // actogramPage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.LUX);
             this.Controls.Add(this.captortype);
             this.Controls.Add(this.maxcount);
             this.Controls.Add(this.warningButton);
@@ -176,5 +204,7 @@ namespace application
         private System.Windows.Forms.Button warningButton;
         private System.Windows.Forms.Label maxcount;
         private System.Windows.Forms.Label captortype;
+        private System.Windows.Forms.Button LUX;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

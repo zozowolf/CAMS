@@ -280,9 +280,9 @@ namespace application
             this.optionMenu.Controls.Add(this.researcherButton);
             this.optionMenu.Controls.Add(this.exitButton);
             this.optionMenu.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.optionMenu.Location = new System.Drawing.Point(404, 24);
+            this.optionMenu.Location = new System.Drawing.Point(124, 24);
             this.optionMenu.Name = "optionMenu";
-            this.optionMenu.Size = new System.Drawing.Size(1320, 171);
+            this.optionMenu.Size = new System.Drawing.Size(1870, 171);
             this.optionMenu.TabIndex = 13;
             // 
             // Form1

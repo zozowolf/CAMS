@@ -45,7 +45,7 @@ namespace application
             // Exit
             // 
             this.Exit.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Exit.Location = new System.Drawing.Point(1783, 641);
+            this.Exit.Location = new System.Drawing.Point(1079, 746);
             this.Exit.Name = "Exit";
             this.Exit.Size = new System.Drawing.Size(75, 23);
             this.Exit.TabIndex = 5;
@@ -66,9 +66,9 @@ namespace application
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(264, 62);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 62);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1081, 619);
+            this.dataGridView1.Size = new System.Drawing.Size(1880, 619);
             this.dataGridView1.TabIndex = 7;
             // 
             // affichage
@@ -79,7 +79,7 @@ namespace application
             // 
             // suivant
             // 
-            this.suivant.Location = new System.Drawing.Point(1756, 366);
+            this.suivant.Location = new System.Drawing.Point(802, 726);
             this.suivant.Name = "suivant";
             this.suivant.Size = new System.Drawing.Size(75, 43);
             this.suivant.TabIndex = 8;
@@ -89,7 +89,7 @@ namespace application
             // 
             // precedent
             // 
-            this.precedent.Location = new System.Drawing.Point(1570, 366);
+            this.precedent.Location = new System.Drawing.Point(616, 726);
             this.precedent.Name = "precedent";
             this.precedent.Size = new System.Drawing.Size(75, 43);
             this.precedent.TabIndex = 9;

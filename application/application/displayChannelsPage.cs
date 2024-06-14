@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 namespace application
 {
     public partial class displayChannelsPage : Form
@@ -14,6 +15,7 @@ namespace application
         int page = 0;
         SQL_command sqlCommand = new SQL_command();
         int idEnregistrement = 1;
+
         public displayChannelsPage()
         {
             InitializeComponent();
@@ -56,9 +58,8 @@ namespace application
             }
 
             // Remplir les cellules avec des valeurs de test et définir la police d'écriture à 16
-            dataGridView1.Font = new System.Drawing.Font("Arial", 16);
+            dataGridView1.Font = new Font("Courier New", 16); // Use a fixed-width font
             dataGridView1.ReadOnly = true; // Empêcher la modification des cellules
-
 
             int currentChartNumber = 1 + page;
             // Remplir les cellules avec des valeurs de test
@@ -73,37 +74,59 @@ namespace application
                     {
                         //mettre en couleur rouge
                         int sommeheure = sqlCommand.Getheuredown(currentChartNumber, idEnregistrement);
-                        dataGridView1[col, row].Value = $"{id} inactive {sommeheure} Hrs";
+                        dataGridView1[col, row].Value = FormatValues($"{id} inactive", $"{sommeheure} Hrs");
                         dataGridView1[col, row].Style.ForeColor = lightRed;
                     }
-                    if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Num" && !sqlCommand.GetActivity(currentChartNumber, idEnregistrement))
+                    else
                     {
-                        int min = sqlCommand.GetLastValeurmin(currentChartNumber, idEnregistrement);
-                        int heure = sqlCommand.GetLastValeurheure(currentChartNumber, idEnregistrement);
-                        int jour = sqlCommand.GetLastValeurjour(currentChartNumber, idEnregistrement);
+                        if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Num")
+                        {
+                            int min = sqlCommand.GetLastValeurmin(currentChartNumber, idEnregistrement);
+                            int heure = sqlCommand.GetLastValeurheure(currentChartNumber, idEnregistrement);
+                            int jour = sqlCommand.GetLastValeurjour(currentChartNumber, idEnregistrement);
 
-                        dataGridView1[col, row].Value = $"{id}   {min}   {heure}   {jour}";
-                        dataGridView1[col, row].Style.ForeColor = lightBlue;
+                            dataGridView1[col, row].Value = FormatValues(id, min.ToString(), heure.ToString(), jour.ToString());
+                            dataGridView1[col, row].Style.ForeColor = lightBlue;
+                        }
+                        else if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Temp")
+                        {
+                            double temperature = sqlCommand.GetLastTemp(currentChartNumber, idEnregistrement);
+                            dataGridView1[col, row].Value = FormatValues(id, $"{temperature}°C");
+                            dataGridView1[col, row].Style.ForeColor = lightBlue;
+                        }
+                        else if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Lux")
+                        {
+                            double lumiere = sqlCommand.GetLastLux(currentChartNumber, idEnregistrement);
+                            dataGridView1[col, row].Value = FormatValues(id, $"{lumiere} LUX");
+                            dataGridView1[col, row].Style.ForeColor = lightBlue;
+                        }
                     }
-                    if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Temp")
-                    {
-                        double temperature = sqlCommand.GetLastTemp(currentChartNumber, idEnregistrement);
-
-                        dataGridView1[col, row].Value = $"{id}   {temperature}°C";
-                        dataGridView1[col, row].Style.ForeColor = lightBlue;
-                    }
-                    if (sqlCommand.GetType(currentChartNumber, idEnregistrement) == "Lux")
-                    {
-                        double lumiere = sqlCommand.GetLastLux(currentChartNumber, idEnregistrement);
-
-                        dataGridView1[col, row].Value = $"{id}   {lumiere} LUX";
-                        dataGridView1[col, row].Style.ForeColor = lightBlue;
-                    }
-                    
 
                     currentChartNumber++;
                 }
             }
+        }
+
+        private string FormatValues(params string[] values)
+        {
+            // Specify the fixed lengths for each segment
+            int[] lengths = { 4, 4, 4, 4 }; // Adjust lengths as needed
+
+            StringBuilder formattedString = new StringBuilder();
+
+            for (int i = 0; i < values.Length; i++)
+            {
+                if (i < lengths.Length)
+                {
+                    formattedString.Append(values[i].PadRight(lengths[i]));
+                }
+                else
+                {
+                    formattedString.Append(values[i]);
+                }
+            }
+
+            return formattedString.ToString();
         }
 
         private void displayChannelsPage_Load(object sender, EventArgs e)
@@ -128,7 +151,6 @@ namespace application
         {
             this.Close();
         }
-
 
         private void affichage_Tick(object sender, EventArgs e)
         {
