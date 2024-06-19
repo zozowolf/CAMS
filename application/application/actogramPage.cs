@@ -344,11 +344,6 @@ namespace application
             }
         }
 
-        private void Exit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void trackBarX_Scroll(object sender, EventArgs e)
         {
             // Met à jour avec la valeur actuelle du TrackBar
@@ -381,40 +376,7 @@ namespace application
         private void warningButton_Click(object sender, EventArgs e)
         {
             InputDialog2 inputDialog2 = new InputDialog2();
-            if (inputDialog2.ShowDialog() == DialogResult.OK)
-            {
-                // on récup les valeurs
-                string message = inputDialog2.GetTextValue();
-                int idChannel = inputDialog2.GetNbChannelValue();
-                bool isGlobal = inputDialog2.IsGlobalMessage();
-                DateTime date = inputDialog2.GetCurrentDate();
-                string nomChercheur = inputDialog2.GetNomChercheur();
-
-                if (isGlobal) // on vérifie si la case message global est coché
-                {  // si c'est le cas, le message concerne tout l'enregistrement, donc on met dans Event  
-                    try
-                    {
-                        sqlCommand.AddValueToEvent(message, date, nomChercheur);
-                        MessageBox.Show("Message bien ajouté.");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Erreur lors de l'ajout du message : " + ex.Message);
-                    }
-                }
-                else
-                {  // sinon on met dans alerte et c'est lié qu'à un channel en particulier
-                    try
-                    {
-                        sqlCommand.AddValueToAlerte(idChannel, message, date, nomChercheur);
-                        MessageBox.Show("Message bien ajouté.");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Erreur lors de l'ajout du message : " + ex.Message);
-                    }
-                }
-            }
+            inputDialog2.ShowDialog();
         }
 
         private void LUX_Click(object sender, EventArgs e)
@@ -473,6 +435,11 @@ namespace application
                     }
                 }
             }
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

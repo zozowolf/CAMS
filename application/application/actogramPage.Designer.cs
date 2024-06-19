@@ -31,7 +31,6 @@ namespace application
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(actogramPage));
             this.ChooseChanel = new System.Windows.Forms.Button();
-            this.Exit = new System.Windows.Forms.Button();
             this.Chn = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -41,30 +40,20 @@ namespace application
             this.captortype = new System.Windows.Forms.Label();
             this.LUX = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.Exit = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
             this.SuspendLayout();
             // 
             // ChooseChanel
             // 
-            this.ChooseChanel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.ChooseChanel.Location = new System.Drawing.Point(1757, 632);
+            this.ChooseChanel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ChooseChanel.Location = new System.Drawing.Point(1738, 494);
             this.ChooseChanel.Name = "ChooseChanel";
-            this.ChooseChanel.Size = new System.Drawing.Size(105, 23);
+            this.ChooseChanel.Size = new System.Drawing.Size(143, 50);
             this.ChooseChanel.TabIndex = 3;
             this.ChooseChanel.Text = "Choose Chanel";
             this.ChooseChanel.UseVisualStyleBackColor = true;
             this.ChooseChanel.Click += new System.EventHandler(this.ChooseChanel_Click);
-            // 
-            // Exit
-            // 
-            this.Exit.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Exit.Location = new System.Drawing.Point(1757, 725);
-            this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(75, 23);
-            this.Exit.TabIndex = 4;
-            this.Exit.Text = "Exit";
-            this.Exit.UseVisualStyleBackColor = true;
-            this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
             // Chn
             // 
@@ -114,7 +103,7 @@ namespace application
             this.warningButton.BackColor = System.Drawing.Color.Transparent;
             this.warningButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("warningButton.BackgroundImage")));
             this.warningButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.warningButton.Location = new System.Drawing.Point(1757, 896);
+            this.warningButton.Location = new System.Drawing.Point(1806, 848);
             this.warningButton.Name = "warningButton";
             this.warningButton.Size = new System.Drawing.Size(75, 70);
             this.warningButton.TabIndex = 301;
@@ -146,9 +135,10 @@ namespace application
             // 
             // LUX
             // 
-            this.LUX.Location = new System.Drawing.Point(1757, 365);
+            this.LUX.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.LUX.Location = new System.Drawing.Point(1738, 435);
             this.LUX.Name = "LUX";
-            this.LUX.Size = new System.Drawing.Size(75, 23);
+            this.LUX.Size = new System.Drawing.Size(143, 44);
             this.LUX.TabIndex = 304;
             this.LUX.Text = "LUX";
             this.LUX.UseVisualStyleBackColor = true;
@@ -156,17 +146,30 @@ namespace application
             // 
             // checkBox1
             // 
-            this.checkBox1.AutoSize = true;
+            this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(1838, 371);
+            this.checkBox1.Location = new System.Drawing.Point(1887, 435);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
+            this.checkBox1.Size = new System.Drawing.Size(14, 44);
             this.checkBox1.TabIndex = 305;
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.Visible = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // Exit
+            // 
+            this.Exit.IconChar = FontAwesome.Sharp.IconChar.ArrowRightFromBracket;
+            this.Exit.IconColor = System.Drawing.Color.Black;
+            this.Exit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Exit.IconSize = 70;
+            this.Exit.Location = new System.Drawing.Point(1806, 946);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(75, 72);
+            this.Exit.TabIndex = 306;
+            this.Exit.UseVisualStyleBackColor = true;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
             // actogramPage
             // 
@@ -174,6 +177,7 @@ namespace application
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.Exit);
             this.Controls.Add(this.LUX);
             this.Controls.Add(this.captortype);
             this.Controls.Add(this.maxcount);
@@ -182,7 +186,6 @@ namespace application
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Chn);
-            this.Controls.Add(this.Exit);
             this.Controls.Add(this.ChooseChanel);
             this.Name = "actogramPage";
             this.Text = "actogramPage";
@@ -196,7 +199,6 @@ namespace application
 
         #endregion
         private System.Windows.Forms.Button ChooseChanel;
-        private System.Windows.Forms.Button Exit;
         private System.Windows.Forms.Label Chn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
@@ -206,5 +208,6 @@ namespace application
         private System.Windows.Forms.Label captortype;
         private System.Windows.Forms.Button LUX;
         private System.Windows.Forms.CheckBox checkBox1;
+        private FontAwesome.Sharp.IconButton Exit;
     }
 }

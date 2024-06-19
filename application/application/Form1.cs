@@ -38,6 +38,7 @@ namespace application
 
         public Form1()
         {
+
             InitializeComponent();
             InitializeCharts();
             RéorganiserBoutons();
@@ -56,6 +57,7 @@ namespace application
 
         private void RéorganiserBoutons()
         {
+
             // Calculer la largeur et la hauteur d'un bouton pour remplir le FlowLayoutPanel
             int largeurBouton = optionMenu.ClientSize.Width / 7;
             int hauteurBouton = optionMenu.ClientSize.Height / 3;
@@ -174,8 +176,8 @@ namespace application
         private void timerMinute_Tick(object sender, EventArgs e)
         {
             // Ajouter les valeurs dans la BD
-            //modbusnum.getNumValue();
-            //modbusnum.getNumValueTOR();
+            modbusnum.getNumValue();
+            modbusnum.getNumValueTOR();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)

@@ -24,6 +24,9 @@ namespace application
 
         private void InitializeDataGridView()
         {
+            this.BackColor = Color.FromArgb(36, 36, 36);
+
+
             // Définition du nombre de colonnes et de lignes
             dataGridView1.ColumnCount = 4;
             dataGridView1.RowCount = 28;
@@ -74,7 +77,7 @@ namespace application
                     {
                         //mettre en couleur rouge
                         int sommeheure = sqlCommand.Getheuredown(currentChartNumber, idEnregistrement);
-                        dataGridView1[col, row].Value = FormatValues($"{id} inactive", $"{sommeheure} Hrs");
+                        dataGridView1[col, row].Value = FormatValues($"{id} inactive", $" {sommeheure} Hrs");
                         dataGridView1[col, row].Style.ForeColor = lightRed;
                     }
                     else
@@ -110,7 +113,7 @@ namespace application
         private string FormatValues(params string[] values)
         {
             // Specify the fixed lengths for each segment
-            int[] lengths = { 4, 4, 4, 4 }; // Adjust lengths as needed
+            int[] lengths = { 8, 8, 8, 8 }; // Adjust lengths as needed
 
             StringBuilder formattedString = new StringBuilder();
 
@@ -147,11 +150,6 @@ namespace application
             }
         }
 
-        private void Exit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void affichage_Tick(object sender, EventArgs e)
         {
             InitializeDataGridView();
@@ -166,13 +164,18 @@ namespace application
             }
         }
 
-        private void precedent_Click(object sender, EventArgs e)
+        private void previous_Click(object sender, EventArgs e)
         {
             if (page != 0)
             {
                 page -= 112;
                 InitializeDataGridView();
             }
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

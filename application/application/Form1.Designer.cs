@@ -42,7 +42,6 @@ namespace application
             this.helpButton = new FontAwesome.Sharp.IconButton();
             this.systemInformationButton = new FontAwesome.Sharp.IconButton();
             this.actogramButton = new FontAwesome.Sharp.IconButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.timerMinute = new System.Windows.Forms.Timer(this.components);
             this.timerHeure = new System.Windows.Forms.Timer(this.components);
             this.displayWindow = new System.Windows.Forms.FlowLayoutPanel();
@@ -230,16 +229,6 @@ namespace application
             this.actogramButton.UseVisualStyleBackColor = true;
             this.actogramButton.Click += new System.EventHandler(this.actogramButton_Click);
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(753, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(429, 38);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "CIRCADIAN ACTIVITY MONITORING SYSTEM";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
             // timerMinute
             // 
             this.timerMinute.Enabled = true;
@@ -291,7 +280,6 @@ namespace application
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.optionMenu);
             this.Controls.Add(this.displayWindow);
-            this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -312,7 +300,6 @@ namespace application
         private FontAwesome.Sharp.IconButton helpButton;
         private FontAwesome.Sharp.IconButton systemInformationButton;
         private FontAwesome.Sharp.IconButton actogramButton;
-        private System.Windows.Forms.Label label1;
         private FontAwesome.Sharp.IconButton displayChannelButton;
         private System.Windows.Forms.Timer timerMinute;
         private System.Windows.Forms.Timer timerHeure;

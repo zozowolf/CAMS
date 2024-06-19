@@ -43,6 +43,7 @@ namespace application
             this.materialLabelGateway = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabelMask = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabelIpAdress = new MaterialSkin.Controls.MaterialLabel();
+            this.exit = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
             // materialIpAddressMaskedTextBox
@@ -335,11 +336,25 @@ namespace application
             this.materialLabelIpAdress.TabIndex = 20;
             this.materialLabelIpAdress.Text = "IP Adress :";
             // 
+            // exit
+            // 
+            this.exit.IconChar = FontAwesome.Sharp.IconChar.ArrowRightFromBracket;
+            this.exit.IconColor = System.Drawing.Color.Black;
+            this.exit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.exit.IconSize = 60;
+            this.exit.Location = new System.Drawing.Point(727, 379);
+            this.exit.Name = "exit";
+            this.exit.Size = new System.Drawing.Size(58, 57);
+            this.exit.TabIndex = 27;
+            this.exit.UseVisualStyleBackColor = true;
+            this.exit.Click += new System.EventHandler(this.exit_Click);
+            // 
             // configurationModulePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.exit);
             this.Controls.Add(this.materialLabelEntryExit);
             this.Controls.Add(this.materialLabelGateway);
             this.Controls.Add(this.materialLabelModuleType);
@@ -373,5 +388,6 @@ namespace application
         private MaterialSkin.Controls.MaterialLabel materialLabelGateway;
         private MaterialSkin.Controls.MaterialLabel materialLabelMask;
         private MaterialSkin.Controls.MaterialLabel materialLabelIpAdress;
+        private FontAwesome.Sharp.IconButton exit;
     }
 }

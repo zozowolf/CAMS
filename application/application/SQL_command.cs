@@ -169,7 +169,7 @@ namespace application
             {
                 cn_connection.Open();
                 // Sélectionner les identifiants de canal distincts
-                string sql_Text = $"SELECT DISTINCT Id FROM Mesure WHERE IdEnregistrement = '{idEnregistrement}' ";
+                string sql_Text = $"SELECT DISTINCT Id FROM Mesure WHERE IdEnregistrement = '{idEnregistrement}' AND type = 'Num' ";
 
                 using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
                 {
@@ -289,7 +289,7 @@ namespace application
 
                 int lastValeurMin = 0;
 
-                string sql_Text = $"SELECT TOP 1 valeur FROM Mesure WHERE Id = '{idChannel}' AND IdEnregistrement = '{idEnregistrement}' AND type = 'Num' ORDER BY dateHeure DESC";
+                string sql_Text = $"SELECT TOP 1 valeur FROM Mesure WHERE Id = {idChannel} AND IdEnregistrement = {idEnregistrement} AND type = 'Num'AND dateHeure >= DATEADD(minute, -1, GETDATE())AND dateHeure < GETDATE()ORDER BY dateHeure DESC";
 
                 using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
                 {
@@ -316,7 +316,7 @@ namespace application
                 int totalValeurs = 0;
 
                 // Sélectionner la somme de toutes les valeurs pour l'heure actuelle du jour actuel
-                string sql_Text = $"SELECT SUM(valeur) AS TotalValeurs FROM Mesure WHERE Id = '{idChannel}' AND IdEnregistrement = '{idEnregistrement}' AND type = 'Num' AND DATEPART(hour, dateHeure) = DATEPART(hour, GETDATE()) AND CONVERT(date, dateHeure) = CONVERT(date, GETDATE())";
+                string sql_Text = $"SELECT SUM(valeur) AS TotalValeurs FROM Mesure WHERE Id = '{idChannel}' AND IdEnregistrement = '{idEnregistrement}' AND type = 'Num' AND dateHeure >= DATEADD(minute, -60, GETDATE()) AND dateHeure <= GETDATE()";
 
                 using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
                 {
@@ -422,7 +422,7 @@ namespace application
                 int hoursWithZeroValue = 0;
 
                 // Sélectionner les heures où la valeur est zéro
-                string sql_Text = $"SELECT COUNT(DISTINCT DATEPART(hour, dateHeure)) AS HoursWithZeroValue FROM Mesure WHERE Id = '{idChannel}' AND IdEnregistrement = '{idEnregistrement}' AND type = 'Num' AND valeur = 0";
+                string sql_Text = $"SELECT COUNT(DISTINCT DATEPART(hour, dateHeure)) AS HoursWithZeroValue FROM Mesure WHERE Id = '{idChannel}' AND IdEnregistrement = '{idEnregistrement}' AND valeur = 0";
 
                 using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
                 {
@@ -450,7 +450,7 @@ namespace application
                 DateTime twentyFourHoursAgo = DateTime.Now.AddHours(-24);
 
                 // Vérifier s'il y a des valeurs différentes de zéro dans les 24 dernières heures
-                string sql_Text = $"SELECT COUNT(*) FROM Mesure WHERE Id = '{idChannel}' AND IdEnregistrement = '{idEnregistrement}' AND type = 'Num' AND dateHeure >= @TwentyFourHoursAgo AND valeur <> 0";
+                string sql_Text = $"SELECT COUNT(*) FROM Mesure WHERE Id = '{idChannel}' AND IdEnregistrement = '{idEnregistrement}' AND dateHeure >= @TwentyFourHoursAgo AND valeur <> 0";
 
                 using (SqlCommand cmd = new SqlCommand(sql_Text, cn_connection))
                 {

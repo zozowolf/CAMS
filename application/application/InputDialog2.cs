@@ -1,98 +1,30 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data.SqlClient; // SQL Server local DB
+using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace application
 {
-    public partial class InputDialog2 : Form
+    public partial class InputDialog2 : MaterialForm
     {
-        private Label channelLabel;
-        private NumericUpDown numericUpDown;
-        private CheckBox globalCheckBox;
-        private Label messageLabel;
-        private TextBox textBox;
-        private Button okButton;
+        private MaterialLabel channelLabel;
+        private MaterialTextBox ChannelTextBox;
+        private MaterialCheckbox globalCheckBox;
+        private MaterialLabel messageLabel;
         private DateTime currentDate;
-        private Label chercheurLabel;
-        private ComboBox chercheurComboBox;
+        SQL_command sqlCommand = new SQL_command();
         private string connectionString = Properties.Settings.Default.DBCAMSConnectionString;
 
 
         public InputDialog2()
         {
             InitializeComponent();
-            currentDate = DateTime.Today;
-            this.channelLabel = new Label();
-            this.numericUpDown = new NumericUpDown();
-            this.globalCheckBox = new CheckBox();
-            this.messageLabel = new Label();
-            this.textBox = new TextBox();
-            this.okButton = new Button();
-
-            // Configure Channel Label
-            this.channelLabel.Location = new System.Drawing.Point(12, 20);
-            this.channelLabel.Size = new System.Drawing.Size(200, 20);
-            this.channelLabel.Text = "Channel concerné:";
-
-            // Configure NumericUpDown
-            this.numericUpDown.Location = new System.Drawing.Point(12, 50);
-            this.numericUpDown.Size = new System.Drawing.Size(200, 20);
-            this.numericUpDown.Minimum = 0;
-            this.numericUpDown.Maximum = 100;
-
-            // Configure Global CheckBox
-            this.globalCheckBox.Location = new System.Drawing.Point(12, 80);
-            this.globalCheckBox.Size = new System.Drawing.Size(100, 20);
-            this.globalCheckBox.Text = "Message global";
-            this.globalCheckBox.CheckedChanged += GlobalCheckBox_CheckedChanged;
-
-            // Configure Message Label
-            this.messageLabel.Location = new System.Drawing.Point(12, 110);
-            this.messageLabel.Size = new System.Drawing.Size(200, 20);
-            this.messageLabel.Text = "Message à rentrer:";
-
-            // Configure TextBox
-            this.textBox.Location = new System.Drawing.Point(12, 140);
-            this.textBox.Size = new System.Drawing.Size(200, 20);
-
-            // Configure OK Button
-            this.okButton.Location = new System.Drawing.Point(12, 170);
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.Text = "OK";
-            this.okButton.DialogResult = DialogResult.OK;
-            this.okButton.Click += OkButton_Click;
-
-            // Configure Chercheur Label
-            this.chercheurLabel = new Label();
-            this.chercheurLabel.Location = new System.Drawing.Point(12, 200);
-            this.chercheurLabel.Size = new System.Drawing.Size(200, 20);
-            this.chercheurLabel.Text = "Nom du chercheur:";
-
-            // Configure Chercheur ComboBox
-            this.chercheurComboBox = new ComboBox();
-            this.chercheurComboBox.Location = new System.Drawing.Point(12, 230);
-            this.chercheurComboBox.Size = new System.Drawing.Size(200, 20);
-            this.chercheurComboBox.DropDownStyle = ComboBoxStyle.DropDownList; // Pour rendre la liste déroulante non modifiable
-
-            // Configure Form
-            this.ClientSize = new System.Drawing.Size(300, 300);
-            this.Controls.Add(this.channelLabel);
-            this.Controls.Add(this.numericUpDown);
-            this.Controls.Add(this.globalCheckBox);
-            this.Controls.Add(this.messageLabel);
-            this.Controls.Add(this.textBox);
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "Signalement";
-            this.ResumeLayout(false);
+            
 
             // Appeler la méthode Load pour charger les noms de chercheurs
             LoadChercheurs();
-
-            // Ajouter les contrôles au formulaire
-            this.Controls.Add(this.chercheurLabel);
-            this.Controls.Add(this.chercheurComboBox);
-            this.Controls.Add(this.okButton);
 
 
         }
@@ -126,11 +58,6 @@ namespace application
             }
         }
 
-        private void OkButton_Click(object sender, EventArgs e)
-        {
-            currentDate = DateTime.Now;
-            this.Close(); // Close the dialog when OK button is clicked
-        }
 
         public string GetTextValue()
         {
@@ -139,31 +66,72 @@ namespace application
 
         public int GetNbChannelValue()
         {
-            return (int)numericUpDown.Value; // Return the value entered by the user
+            int valeur;
+            if (int.TryParse(ChannelTextBox.Text, out valeur))
+            {
+                return valeur; // Retourne la valeur convertie en entier si la conversion réussit
+            }
+            else
+            {
+                // Gestion du cas où l'entrée utilisateur n'est pas un nombre valide
+                // Ici, vous pouvez retourner une valeur par défaut ou gérer l'erreur selon vos besoins
+                MessageBox.Show("Veuillez entrer un nombre entier valide.");
+                return 0; // Par exemple, retourner 0 en cas d'échec de la conversion
+            }
         }
 
-
-        public bool IsGlobalMessage()
-        {
-            return globalCheckBox.Checked; // Return whether the global checkbox is checked
-        }
-
-        public DateTime GetCurrentDate()
-        {
-            return currentDate;
-        }
-
-        private void GlobalCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            // Enable/disable the numericUpDown based on the checked state of globalCheckBox
-            numericUpDown.Enabled = !globalCheckBox.Checked;
-        }
         public string GetNomChercheur()
         {
             return chercheurComboBox.SelectedItem?.ToString();
         }
 
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            bool isGlobal = globalCheckBox.Checked;
+            string nomChercheur = chercheurComboBox.SelectedItem?.ToString();
+            string message = textBox.Text;
+            int idChannel;
+            currentDate = DateTime.Now;
+
+            int.TryParse(ChannelTextBox.Text, out idChannel);
+
+            // si pas de chercheurs on met un string quand meme
+            if (nomChercheur==null)
+            {
+                nomChercheur = "";
+            }
 
 
+            if (isGlobal) // on vérifie si la case message global est coché
+                {  // si c'est le cas, le message concerne tout l'enregistrement, donc on met dans Event  
+                    try
+                    {
+                        sqlCommand.AddValueToEvent(message, currentDate, nomChercheur);
+                        MessageBox.Show("Message bien ajouté.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors de l'ajout du message : " + ex.Message);
+                    }
+                }
+                else
+                {  // sinon on met dans alerte et c'est lié qu'à un channel en particulier
+                    try
+                    {
+                        sqlCommand.AddValueToAlerte(idChannel, message, currentDate, nomChercheur);
+                        MessageBox.Show("Message bien ajouté.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors de l'ajout du message : " + ex.Message);
+                    }
+                }
+            this.Close(); // Close the dialog when OK button is clicked
+        }
+
+        private void globalCheckBox_CheckedChanged_1(object sender, EventArgs e)
+        {
+            ChannelTextBox.Enabled = !ChannelTextBox.Enabled;
+        }
     }
 }
